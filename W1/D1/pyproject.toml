@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ai-advent-w1-d1"
+version = "0.1.0"
+description = "Первый запрос к LLM через Polza.ai, с BDD и журналом запусков"
+requires-python = ">=3.9"
+dependencies = ["httpx>=0.28,<0.29", "python-dotenv>=1,<2"]
+
+[project.optional-dependencies]
+test = ["pytest>=8,<9", "pytest-bdd>=8,<9"]
+
+[project.scripts]
+day1 = "day1.cli:entrypoint"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
