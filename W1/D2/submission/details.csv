@@ -1,0 +1,31 @@
+﻿variant,repeat,http_status,finish_reason,complete,json_valid,schema_valid,task_evaluated,task_valid,api_error,validation_error,duration_seconds,prompt_tokens,completion_tokens,total_tokens,cost_rub,actual_model
+stop_sequence,1,200,stop,True,False,False,False,False,,Исходный текст не разбирается как строгий JSON.,0.778244,86,26,112,0.00223269,google/gemini-2.5-flash-lite
+prompt_json,1,200,stop,True,False,False,False,False,,Исходный текст не разбирается как строгий JSON.,1.075307,86,149,235,0.00801418,google/gemini-2.5-flash-lite
+token_limit,1,200,length,False,False,False,False,False,,Исходный текст не разбирается как строгий JSON.,1.142711,86,31,117,0.00246771,google/gemini-2.5-flash-lite
+json_mode,1,200,stop,True,True,True,True,True,,,1.118346,86,127,213,0.0069801,google/gemini-2.5-flash-lite
+baseline,1,200,stop,True,False,False,False,False,,Исходный текст не разбирается как строгий JSON.,3.518209,23,963,986,0.04553514,google/gemini-2.5-flash-lite
+strict_schema,1,200,stop,True,True,True,True,True,,,0.969537,86,144,230,0.00777916,google/gemini-2.5-flash-lite
+stop_sequence,2,200,stop,True,False,False,False,False,,Исходный текст не разбирается как строгий JSON.,0.766509,86,44,130,0.00307876,google/gemini-2.5-flash-lite
+baseline,2,200,stop,True,False,False,False,False,,Исходный текст не разбирается как строгий JSON.,4.79362,23,1195,1218,0.05644007,google/gemini-2.5-flash-lite
+token_limit,2,200,length,False,False,False,False,False,,Исходный текст не разбирается как строгий JSON.,0.910691,86,30,116,0.00242071,google/gemini-2.5-flash-lite
+json_mode,2,200,stop,True,True,True,True,True,,,2.290008,86,133,219,0.00726212,google/gemini-2.5-flash-lite
+strict_schema,2,200,stop,True,True,True,True,True,,,0.96976,86,128,214,0.0070271,google/gemini-2.5-flash-lite
+prompt_json,2,200,stop,True,False,False,False,False,,Исходный текст не разбирается как строгий JSON.,1.38434,86,145,231,0.00790522,google/gemini-2.5-flash-lite
+stop_sequence,3,200,stop,True,False,False,False,False,,Исходный текст не разбирается как строгий JSON.,0.791759,86,31,117,0.00246771,google/gemini-2.5-flash-lite
+prompt_json,3,200,stop,True,False,False,False,False,,Исходный текст не разбирается как строгий JSON.,1.035839,86,132,218,0.00721512,google/gemini-2.5-flash-lite
+token_limit,3,200,length,False,False,False,False,False,,Исходный текст не разбирается как строгий JSON.,0.731703,86,30,116,0.00242071,google/gemini-2.5-flash-lite
+baseline,3,200,stop,True,False,False,False,False,,Исходный текст не разбирается как строгий JSON.,3.654729,23,1118,1141,0.05282076,google/gemini-2.5-flash-lite
+json_mode,3,200,stop,True,True,True,True,True,,,1.183088,86,128,214,0.00709808,google/gemini-2.5-flash-lite
+strict_schema,3,200,stop,True,True,True,True,True,,,1.081632,86,129,215,0.0070741,google/gemini-2.5-flash-lite
+prompt_json,4,200,stop,True,False,False,False,False,,Исходный текст не разбирается как строгий JSON.,1.544602,86,133,219,0.00726212,google/gemini-2.5-flash-lite
+token_limit,4,200,length,False,False,False,False,False,,Исходный текст не разбирается как строгий JSON.,0.826603,86,30,116,0.00244516,google/gemini-2.5-flash-lite
+stop_sequence,4,200,stop,True,False,False,False,False,,Исходный текст не разбирается как строгий JSON.,0.86151,86,23,109,0.00209168,google/gemini-2.5-flash-lite
+json_mode,4,200,stop,True,True,True,True,True,,,1.200831,86,134,220,0.00730912,google/gemini-2.5-flash-lite
+strict_schema,4,200,stop,True,True,True,True,True,,,0.887044,86,131,217,0.00716811,google/gemini-2.5-flash-lite
+baseline,4,200,stop,True,False,False,False,False,,Исходный текст не разбирается как строгий JSON.,4.163527,23,1198,1221,0.05658108,google/gemini-2.5-flash-lite
+prompt_json,5,200,stop,True,False,False,False,False,,Исходный текст не разбирается как строгий JSON.,0.822952,86,135,221,0.00735613,google/gemini-2.5-flash-lite
+stop_sequence,5,200,stop,True,False,False,False,False,,Исходный текст не разбирается как строгий JSON.,0.841696,86,26,112,0.00223269,google/gemini-2.5-flash-lite
+token_limit,5,200,length,False,False,False,False,False,,Исходный текст не разбирается как строгий JSON.,0.789249,86,30,116,0.00242071,google/gemini-2.5-flash-lite
+baseline,5,200,stop,True,False,False,False,False,,Исходный текст не разбирается как строгий JSON.,4.902362,23,1728,1751,0.08149321,google/gemini-2.5-flash-lite
+strict_schema,5,200,stop,True,True,True,True,True,,,1.064282,86,134,220,0.00730912,google/gemini-2.5-flash-lite
+json_mode,5,200,stop,True,True,True,True,True,,,0.942831,86,132,218,0.00721512,google/gemini-2.5-flash-lite

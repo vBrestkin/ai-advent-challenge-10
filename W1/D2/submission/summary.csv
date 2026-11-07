@@ -1,0 +1,7 @@
+﻿variant,runs,json_valid,schema_valid,task_valid,success,api_errors,format_errors,truncated,duration_seconds,total_tokens,unknown_tokens,cost_rub,unknown_costs
+baseline,5,0,0,0,0,0,5,0,21.032447,6317,0,0.29287026,0
+prompt_json,5,0,0,0,0,0,5,0,5.86304,1124,0,0.03775277,0
+token_limit,5,0,0,0,0,0,5,5,4.400957,581,0,0.012175,0
+stop_sequence,5,0,0,0,0,0,5,0,4.039718,580,0,0.01210353,0
+json_mode,5,5,5,5,5,0,0,0,6.735104,1084,0,0.03586454,0
+strict_schema,5,5,5,5,5,0,0,0,4.972255,1096,0,0.03635759,0

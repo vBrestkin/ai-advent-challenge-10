@@ -1,0 +1,84 @@
+{
+  "request": {
+    "model": "google/gemini-2.5-flash-lite",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Ответь только JSON без Markdown и пояснений. Объект с единственным ключом ideas: массив объектов с полями title (непустая строка), level (beginner, intermediate или advanced), duration_minutes (положительное целое число). Идей должно быть ровно три, названия разные."
+      },
+      {
+        "role": "user",
+        "content": "Составь три идеи заданий для изучения Python: название, уровень сложности и длительность в минутах."
+      }
+    ],
+    "stream": false,
+    "provider": {
+      "allow_fallbacks": false,
+      "require_parameters": true
+    },
+    "max_tokens": 4096,
+    "temperature": 0.7,
+    "stop": [
+      "\"level\""
+    ]
+  },
+  "response": {
+    "id": "gen_2230475492912402433",
+    "object": "chat.completion",
+    "created": 1794090799,
+    "model": "google/gemini-2.5-flash-lite",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```json\n{\n  \"ideas\": [\n    {\n      \"title\": \"Напишите программу, которая запрашивает у пользователя его имя и возраст, а затем выводит приветственное сообщение.\",\n      "
+        },
+        "finish_reason": "stop",
+        "logprobs": null
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 86,
+      "completion_tokens": 44,
+      "total_tokens": 130,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "image_tokens": 0,
+        "accepted_prediction_tokens": null,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "server_tool_use": null,
+      "cost_rub": 0.00307876,
+      "cost": 0.00307876,
+      "plugins": null
+    }
+  },
+  "content": "```json\n{\n  \"ideas\": [\n    {\n      \"title\": \"Напишите программу, которая запрашивает у пользователя его имя и возраст, а затем выводит приветственное сообщение.\",\n      ",
+  "finish_reason": "stop",
+  "complete": true,
+  "actual_model": "google/gemini-2.5-flash-lite",
+  "provider": null,
+  "total_tokens": 130,
+  "prompt_tokens": 86,
+  "completion_tokens": 44,
+  "cost_rub": 0.00307876,
+  "http_status": 200,
+  "api_error": null,
+  "duration_seconds": 0.766509,
+  "variant": "stop_sequence",
+  "repeat": 2,
+  "observed_at": "2026-11-08T01:33:19+03:00",
+  "json_valid": false,
+  "schema_valid": false,
+  "task_valid": false,
+  "validation_error": "Исходный текст не разбирается как строгий JSON.",
+  "task_evaluated": false
+}

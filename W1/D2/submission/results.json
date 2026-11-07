@@ -1,0 +1,2712 @@
+{
+  "config": {
+    "model": "google/gemini-2.5-flash-lite",
+    "started_at": "2026-11-08T01:33:10+03:00",
+    "repeats": 5,
+    "planned_requests": 30,
+    "prompt": "Составь три идеи заданий для изучения Python: название, уровень сложности и длительность в минутах.",
+    "format_instruction": "Ответь только JSON без Markdown и пояснений. Объект с единственным ключом ideas: массив объектов с полями title (непустая строка), level (beginner, intermediate или advanced), duration_minutes (положительное целое число). Идей должно быть ровно три, названия разные.",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "ideas": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "level": {
+                "type": "string",
+                "enum": [
+                  "beginner",
+                  "intermediate",
+                  "advanced"
+                ]
+              },
+              "duration_minutes": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "title",
+              "level",
+              "duration_minutes"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "ideas"
+      ],
+      "additionalProperties": false
+    },
+    "temperature": 0.7,
+    "order_seed": 42,
+    "status": "complete"
+  },
+  "records": [
+    {
+      "request": {
+        "model": "google/gemini-2.5-flash-lite",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Ответь только JSON без Markdown и пояснений. Объект с единственным ключом ideas: массив объектов с полями title (непустая строка), level (beginner, intermediate или advanced), duration_minutes (положительное целое число). Идей должно быть ровно три, названия разные."
+          },
+          {
+            "role": "user",
+            "content": "Составь три идеи заданий для изучения Python: название, уровень сложности и длительность в минутах."
+          }
+        ],
+        "stream": false,
+        "provider": {
+          "allow_fallbacks": false,
+          "require_parameters": true
+        },
+        "max_tokens": 4096,
+        "temperature": 0.7,
+        "stop": [
+          "\"level\""
+        ]
+      },
+      "response": {
+        "id": "gen_2230475456682528769",
+        "object": "chat.completion",
+        "created": 1794090790,
+        "model": "google/gemini-2.5-flash-lite",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "```json\n{\n  \"ideas\": [\n    {\n      \"title\": \"Создание простого калькулятора\",\n      "
+            },
+            "finish_reason": "stop",
+            "logprobs": null
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 86,
+          "completion_tokens": 26,
+          "total_tokens": 112,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "accepted_prediction_tokens": null,
+            "rejected_prediction_tokens": null
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "server_tool_use": null,
+          "cost_rub": 0.00223269,
+          "cost": 0.00223269,
+          "plugins": null
+        }
+      },
+      "content": "```json\n{\n  \"ideas\": [\n    {\n      \"title\": \"Создание простого калькулятора\",\n      ",
+      "finish_reason": "stop",
+      "complete": true,
+      "actual_model": "google/gemini-2.5-flash-lite",
+      "provider": null,
+      "total_tokens": 112,
+      "prompt_tokens": 86,
+      "completion_tokens": 26,
+      "cost_rub": 0.00223269,
+      "http_status": 200,
+      "api_error": null,
+      "duration_seconds": 0.778244,
+      "variant": "stop_sequence",
+      "repeat": 1,
+      "observed_at": "2026-11-08T01:33:10+03:00",
+      "json_valid": false,
+      "schema_valid": false,
+      "task_valid": false,
+      "validation_error": "Исходный текст не разбирается как строгий JSON.",
+      "task_evaluated": false
+    },
+    {
+      "request": {
+        "model": "google/gemini-2.5-flash-lite",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Ответь только JSON без Markdown и пояснений. Объект с единственным ключом ideas: массив объектов с полями title (непустая строка), level (beginner, intermediate или advanced), duration_minutes (положительное целое число). Идей должно быть ровно три, названия разные."
+          },
+          {
+            "role": "user",
+            "content": "Составь три идеи заданий для изучения Python: название, уровень сложности и длительность в минутах."
+          }
+        ],
+        "stream": false,
+        "provider": {
+          "allow_fallbacks": false,
+          "require_parameters": true
+        },
+        "max_tokens": 4096,
+        "temperature": 0.7
+      },
+      "response": {
+        "id": "gen_2230475459895365633",
+        "object": "chat.completion",
+        "created": 1794090791,
+        "model": "google/gemini-2.5-flash-lite",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "```json\n{\n  \"ideas\": [\n    {\n      \"title\": \"Напишите функцию для расчета факториала числа.\",\n      \"level\": \"beginner\",\n      \"duration_minutes\": 30\n    },\n    {\n      \"title\": \"Создайте простой калькулятор с использованием словарей для хранения операций.\",\n      \"level\": \"intermediate\",\n      \"duration_minutes\": 60\n    },\n    {\n      \"title\": \"Реализуйте алгоритм сортировки пузырьком для списка чисел.\",\n      \"level\": \"advanced\",\n      \"duration_minutes\": 90\n    }\n  ]\n}\n```"
+            },
+            "finish_reason": "stop",
+            "logprobs": null
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 86,
+          "completion_tokens": 149,
+          "total_tokens": 235,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "accepted_prediction_tokens": null,
+            "rejected_prediction_tokens": null
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "server_tool_use": null,
+          "cost_rub": 0.00801418,
+          "cost": 0.00801418,
+          "plugins": null
+        }
+      },
+      "content": "```json\n{\n  \"ideas\": [\n    {\n      \"title\": \"Напишите функцию для расчета факториала числа.\",\n      \"level\": \"beginner\",\n      \"duration_minutes\": 30\n    },\n    {\n      \"title\": \"Создайте простой калькулятор с использованием словарей для хранения операций.\",\n      \"level\": \"intermediate\",\n      \"duration_minutes\": 60\n    },\n    {\n      \"title\": \"Реализуйте алгоритм сортировки пузырьком для списка чисел.\",\n      \"level\": \"advanced\",\n      \"duration_minutes\": 90\n    }\n  ]\n}\n```",
+      "finish_reason": "stop",
+      "complete": true,
+      "actual_model": "google/gemini-2.5-flash-lite",
+      "provider": null,
+      "total_tokens": 235,
+      "prompt_tokens": 86,
+      "completion_tokens": 149,
+      "cost_rub": 0.00801418,
+      "http_status": 200,
+      "api_error": null,
+      "duration_seconds": 1.075307,
+      "variant": "prompt_json",
+      "repeat": 1,
+      "observed_at": "2026-11-08T01:33:11+03:00",
+      "json_valid": false,
+      "schema_valid": false,
+      "task_valid": false,
+      "validation_error": "Исходный текст не разбирается как строгий JSON.",
+      "task_evaluated": false
+    },
+    {
+      "request": {
+        "model": "google/gemini-2.5-flash-lite",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Ответь только JSON без Markdown и пояснений. Объект с единственным ключом ideas: массив объектов с полями title (непустая строка), level (beginner, intermediate или advanced), duration_minutes (положительное целое число). Идей должно быть ровно три, названия разные."
+          },
+          {
+            "role": "user",
+            "content": "Составь три идеи заданий для изучения Python: название, уровень сложности и длительность в минутах."
+          }
+        ],
+        "stream": false,
+        "provider": {
+          "allow_fallbacks": false,
+          "require_parameters": true
+        },
+        "max_tokens": 32,
+        "temperature": 0.7
+      },
+      "response": {
+        "id": "gen_2230475464473841665",
+        "object": "chat.completion",
+        "created": 1794090793,
+        "model": "google/gemini-2.5-flash-lite",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "```json\n{\n  \"ideas\": [\n    {\n      \"title\": \"Напишите программу для расчета факториала числа\",\n"
+            },
+            "finish_reason": "length",
+            "logprobs": null
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 86,
+          "completion_tokens": 31,
+          "total_tokens": 117,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "accepted_prediction_tokens": null,
+            "rejected_prediction_tokens": null
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "server_tool_use": null,
+          "cost_rub": 0.00246771,
+          "cost": 0.00246771,
+          "plugins": null
+        }
+      },
+      "content": "```json\n{\n  \"ideas\": [\n    {\n      \"title\": \"Напишите программу для расчета факториала числа\",\n",
+      "finish_reason": "length",
+      "complete": false,
+      "actual_model": "google/gemini-2.5-flash-lite",
+      "provider": null,
+      "total_tokens": 117,
+      "prompt_tokens": 86,
+      "completion_tokens": 31,
+      "cost_rub": 0.00246771,
+      "http_status": 200,
+      "api_error": null,
+      "duration_seconds": 1.142711,
+      "variant": "token_limit",
+      "repeat": 1,
+      "observed_at": "2026-11-08T01:33:13+03:00",
+      "json_valid": false,
+      "schema_valid": false,
+      "task_valid": false,
+      "validation_error": "Исходный текст не разбирается как строгий JSON.",
+      "task_evaluated": false
+    },
+    {
+      "request": {
+        "model": "google/gemini-2.5-flash-lite",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Ответь только JSON без Markdown и пояснений. Объект с единственным ключом ideas: массив объектов с полями title (непустая строка), level (beginner, intermediate или advanced), duration_minutes (положительное целое число). Идей должно быть ровно три, названия разные."
+          },
+          {
+            "role": "user",
+            "content": "Составь три идеи заданий для изучения Python: название, уровень сложности и длительность в минутах."
+          }
+        ],
+        "stream": false,
+        "provider": {
+          "allow_fallbacks": false,
+          "require_parameters": true
+        },
+        "max_tokens": 4096,
+        "temperature": 0.7,
+        "response_format": {
+          "type": "json_object"
+        }
+      },
+      "response": {
+        "id": "gen_2230475469313937409",
+        "object": "chat.completion",
+        "created": 1794090794,
+        "model": "google/gemini-2.5-flash-lite",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"ideas\": [\n    {\n      \"title\": \"Написать простой калькулятор\",\n      \"level\": \"beginner\",\n      \"duration_minutes\": 60\n    },\n    {\n      \"title\": \"Создать парсер веб-страницы\",\n      \"level\": \"intermediate\",\n      \"duration_minutes\": 180\n    },\n    {\n      \"title\": \"Разработать REST API с использованием Flask\",\n      \"level\": \"advanced\",\n      \"duration_minutes\": 300\n    }\n  ]\n}"
+            },
+            "finish_reason": "stop",
+            "logprobs": null
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 86,
+          "completion_tokens": 127,
+          "total_tokens": 213,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "accepted_prediction_tokens": null,
+            "rejected_prediction_tokens": null
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "server_tool_use": null,
+          "cost_rub": 0.0069801,
+          "cost": 0.0069801,
+          "plugins": null
+        }
+      },
+      "content": "{\n  \"ideas\": [\n    {\n      \"title\": \"Написать простой калькулятор\",\n      \"level\": \"beginner\",\n      \"duration_minutes\": 60\n    },\n    {\n      \"title\": \"Создать парсер веб-страницы\",\n      \"level\": \"intermediate\",\n      \"duration_minutes\": 180\n    },\n    {\n      \"title\": \"Разработать REST API с использованием Flask\",\n      \"level\": \"advanced\",\n      \"duration_minutes\": 300\n    }\n  ]\n}",
+      "finish_reason": "stop",
+      "complete": true,
+      "actual_model": "google/gemini-2.5-flash-lite",
+      "provider": null,
+      "total_tokens": 213,
+      "prompt_tokens": 86,
+      "completion_tokens": 127,
+      "cost_rub": 0.0069801,
+      "http_status": 200,
+      "api_error": null,
+      "duration_seconds": 1.118346,
+      "variant": "json_mode",
+      "repeat": 1,
+      "observed_at": "2026-11-08T01:33:14+03:00",
+      "json_valid": true,
+      "schema_valid": true,
+      "task_valid": true,
+      "validation_error": null,
+      "task_evaluated": true
+    },
+    {
+      "request": {
+        "model": "google/gemini-2.5-flash-lite",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Составь три идеи заданий для изучения Python: название, уровень сложности и длительность в минутах."
+          }
+        ],
+        "stream": false,
+        "provider": {
+          "allow_fallbacks": false,
+          "require_parameters": true
+        },
+        "max_tokens": 4096,
+        "temperature": 0.7
+      },
+      "response": {
+        "id": "gen_2230475474038034433",
+        "object": "chat.completion",
+        "created": 1794090797,
+        "model": "google/gemini-2.5-flash-lite",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "Конечно, вот три идеи заданий для изучения Python с разным уровнем сложности и примерной длительностью:\n\n---\n\n### Идея 1: \"Калькулятор приветствий\"\n\n*   **Название:** Калькулятор приветствий\n*   **Уровень сложности:** Начинающий\n*   **Длительность в минутах:** 15-30 минут\n\n**Описание задания:**\n\nНаписать программу, которая запрашивает у пользователя его имя, а затем выводит персонализированное приветствие. Программа должна быть расширена для возможности выбора языка приветствия (например, русский, английский).\n\n**Ключевые концепции для изучения:**\n\n*   Функция `input()` для получения ввода от пользователя.\n*   Функция `print()` для вывода информации.\n*   Переменные для хранения данных.\n*   Условные операторы (`if`, `elif`, `else`) для выбора языка.\n*   Строковые переменные и конкатенация строк.\n\n**Возможные расширения (для более глубокого изучения):**\n\n*   Добавить больше языков.\n*   Сделать так, чтобы программа запоминала имя пользователя и приветствовала его при каждом запуске (используя файлы для сохранения данных).\n*   Добавить возможность вводить возраст пользователя и выводить поздравление с днем рождения.\n\n---\n\n### Идея 2: \"Список покупок с фильтрацией\"\n\n*   **Название:** Список покупок с фильтрацией\n*   **Уровень сложности:** Средний\n*   **Длительность в минутах:** 45-75 минут\n\n**Описание задания:**\n\nСоздать программу для управления списком покупок. Пользователь должен иметь возможность добавлять товары в список, просматривать весь список, удалять товары и фильтровать список по определенным критериям (например, показывать только фрукты или только овощи).\n\n**Ключевые концепции для изучения:**\n\n*   Списки (`list`) для хранения элементов.\n*   Циклы (`for`, `while`) для итерации по списку.\n*   Методы списков: `append()`, `remove()`, `in`.\n*   Функции для организации кода (например, функция для добавления товара, функция для вывода списка).\n*   Ввод от пользователя для взаимодействия с программой.\n*   Базовая фильтрация с использованием условных операторов.\n\n**Возможные расширения:**\n\n*   Добавить возможность редактировать количество товара.\n*   Реализовать сортировку списка по алфавиту.\n*   Сохранять и загружать список покупок из файла (например, в формате CSV или JSON).\n*   Добавить категории товаров и фильтрацию по ним.\n\n---\n\n### Идея 3: \"Простой текстовый квест\"\n\n*   **Название:** Простой текстовый квест\n*   **Уровень сложности:** Продвинутый\n*   **Длительность в минутах:** 90-120 минут (может потребовать больше времени на проработку сценария)\n\n**Описание задания:**\n\nРазработать простую игру в жанре текстового квеста. Игрок перемещается по локациям, взаимодействует с объектами и принимает решения, которые влияют на развитие сюжета.\n\n**Ключевые концепции для изучения:**\n\n*   Сложные структуры данных: словари (`dict`) для представления локаций, объектов и их свойств.\n*   Объектно-ориентированное программирование (ООП): классы для представления игрока, локаций, предметов.\n*   Реализация логики игры: обработка команд пользователя, изменение состояния игры.\n*   Работа с файлами для хранения сценария игры (более сложная версия).\n*   Управление состоянием игры (например, инвентарь игрока, его текущее положение).\n\n**Возможные расширения:**\n\n*   Добавить систему инвентаря.\n*   Реализовать простые головоломки.\n*   Ввести систему очков или здоровья.\n*   Создать несколько концовок игры.\n*   Использовать внешние библиотеки для более красивого вывода текста или графики (например, `curses` для консоли).\n\n---\n\nЭти идеи предлагают постепенное усложнение, затрагивая основные аспекты языка Python и позволяя студентам применять полученные знания на практике."
+            },
+            "finish_reason": "stop",
+            "logprobs": null
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 23,
+          "completion_tokens": 963,
+          "total_tokens": 986,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "accepted_prediction_tokens": null,
+            "rejected_prediction_tokens": null
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "server_tool_use": null,
+          "cost_rub": 0.04553514,
+          "cost": 0.04553514,
+          "plugins": null
+        }
+      },
+      "content": "Конечно, вот три идеи заданий для изучения Python с разным уровнем сложности и примерной длительностью:\n\n---\n\n### Идея 1: \"Калькулятор приветствий\"\n\n*   **Название:** Калькулятор приветствий\n*   **Уровень сложности:** Начинающий\n*   **Длительность в минутах:** 15-30 минут\n\n**Описание задания:**\n\nНаписать программу, которая запрашивает у пользователя его имя, а затем выводит персонализированное приветствие. Программа должна быть расширена для возможности выбора языка приветствия (например, русский, английский).\n\n**Ключевые концепции для изучения:**\n\n*   Функция `input()` для получения ввода от пользователя.\n*   Функция `print()` для вывода информации.\n*   Переменные для хранения данных.\n*   Условные операторы (`if`, `elif`, `else`) для выбора языка.\n*   Строковые переменные и конкатенация строк.\n\n**Возможные расширения (для более глубокого изучения):**\n\n*   Добавить больше языков.\n*   Сделать так, чтобы программа запоминала имя пользователя и приветствовала его при каждом запуске (используя файлы для сохранения данных).\n*   Добавить возможность вводить возраст пользователя и выводить поздравление с днем рождения.\n\n---\n\n### Идея 2: \"Список покупок с фильтрацией\"\n\n*   **Название:** Список покупок с фильтрацией\n*   **Уровень сложности:** Средний\n*   **Длительность в минутах:** 45-75 минут\n\n**Описание задания:**\n\nСоздать программу для управления списком покупок. Пользователь должен иметь возможность добавлять товары в список, просматривать весь список, удалять товары и фильтровать список по определенным критериям (например, показывать только фрукты или только овощи).\n\n**Ключевые концепции для изучения:**\n\n*   Списки (`list`) для хранения элементов.\n*   Циклы (`for`, `while`) для итерации по списку.\n*   Методы списков: `append()`, `remove()`, `in`.\n*   Функции для организации кода (например, функция для добавления товара, функция для вывода списка).\n*   Ввод от пользователя для взаимодействия с программой.\n*   Базовая фильтрация с использованием условных операторов.\n\n**Возможные расширения:**\n\n*   Добавить возможность редактировать количество товара.\n*   Реализовать сортировку списка по алфавиту.\n*   Сохранять и загружать список покупок из файла (например, в формате CSV или JSON).\n*   Добавить категории товаров и фильтрацию по ним.\n\n---\n\n### Идея 3: \"Простой текстовый квест\"\n\n*   **Название:** Простой текстовый квест\n*   **Уровень сложности:** Продвинутый\n*   **Длительность в минутах:** 90-120 минут (может потребовать больше времени на проработку сценария)\n\n**Описание задания:**\n\nРазработать простую игру в жанре текстового квеста. Игрок перемещается по локациям, взаимодействует с объектами и принимает решения, которые влияют на развитие сюжета.\n\n**Ключевые концепции для изучения:**\n\n*   Сложные структуры данных: словари (`dict`) для представления локаций, объектов и их свойств.\n*   Объектно-ориентированное программирование (ООП): классы для представления игрока, локаций, предметов.\n*   Реализация логики игры: обработка команд пользователя, изменение состояния игры.\n*   Работа с файлами для хранения сценария игры (более сложная версия).\n*   Управление состоянием игры (например, инвентарь игрока, его текущее положение).\n\n**Возможные расширения:**\n\n*   Добавить систему инвентаря.\n*   Реализовать простые головоломки.\n*   Ввести систему очков или здоровья.\n*   Создать несколько концовок игры.\n*   Использовать внешние библиотеки для более красивого вывода текста или графики (например, `curses` для консоли).\n\n---\n\nЭти идеи предлагают постепенное усложнение, затрагивая основные аспекты языка Python и позволяя студентам применять полученные знания на практике.",
+      "finish_reason": "stop",
+      "complete": true,
+      "actual_model": "google/gemini-2.5-flash-lite",
+      "provider": null,
+      "total_tokens": 986,
+      "prompt_tokens": 23,
+      "completion_tokens": 963,
+      "cost_rub": 0.04553514,
+      "http_status": 200,
+      "api_error": null,
+      "duration_seconds": 3.518209,
+      "variant": "baseline",
+      "repeat": 1,
+      "observed_at": "2026-11-08T01:33:17+03:00",
+      "json_valid": false,
+      "schema_valid": false,
+      "task_valid": false,
+      "validation_error": "Исходный текст не разбирается как строгий JSON.",
+      "task_evaluated": false
+    },
+    {
+      "request": {
+        "model": "google/gemini-2.5-flash-lite",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Ответь только JSON без Markdown и пояснений. Объект с единственным ключом ideas: массив объектов с полями title (непустая строка), level (beginner, intermediate или advanced), duration_minutes (положительное целое число). Идей должно быть ровно три, названия разные."
+          },
+          {
+            "role": "user",
+            "content": "Составь три идеи заданий для изучения Python: название, уровень сложности и длительность в минутах."
+          }
+        ],
+        "stream": false,
+        "provider": {
+          "allow_fallbacks": false,
+          "require_parameters": true
+        },
+        "max_tokens": 4096,
+        "temperature": 0.7,
+        "response_format": {
+          "type": "json_schema",
+          "json_schema": {
+            "name": "python_ideas",
+            "strict": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "ideas": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string"
+                      },
+                      "level": {
+                        "type": "string",
+                        "enum": [
+                          "beginner",
+                          "intermediate",
+                          "advanced"
+                        ]
+                      },
+                      "duration_minutes": {
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "title",
+                      "level",
+                      "duration_minutes"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "required": [
+                "ideas"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      "response": {
+        "id": "gen_2230475488812339201",
+        "object": "chat.completion",
+        "created": 1794090798,
+        "model": "google/gemini-2.5-flash-lite",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"ideas\": [\n    {\n      \"title\": \"Напиши программу для подсчета гласных в строке\",\n      \"level\": \"beginner\",\n      \"duration_minutes\": 30\n    },\n    {\n      \"title\": \"Реализуй простой калькулятор с использованием функций\",\n      \"level\": \"intermediate\",\n      \"duration_minutes\": 60\n    },\n    {\n      \"title\": \"Создай веб-скрапер для извлечения заголовков новостей\",\n      \"level\": \"advanced\",\n      \"duration_minutes\": 120\n    }\n  ]\n}"
+            },
+            "finish_reason": "stop",
+            "logprobs": null
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 86,
+          "completion_tokens": 144,
+          "total_tokens": 230,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "accepted_prediction_tokens": null,
+            "rejected_prediction_tokens": null
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "server_tool_use": null,
+          "cost_rub": 0.00777916,
+          "cost": 0.00777916,
+          "plugins": null
+        }
+      },
+      "content": "{\n  \"ideas\": [\n    {\n      \"title\": \"Напиши программу для подсчета гласных в строке\",\n      \"level\": \"beginner\",\n      \"duration_minutes\": 30\n    },\n    {\n      \"title\": \"Реализуй простой калькулятор с использованием функций\",\n      \"level\": \"intermediate\",\n      \"duration_minutes\": 60\n    },\n    {\n      \"title\": \"Создай веб-скрапер для извлечения заголовков новостей\",\n      \"level\": \"advanced\",\n      \"duration_minutes\": 120\n    }\n  ]\n}",
+      "finish_reason": "stop",
+      "complete": true,
+      "actual_model": "google/gemini-2.5-flash-lite",
+      "provider": null,
+      "total_tokens": 230,
+      "prompt_tokens": 86,
+      "completion_tokens": 144,
+      "cost_rub": 0.00777916,
+      "http_status": 200,
+      "api_error": null,
+      "duration_seconds": 0.969537,
+      "variant": "strict_schema",
+      "repeat": 1,
+      "observed_at": "2026-11-08T01:33:18+03:00",
+      "json_valid": true,
+      "schema_valid": true,
+      "task_valid": true,
+      "validation_error": null,
+      "task_evaluated": true
+    },
+    {
+      "request": {
+        "model": "google/gemini-2.5-flash-lite",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Ответь только JSON без Markdown и пояснений. Объект с единственным ключом ideas: массив объектов с полями title (непустая строка), level (beginner, intermediate или advanced), duration_minutes (положительное целое число). Идей должно быть ровно три, названия разные."
+          },
+          {
+            "role": "user",
+            "content": "Составь три идеи заданий для изучения Python: название, уровень сложности и длительность в минутах."
+          }
+        ],
+        "stream": false,
+        "provider": {
+          "allow_fallbacks": false,
+          "require_parameters": true
+        },
+        "max_tokens": 4096,
+        "temperature": 0.7,
+        "stop": [
+          "\"level\""
+        ]
+      },
+      "response": {
+        "id": "gen_2230475492912402433",
+        "object": "chat.completion",
+        "created": 1794090799,
+        "model": "google/gemini-2.5-flash-lite",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "```json\n{\n  \"ideas\": [\n    {\n      \"title\": \"Напишите программу, которая запрашивает у пользователя его имя и возраст, а затем выводит приветственное сообщение.\",\n      "
+            },
+            "finish_reason": "stop",
+            "logprobs": null
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 86,
+          "completion_tokens": 44,
+          "total_tokens": 130,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "accepted_prediction_tokens": null,
+            "rejected_prediction_tokens": null
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "server_tool_use": null,
+          "cost_rub": 0.00307876,
+          "cost": 0.00307876,
+          "plugins": null
+        }
+      },
+      "content": "```json\n{\n  \"ideas\": [\n    {\n      \"title\": \"Напишите программу, которая запрашивает у пользователя его имя и возраст, а затем выводит приветственное сообщение.\",\n      ",
+      "finish_reason": "stop",
+      "complete": true,
+      "actual_model": "google/gemini-2.5-flash-lite",
+      "provider": null,
+      "total_tokens": 130,
+      "prompt_tokens": 86,
+      "completion_tokens": 44,
+      "cost_rub": 0.00307876,
+      "http_status": 200,
+      "api_error": null,
+      "duration_seconds": 0.766509,
+      "variant": "stop_sequence",
+      "repeat": 2,
+      "observed_at": "2026-11-08T01:33:19+03:00",
+      "json_valid": false,
+      "schema_valid": false,
+      "task_valid": false,
+      "validation_error": "Исходный текст не разбирается как строгий JSON.",
+      "task_evaluated": false
+    },
+    {
+      "request": {
+        "model": "google/gemini-2.5-flash-lite",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Составь три идеи заданий для изучения Python: название, уровень сложности и длительность в минутах."
+          }
+        ],
+        "stream": false,
+        "provider": {
+          "allow_fallbacks": false,
+          "require_parameters": true
+        },
+        "max_tokens": 4096,
+        "temperature": 0.7
+      },
+      "response": {
+        "id": "gen_2230475496251068417",
+        "object": "chat.completion",
+        "created": 1794090804,
+        "model": "google/gemini-2.5-flash-lite",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "Конечно, вот три идеи заданий для изучения Python с разным уровнем сложности:\n\n---\n\n**Идея 1:**\n\n*   **Название:** \"Калькулятор Инвестиций\"\n*   **Уровень сложности:** Легкий\n*   **Длительность в минутах:** 30-45 минут\n\n**Описание задания:**\n\nСоздайте простой консольный калькулятор, который поможет пользователю рассчитать будущую стоимость инвестиций с учетом начальной суммы, годовой процентной ставки и количества лет.\n\n**Что нужно реализовать:**\n\n1.  Запросить у пользователя:\n    *   Начальную сумму инвестиций.\n    *   Годовую процентную ставку (в процентах).\n    *   Количество лет.\n2.  Рассчитать будущую стоимость инвестиций, используя формулу сложного процента:\n    `Будущая стоимость = Начальная сумма * (1 + (Годовая ставка / 100)) ^ Количество лет`\n3.  Вывести пользователю результат в понятном формате, например: \"Через X лет ваши инвестиции составят Y рублей.\"\n\n**Почему это полезно:**\n\n*   Практика работы с вводом/выводом данных (функции `input()` и `print()`).\n*   Освоение базовых арифметических операций и возведения в степень.\n*   Понимание работы с числовыми типами данных (float, int).\n*   Простая, но понятная практическая задача.\n\n---\n\n**Идея 2:**\n\n*   **Название:** \"Анализатор Текста: Частотность Слов\"\n*   **Уровень сложности:** Средний\n*   **Длительность в минутах:** 60-90 минут\n\n**Описание задания:**\n\nНапишите программу, которая принимает на вход строку текста и подсчитывает частоту встречаемости каждого слова в этом тексте.\n\n**Что нужно реализовать:**\n\n1.  Запросить у пользователя строку текста.\n2.  Обработать текст:\n    *   Привести весь текст к нижнему регистру, чтобы \"Привет\" и \"привет\" считались одним словом.\n    *   Удалить знаки препинания (точки, запятые, восклицательные и вопросительные знаки и т.д.) из текста.\n    *   Разбить текст на отдельные слова (например, по пробелам).\n3.  Подсчитать количество вхождений каждого уникального слова. Для этого удобно использовать словарь (dictionary), где ключами будут слова, а значениями — их количество.\n4.  Вывести на экран список слов и их частоту, отсортированный по убыванию частоты.\n\n**Почему это полезно:**\n\n*   Практика работы со строками (методы `.lower()`, `.replace()`, `.split()`).\n*   Использование структур данных: словари (`dict`) для хранения результатов.\n*   Работа с циклами (`for`) для обработки слов.\n*   Основы алгоритмов: подсчет элементов и сортировка.\n*   Умение обрабатывать \"грязные\" данные.\n\n---\n\n**Идея 3:**\n\n*   **Название:** \"Простой Менеджер Задач (TODO List)\"\n*   **Уровень сложности:** Продвинутый\n*   **Длительность в минутах:** 90-120 минут (или больше, в зависимости от дополнительных функций)\n\n**Описание задания:**\n\nСоздайте консольное приложение для управления списком дел (TODO list). Пользователь должен иметь возможность добавлять, просматривать, отмечать как выполненные и удалять задачи.\n\n**Что нужно реализовать:**\n\n1.  **Структура данных:** Используйте список списков или список словарей для хранения задач. Каждая задача может иметь поля: \"описание\" (строка) и \"статус\" (например, \"не выполнено\", \"выполнено\").\n2.  **Меню программы:** Реализуйте текстовое меню с опциями:\n    *   Добавить задачу\n    *   Просмотреть все задачи\n    *   Отметить задачу как выполненную\n    *   Удалить задачу\n    *   Выйти\n3.  **Функционал:**\n    *   **Добавить задачу:** Запрашивать описание новой задачи и добавлять ее в список с начальным статусом \"не выполнено\".\n    *   **Просмотреть задачи:** Выводить все задачи с их порядковым номером и статусом.\n    *   **Отметить выполненной:** Запрашивать номер задачи и менять ее статус на \"выполнено\".\n    *   **Удалить задачу:** Запрашивать номер задачи и удалять ее из списка.\n4.  **Цикл программы:** Программа должна работать в цикле, пока пользователь не выберет опцию \"Выйти\".\n\n**Почему это полезно:**\n\n*   Глубокая практика работы со списками и словарями.\n*   Использование условных операторов (`if/elif/else`) для обработки выбора пользователя.\n*   Применение циклов (`while`) для основного меню и обработки задач.\n*   Создание интерактивного консольного приложения.\n*   Разработка простого пользовательского интерфейса.\n*   (Дополнительно) Можно добавить сохранение/загрузку задач в файл (например, CSV или JSON) для большей сложности.\n\n---\n\nНадеюсь, эти идеи вам понравятся и помогут в изучении Python!"
+            },
+            "finish_reason": "stop",
+            "logprobs": null
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 23,
+          "completion_tokens": 1195,
+          "total_tokens": 1218,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "accepted_prediction_tokens": null,
+            "rejected_prediction_tokens": null
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "server_tool_use": null,
+          "cost_rub": 0.05644007,
+          "cost": 0.05644007,
+          "plugins": null
+        }
+      },
+      "content": "Конечно, вот три идеи заданий для изучения Python с разным уровнем сложности:\n\n---\n\n**Идея 1:**\n\n*   **Название:** \"Калькулятор Инвестиций\"\n*   **Уровень сложности:** Легкий\n*   **Длительность в минутах:** 30-45 минут\n\n**Описание задания:**\n\nСоздайте простой консольный калькулятор, который поможет пользователю рассчитать будущую стоимость инвестиций с учетом начальной суммы, годовой процентной ставки и количества лет.\n\n**Что нужно реализовать:**\n\n1.  Запросить у пользователя:\n    *   Начальную сумму инвестиций.\n    *   Годовую процентную ставку (в процентах).\n    *   Количество лет.\n2.  Рассчитать будущую стоимость инвестиций, используя формулу сложного процента:\n    `Будущая стоимость = Начальная сумма * (1 + (Годовая ставка / 100)) ^ Количество лет`\n3.  Вывести пользователю результат в понятном формате, например: \"Через X лет ваши инвестиции составят Y рублей.\"\n\n**Почему это полезно:**\n\n*   Практика работы с вводом/выводом данных (функции `input()` и `print()`).\n*   Освоение базовых арифметических операций и возведения в степень.\n*   Понимание работы с числовыми типами данных (float, int).\n*   Простая, но понятная практическая задача.\n\n---\n\n**Идея 2:**\n\n*   **Название:** \"Анализатор Текста: Частотность Слов\"\n*   **Уровень сложности:** Средний\n*   **Длительность в минутах:** 60-90 минут\n\n**Описание задания:**\n\nНапишите программу, которая принимает на вход строку текста и подсчитывает частоту встречаемости каждого слова в этом тексте.\n\n**Что нужно реализовать:**\n\n1.  Запросить у пользователя строку текста.\n2.  Обработать текст:\n    *   Привести весь текст к нижнему регистру, чтобы \"Привет\" и \"привет\" считались одним словом.\n    *   Удалить знаки препинания (точки, запятые, восклицательные и вопросительные знаки и т.д.) из текста.\n    *   Разбить текст на отдельные слова (например, по пробелам).\n3.  Подсчитать количество вхождений каждого уникального слова. Для этого удобно использовать словарь (dictionary), где ключами будут слова, а значениями — их количество.\n4.  Вывести на экран список слов и их частоту, отсортированный по убыванию частоты.\n\n**Почему это полезно:**\n\n*   Практика работы со строками (методы `.lower()`, `.replace()`, `.split()`).\n*   Использование структур данных: словари (`dict`) для хранения результатов.\n*   Работа с циклами (`for`) для обработки слов.\n*   Основы алгоритмов: подсчет элементов и сортировка.\n*   Умение обрабатывать \"грязные\" данные.\n\n---\n\n**Идея 3:**\n\n*   **Название:** \"Простой Менеджер Задач (TODO List)\"\n*   **Уровень сложности:** Продвинутый\n*   **Длительность в минутах:** 90-120 минут (или больше, в зависимости от дополнительных функций)\n\n**Описание задания:**\n\nСоздайте консольное приложение для управления списком дел (TODO list). Пользователь должен иметь возможность добавлять, просматривать, отмечать как выполненные и удалять задачи.\n\n**Что нужно реализовать:**\n\n1.  **Структура данных:** Используйте список списков или список словарей для хранения задач. Каждая задача может иметь поля: \"описание\" (строка) и \"статус\" (например, \"не выполнено\", \"выполнено\").\n2.  **Меню программы:** Реализуйте текстовое меню с опциями:\n    *   Добавить задачу\n    *   Просмотреть все задачи\n    *   Отметить задачу как выполненную\n    *   Удалить задачу\n    *   Выйти\n3.  **Функционал:**\n    *   **Добавить задачу:** Запрашивать описание новой задачи и добавлять ее в список с начальным статусом \"не выполнено\".\n    *   **Просмотреть задачи:** Выводить все задачи с их порядковым номером и статусом.\n    *   **Отметить выполненной:** Запрашивать номер задачи и менять ее статус на \"выполнено\".\n    *   **Удалить задачу:** Запрашивать номер задачи и удалять ее из списка.\n4.  **Цикл программы:** Программа должна работать в цикле, пока пользователь не выберет опцию \"Выйти\".\n\n**Почему это полезно:**\n\n*   Глубокая практика работы со списками и словарями.\n*   Использование условных операторов (`if/elif/else`) для обработки выбора пользователя.\n*   Применение циклов (`while`) для основного меню и обработки задач.\n*   Создание интерактивного консольного приложения.\n*   Разработка простого пользовательского интерфейса.\n*   (Дополнительно) Можно добавить сохранение/загрузку задач в файл (например, CSV или JSON) для большей сложности.\n\n---\n\nНадеюсь, эти идеи вам понравятся и помогут в изучении Python!",
+      "finish_reason": "stop",
+      "complete": true,
+      "actual_model": "google/gemini-2.5-flash-lite",
+      "provider": null,
+      "total_tokens": 1218,
+      "prompt_tokens": 23,
+      "completion_tokens": 1195,
+      "cost_rub": 0.05644007,
+      "http_status": 200,
+      "api_error": null,
+      "duration_seconds": 4.79362,
+      "variant": "baseline",
+      "repeat": 2,
+      "observed_at": "2026-11-08T01:33:24+03:00",
+      "json_valid": false,
+      "schema_valid": false,
+      "task_valid": false,
+      "validation_error": "Исходный текст не разбирается как строгий JSON.",
+      "task_evaluated": false
+    },
+    {
+      "request": {
+        "model": "google/gemini-2.5-flash-lite",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Ответь только JSON без Markdown и пояснений. Объект с единственным ключом ideas: массив объектов с полями title (непустая строка), level (beginner, intermediate или advanced), duration_minutes (положительное целое число). Идей должно быть ровно три, названия разные."
+          },
+          {
+            "role": "user",
+            "content": "Составь три идеи заданий для изучения Python: название, уровень сложности и длительность в минутах."
+          }
+        ],
+        "stream": false,
+        "provider": {
+          "allow_fallbacks": false,
+          "require_parameters": true
+        },
+        "max_tokens": 32,
+        "temperature": 0.7
+      },
+      "response": {
+        "id": "gen_2230475516332216321",
+        "object": "chat.completion",
+        "created": 1794090805,
+        "model": "google/gemini-2.5-flash-lite",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "```json\n{\n  \"ideas\": [\n    {\n      \"title\": \"Создание простого калькулятора\",\n      \"level"
+            },
+            "finish_reason": "length",
+            "logprobs": null
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 86,
+          "completion_tokens": 30,
+          "total_tokens": 116,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "accepted_prediction_tokens": null,
+            "rejected_prediction_tokens": null
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "server_tool_use": null,
+          "cost_rub": 0.00242071,
+          "cost": 0.00242071,
+          "plugins": null
+        }
+      },
+      "content": "```json\n{\n  \"ideas\": [\n    {\n      \"title\": \"Создание простого калькулятора\",\n      \"level",
+      "finish_reason": "length",
+      "complete": false,
+      "actual_model": "google/gemini-2.5-flash-lite",
+      "provider": null,
+      "total_tokens": 116,
+      "prompt_tokens": 86,
+      "completion_tokens": 30,
+      "cost_rub": 0.00242071,
+      "http_status": 200,
+      "api_error": null,
+      "duration_seconds": 0.910691,
+      "variant": "token_limit",
+      "repeat": 2,
+      "observed_at": "2026-11-08T01:33:25+03:00",
+      "json_valid": false,
+      "schema_valid": false,
+      "task_valid": false,
+      "validation_error": "Исходный текст не разбирается как строгий JSON.",
+      "task_evaluated": false
+    },
+    {
+      "request": {
+        "model": "google/gemini-2.5-flash-lite",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Ответь только JSON без Markdown и пояснений. Объект с единственным ключом ideas: массив объектов с полями title (непустая строка), level (beginner, intermediate или advanced), duration_minutes (положительное целое число). Идей должно быть ровно три, названия разные."
+          },
+          {
+            "role": "user",
+            "content": "Составь три идеи заданий для изучения Python: название, уровень сложности и длительность в минутах."
+          }
+        ],
+        "stream": false,
+        "provider": {
+          "allow_fallbacks": false,
+          "require_parameters": true
+        },
+        "max_tokens": 4096,
+        "temperature": 0.7,
+        "response_format": {
+          "type": "json_object"
+        }
+      },
+      "response": {
+        "id": "gen_2230475520219156481",
+        "object": "chat.completion",
+        "created": 1794090807,
+        "model": "google/gemini-2.5-flash-lite",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"ideas\": [\n    {\n      \"title\": \"Создание простого калькулятора\",\n      \"level\": \"beginner\",\n      \"duration_minutes\": 60\n    },\n    {\n      \"title\": \"Разработка веб-скрапера для сбора данных\",\n      \"level\": \"intermediate\",\n      \"duration_minutes\": 180\n    },\n    {\n      \"title\": \"Реализация алгоритма сортировки пузырьком\",\n      \"level\": \"beginner\",\n      \"duration_minutes\": 45\n    }\n  ]\n}"
+            },
+            "finish_reason": "stop",
+            "logprobs": null
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 86,
+          "completion_tokens": 133,
+          "total_tokens": 219,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "accepted_prediction_tokens": null,
+            "rejected_prediction_tokens": null
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "server_tool_use": null,
+          "cost_rub": 0.00726212,
+          "cost": 0.00726212,
+          "plugins": null
+        }
+      },
+      "content": "{\n  \"ideas\": [\n    {\n      \"title\": \"Создание простого калькулятора\",\n      \"level\": \"beginner\",\n      \"duration_minutes\": 60\n    },\n    {\n      \"title\": \"Разработка веб-скрапера для сбора данных\",\n      \"level\": \"intermediate\",\n      \"duration_minutes\": 180\n    },\n    {\n      \"title\": \"Реализация алгоритма сортировки пузырьком\",\n      \"level\": \"beginner\",\n      \"duration_minutes\": 45\n    }\n  ]\n}",
+      "finish_reason": "stop",
+      "complete": true,
+      "actual_model": "google/gemini-2.5-flash-lite",
+      "provider": null,
+      "total_tokens": 219,
+      "prompt_tokens": 86,
+      "completion_tokens": 133,
+      "cost_rub": 0.00726212,
+      "http_status": 200,
+      "api_error": null,
+      "duration_seconds": 2.290008,
+      "variant": "json_mode",
+      "repeat": 2,
+      "observed_at": "2026-11-08T01:33:27+03:00",
+      "json_valid": true,
+      "schema_valid": true,
+      "task_valid": true,
+      "validation_error": null,
+      "task_evaluated": true
+    },
+    {
+      "request": {
+        "model": "google/gemini-2.5-flash-lite",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Ответь только JSON без Markdown и пояснений. Объект с единственным ключом ideas: массив объектов с полями title (непустая строка), level (beginner, intermediate или advanced), duration_minutes (положительное целое число). Идей должно быть ровно три, названия разные."
+          },
+          {
+            "role": "user",
+            "content": "Составь три идеи заданий для изучения Python: название, уровень сложности и длительность в минутах."
+          }
+        ],
+        "stream": false,
+        "provider": {
+          "allow_fallbacks": false,
+          "require_parameters": true
+        },
+        "max_tokens": 4096,
+        "temperature": 0.7,
+        "response_format": {
+          "type": "json_schema",
+          "json_schema": {
+            "name": "python_ideas",
+            "strict": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "ideas": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string"
+                      },
+                      "level": {
+                        "type": "string",
+                        "enum": [
+                          "beginner",
+                          "intermediate",
+                          "advanced"
+                        ]
+                      },
+                      "duration_minutes": {
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "title",
+                      "level",
+                      "duration_minutes"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "required": [
+                "ideas"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      "response": {
+        "id": "gen_2230475529923596289",
+        "object": "chat.completion",
+        "created": 1794090808,
+        "model": "google/gemini-2.5-flash-lite",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"ideas\": [\n    {\n      \"title\": \"Создание простого калькулятора\",\n      \"level\": \"beginner\",\n      \"duration_minutes\": 60\n    },\n    {\n      \"title\": \"Разработка веб-скрапера\",\n      \"level\": \"intermediate\",\n      \"duration_minutes\": 180\n    },\n    {\n      \"title\": \"Создание REST API с Flask\",\n      \"level\": \"advanced\",\n      \"duration_minutes\": 240\n    }\n  ]\n}"
+            },
+            "finish_reason": "stop",
+            "logprobs": null
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 86,
+          "completion_tokens": 128,
+          "total_tokens": 214,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "accepted_prediction_tokens": null,
+            "rejected_prediction_tokens": null
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "server_tool_use": null,
+          "cost_rub": 0.0070271,
+          "cost": 0.0070271,
+          "plugins": null
+        }
+      },
+      "content": "{\n  \"ideas\": [\n    {\n      \"title\": \"Создание простого калькулятора\",\n      \"level\": \"beginner\",\n      \"duration_minutes\": 60\n    },\n    {\n      \"title\": \"Разработка веб-скрапера\",\n      \"level\": \"intermediate\",\n      \"duration_minutes\": 180\n    },\n    {\n      \"title\": \"Создание REST API с Flask\",\n      \"level\": \"advanced\",\n      \"duration_minutes\": 240\n    }\n  ]\n}",
+      "finish_reason": "stop",
+      "complete": true,
+      "actual_model": "google/gemini-2.5-flash-lite",
+      "provider": null,
+      "total_tokens": 214,
+      "prompt_tokens": 86,
+      "completion_tokens": 128,
+      "cost_rub": 0.0070271,
+      "http_status": 200,
+      "api_error": null,
+      "duration_seconds": 0.96976,
+      "variant": "strict_schema",
+      "repeat": 2,
+      "observed_at": "2026-11-08T01:33:28+03:00",
+      "json_valid": true,
+      "schema_valid": true,
+      "task_valid": true,
+      "validation_error": null,
+      "task_evaluated": true
+    },
+    {
+      "request": {
+        "model": "google/gemini-2.5-flash-lite",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Ответь только JSON без Markdown и пояснений. Объект с единственным ключом ideas: массив объектов с полями title (непустая строка), level (beginner, intermediate или advanced), duration_minutes (положительное целое число). Идей должно быть ровно три, названия разные."
+          },
+          {
+            "role": "user",
+            "content": "Составь три идеи заданий для изучения Python: название, уровень сложности и длительность в минутах."
+          }
+        ],
+        "stream": false,
+        "provider": {
+          "allow_fallbacks": false,
+          "require_parameters": true
+        },
+        "max_tokens": 4096,
+        "temperature": 0.7
+      },
+      "response": {
+        "id": "gen_2230475534658703361",
+        "object": "chat.completion",
+        "created": 1794090809,
+        "model": "google/gemini-2.5-flash-lite",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "```json\n{\n  \"ideas\": [\n    {\n      \"title\": \"Создание простого калькулятора\",\n      \"level\": \"beginner\",\n      \"duration_minutes\": 45\n    },\n    {\n      \"title\": \"Разработка веб-скрапера для сбора данных с сайта\",\n      \"level\": \"intermediate\",\n      \"duration_minutes\": 90\n    },\n    {\n      \"title\": \"Реализация алгоритма сортировки пузырьком с визуализацией\",\n      \"level\": \"advanced\",\n      \"duration_minutes\": 120\n    }\n  ]\n}\n```"
+            },
+            "finish_reason": "stop",
+            "logprobs": null
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 86,
+          "completion_tokens": 145,
+          "total_tokens": 231,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "accepted_prediction_tokens": null,
+            "rejected_prediction_tokens": null
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "server_tool_use": null,
+          "cost_rub": 0.00790522,
+          "cost": 0.00790522,
+          "plugins": null
+        }
+      },
+      "content": "```json\n{\n  \"ideas\": [\n    {\n      \"title\": \"Создание простого калькулятора\",\n      \"level\": \"beginner\",\n      \"duration_minutes\": 45\n    },\n    {\n      \"title\": \"Разработка веб-скрапера для сбора данных с сайта\",\n      \"level\": \"intermediate\",\n      \"duration_minutes\": 90\n    },\n    {\n      \"title\": \"Реализация алгоритма сортировки пузырьком с визуализацией\",\n      \"level\": \"advanced\",\n      \"duration_minutes\": 120\n    }\n  ]\n}\n```",
+      "finish_reason": "stop",
+      "complete": true,
+      "actual_model": "google/gemini-2.5-flash-lite",
+      "provider": null,
+      "total_tokens": 231,
+      "prompt_tokens": 86,
+      "completion_tokens": 145,
+      "cost_rub": 0.00790522,
+      "http_status": 200,
+      "api_error": null,
+      "duration_seconds": 1.38434,
+      "variant": "prompt_json",
+      "repeat": 2,
+      "observed_at": "2026-11-08T01:33:29+03:00",
+      "json_valid": false,
+      "schema_valid": false,
+      "task_valid": false,
+      "validation_error": "Исходный текст не разбирается как строгий JSON.",
+      "task_evaluated": false
+    },
+    {
+      "request": {
+        "model": "google/gemini-2.5-flash-lite",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Ответь только JSON без Markdown и пояснений. Объект с единственным ключом ideas: массив объектов с полями title (непустая строка), level (beginner, intermediate или advanced), duration_minutes (положительное целое число). Идей должно быть ровно три, названия разные."
+          },
+          {
+            "role": "user",
+            "content": "Составь три идеи заданий для изучения Python: название, уровень сложности и длительность в минутах."
+          }
+        ],
+        "stream": false,
+        "provider": {
+          "allow_fallbacks": false,
+          "require_parameters": true
+        },
+        "max_tokens": 4096,
+        "temperature": 0.7,
+        "stop": [
+          "\"level\""
+        ]
+      },
+      "response": {
+        "id": "gen_2230475539840897025",
+        "object": "chat.completion",
+        "created": 1794090810,
+        "model": "google/gemini-2.5-flash-lite",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "```json\n{\n  \"ideas\": [\n    {\n      \"title\": \"Напишите функцию для вычисления факториала числа.\",\n      "
+            },
+            "finish_reason": "stop",
+            "logprobs": null
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 86,
+          "completion_tokens": 31,
+          "total_tokens": 117,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "accepted_prediction_tokens": null,
+            "rejected_prediction_tokens": null
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "server_tool_use": null,
+          "cost_rub": 0.00246771,
+          "cost": 0.00246771,
+          "plugins": null
+        }
+      },
+      "content": "```json\n{\n  \"ideas\": [\n    {\n      \"title\": \"Напишите функцию для вычисления факториала числа.\",\n      ",
+      "finish_reason": "stop",
+      "complete": true,
+      "actual_model": "google/gemini-2.5-flash-lite",
+      "provider": null,
+      "total_tokens": 117,
+      "prompt_tokens": 86,
+      "completion_tokens": 31,
+      "cost_rub": 0.00246771,
+      "http_status": 200,
+      "api_error": null,
+      "duration_seconds": 0.791759,
+      "variant": "stop_sequence",
+      "repeat": 3,
+      "observed_at": "2026-11-08T01:33:30+03:00",
+      "json_valid": false,
+      "schema_valid": false,
+      "task_valid": false,
+      "validation_error": "Исходный текст не разбирается как строгий JSON.",
+      "task_evaluated": false
+    },
+    {
+      "request": {
+        "model": "google/gemini-2.5-flash-lite",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Ответь только JSON без Markdown и пояснений. Объект с единственным ключом ideas: массив объектов с полями title (непустая строка), level (beginner, intermediate или advanced), duration_minutes (положительное целое число). Идей должно быть ровно три, названия разные."
+          },
+          {
+            "role": "user",
+            "content": "Составь три идеи заданий для изучения Python: название, уровень сложности и длительность в минутах."
+          }
+        ],
+        "stream": false,
+        "provider": {
+          "allow_fallbacks": false,
+          "require_parameters": true
+        },
+        "max_tokens": 4096,
+        "temperature": 0.7
+      },
+      "response": {
+        "id": "gen_2230475543156625409",
+        "object": "chat.completion",
+        "created": 1794090811,
+        "model": "google/gemini-2.5-flash-lite",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "```json\n{\n  \"ideas\": [\n    {\n      \"title\": \"Создание простого калькулятора\",\n      \"level\": \"beginner\",\n      \"duration_minutes\": 60\n    },\n    {\n      \"title\": \"Разработка генератора паролей\",\n      \"level\": \"intermediate\",\n      \"duration_minutes\": 120\n    },\n    {\n      \"title\": \"Парсинг данных с веб-сайта\",\n      \"level\": \"advanced\",\n      \"duration_minutes\": 180\n    }\n  ]\n}\n```"
+            },
+            "finish_reason": "stop",
+            "logprobs": null
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 86,
+          "completion_tokens": 132,
+          "total_tokens": 218,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "accepted_prediction_tokens": null,
+            "rejected_prediction_tokens": null
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "server_tool_use": null,
+          "cost_rub": 0.00721512,
+          "cost": 0.00721512,
+          "plugins": null
+        }
+      },
+      "content": "```json\n{\n  \"ideas\": [\n    {\n      \"title\": \"Создание простого калькулятора\",\n      \"level\": \"beginner\",\n      \"duration_minutes\": 60\n    },\n    {\n      \"title\": \"Разработка генератора паролей\",\n      \"level\": \"intermediate\",\n      \"duration_minutes\": 120\n    },\n    {\n      \"title\": \"Парсинг данных с веб-сайта\",\n      \"level\": \"advanced\",\n      \"duration_minutes\": 180\n    }\n  ]\n}\n```",
+      "finish_reason": "stop",
+      "complete": true,
+      "actual_model": "google/gemini-2.5-flash-lite",
+      "provider": null,
+      "total_tokens": 218,
+      "prompt_tokens": 86,
+      "completion_tokens": 132,
+      "cost_rub": 0.00721512,
+      "http_status": 200,
+      "api_error": null,
+      "duration_seconds": 1.035839,
+      "variant": "prompt_json",
+      "repeat": 3,
+      "observed_at": "2026-11-08T01:33:31+03:00",
+      "json_valid": false,
+      "schema_valid": false,
+      "task_valid": false,
+      "validation_error": "Исходный текст не разбирается как строгий JSON.",
+      "task_evaluated": false
+    },
+    {
+      "request": {
+        "model": "google/gemini-2.5-flash-lite",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Ответь только JSON без Markdown и пояснений. Объект с единственным ключом ideas: массив объектов с полями title (непустая строка), level (beginner, intermediate или advanced), duration_minutes (положительное целое число). Идей должно быть ровно три, названия разные."
+          },
+          {
+            "role": "user",
+            "content": "Составь три идеи заданий для изучения Python: название, уровень сложности и длительность в минутах."
+          }
+        ],
+        "stream": false,
+        "provider": {
+          "allow_fallbacks": false,
+          "require_parameters": true
+        },
+        "max_tokens": 32,
+        "temperature": 0.7
+      },
+      "response": {
+        "id": "gen_2230475547543867393",
+        "object": "chat.completion",
+        "created": 1794090812,
+        "model": "google/gemini-2.5-flash-lite",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "```json\n{\n  \"ideas\": [\n    {\n      \"title\": \"Напиши скрипт для переименования файлов в"
+            },
+            "finish_reason": "length",
+            "logprobs": null
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 86,
+          "completion_tokens": 30,
+          "total_tokens": 116,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "accepted_prediction_tokens": null,
+            "rejected_prediction_tokens": null
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "server_tool_use": null,
+          "cost_rub": 0.00242071,
+          "cost": 0.00242071,
+          "plugins": null
+        }
+      },
+      "content": "```json\n{\n  \"ideas\": [\n    {\n      \"title\": \"Напиши скрипт для переименования файлов в",
+      "finish_reason": "length",
+      "complete": false,
+      "actual_model": "google/gemini-2.5-flash-lite",
+      "provider": null,
+      "total_tokens": 116,
+      "prompt_tokens": 86,
+      "completion_tokens": 30,
+      "cost_rub": 0.00242071,
+      "http_status": 200,
+      "api_error": null,
+      "duration_seconds": 0.731703,
+      "variant": "token_limit",
+      "repeat": 3,
+      "observed_at": "2026-11-08T01:33:32+03:00",
+      "json_valid": false,
+      "schema_valid": false,
+      "task_valid": false,
+      "validation_error": "Исходный текст не разбирается как строгий JSON.",
+      "task_evaluated": false
+    },
+    {
+      "request": {
+        "model": "google/gemini-2.5-flash-lite",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Составь три идеи заданий для изучения Python: название, уровень сложности и длительность в минутах."
+          }
+        ],
+        "stream": false,
+        "provider": {
+          "allow_fallbacks": false,
+          "require_parameters": true
+        },
+        "max_tokens": 4096,
+        "temperature": 0.7
+      },
+      "response": {
+        "id": "gen_2230475550683303937",
+        "object": "chat.completion",
+        "created": 1794090816,
+        "model": "google/gemini-2.5-flash-lite",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "Вот три идеи заданий для изучения Python, с указанием названия, уровня сложности и примерной длительности:\n\n---\n\n### Идея Задания 1: \"Калькулятор Температуры\"\n\n*   **Название:** Калькулятор Температуры\n*   **Уровень сложности:** Начинающий\n*   **Длительность в минутах:** 20-30 минут\n\n**Описание задания:**\nСоздать простую программу на Python, которая позволяет пользователю переводить температуру из градусов Цельсия в градусы Фаренгейта и наоборот.\n\n**Что изучается:**\n*   Получение ввода от пользователя (`input()`).\n*   Преобразование типов данных (строка в число - `float()`).\n*   Основные арифметические операции.\n*   Использование условных операторов (`if`, `elif`, `else`) для выбора действия.\n*   Вывод результатов (`print()`).\n\n**Примерный ход выполнения:**\n1.  Попросить пользователя ввести значение температуры.\n2.  Попросить пользователя указать единицу измерения (например, \"C\" для Цельсия или \"F\" для Фаренгейта).\n3.  На основе введенной единицы измерения применить соответствующую формулу (C to F: `(C * 9/5) + 32`, F to C: `(F - 32) * 5/9`).\n4.  Вывести результат пользователю.\n\n---\n\n### Идея Задания 2: \"Список Покупок\"\n\n*   **Название:** Список Покупок\n*   **Уровень сложности:** Средний\n*   **Длительность в минутах:** 45-60 минут\n\n**Описание задания:**\nРазработать программу, которая позволяет пользователю управлять списком покупок. Пользователь должен иметь возможность добавлять товары, удалять товары, просматривать список и завершать программу.\n\n**Что изучается:**\n*   Работа со списками (добавление `append()`, удаление `remove()`, просмотр).\n*   Использование циклов `while` для непрерывной работы программы до команды выхода.\n*   Обработка пользовательского ввода для различных команд (добавить, удалить, показать, выход).\n*   Проверка наличия элемента в списке (`in`).\n*   Форматирование вывода.\n\n**Примерный ход выполнения:**\n1.  Инициализировать пустой список для покупок.\n2.  Создать цикл `while True`, который будет продолжаться до тех пор, пока пользователь не выберет опцию выхода.\n3.  Внутри цикла выводить меню с доступными действиями: \"добавить\", \"удалить\", \"показать\", \"выход\".\n4.  Обрабатывать выбор пользователя:\n    *   Если \"добавить\", запрашивать название товара и добавлять его в список.\n    *   Если \"удалить\", запрашивать название товара и удалять его из списка (с проверкой, существует ли товар).\n    *   Если \"показать\", выводить все товары из списка.\n    *   Если \"выход\", прервать цикл.\n\n---\n\n### Идея Задания 3: \"Генератор Случайных Паролей\"\n\n*   **Название:** Генератор Случайных Паролей\n*   **Уровень сложности:** Продвинутый (для начинающих, но требует знакомства с модулями)\n*   **Длительность в минутах:** 60-90 минут\n\n**Описание задания:**\nСоздать программу, которая генерирует случайные пароли заданной длины, с возможностью выбора, какие типы символов (буквы в верхнем и нижнем регистре, цифры, специальные символы) должны использоваться.\n\n**Что изучается:**\n*   Импорт и использование модулей (`random`, `string`).\n*   Создание строк из набора символов.\n*   Генерация случайных выборок из последовательностей (`random.choice()`, `random.sample()`).\n*   Работа с переменными и передача их в функции (при желании можно оформить в виде функции).\n*   Обработка пользовательского ввода для настройки параметров пароля.\n*   Циклы для формирования пароля.\n\n**Примерный ход выполнения:**\n1.  Определить наборы символов: строчные буквы, прописные буквы, цифры, специальные символы.\n2.  Попросить пользователя ввести желаемую длину пароля.\n3.  Попросить пользователя выбрать, какие типы символов включить (например, ответить \"да/нет\" на вопросы: \"Использовать строчные буквы?\", \"Использовать прописные буквы?\", \"Использовать цифры?\", \"Использовать специальные символы?\").\n4.  Сформировать полный набор символов, из которых будет состоять пароль, на основе выбора пользователя.\n5.  Сгенерировать пароль, выбирая случайные символы из сформированного набора, пока длина пароля не достигнет заданной.\n6.  Вывести сгенерированный пароль.\n\n---"
+            },
+            "finish_reason": "stop",
+            "logprobs": null
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 23,
+          "completion_tokens": 1118,
+          "total_tokens": 1141,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "accepted_prediction_tokens": null,
+            "rejected_prediction_tokens": null
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "server_tool_use": null,
+          "cost_rub": 0.05282076,
+          "cost": 0.05282076,
+          "plugins": null
+        }
+      },
+      "content": "Вот три идеи заданий для изучения Python, с указанием названия, уровня сложности и примерной длительности:\n\n---\n\n### Идея Задания 1: \"Калькулятор Температуры\"\n\n*   **Название:** Калькулятор Температуры\n*   **Уровень сложности:** Начинающий\n*   **Длительность в минутах:** 20-30 минут\n\n**Описание задания:**\nСоздать простую программу на Python, которая позволяет пользователю переводить температуру из градусов Цельсия в градусы Фаренгейта и наоборот.\n\n**Что изучается:**\n*   Получение ввода от пользователя (`input()`).\n*   Преобразование типов данных (строка в число - `float()`).\n*   Основные арифметические операции.\n*   Использование условных операторов (`if`, `elif`, `else`) для выбора действия.\n*   Вывод результатов (`print()`).\n\n**Примерный ход выполнения:**\n1.  Попросить пользователя ввести значение температуры.\n2.  Попросить пользователя указать единицу измерения (например, \"C\" для Цельсия или \"F\" для Фаренгейта).\n3.  На основе введенной единицы измерения применить соответствующую формулу (C to F: `(C * 9/5) + 32`, F to C: `(F - 32) * 5/9`).\n4.  Вывести результат пользователю.\n\n---\n\n### Идея Задания 2: \"Список Покупок\"\n\n*   **Название:** Список Покупок\n*   **Уровень сложности:** Средний\n*   **Длительность в минутах:** 45-60 минут\n\n**Описание задания:**\nРазработать программу, которая позволяет пользователю управлять списком покупок. Пользователь должен иметь возможность добавлять товары, удалять товары, просматривать список и завершать программу.\n\n**Что изучается:**\n*   Работа со списками (добавление `append()`, удаление `remove()`, просмотр).\n*   Использование циклов `while` для непрерывной работы программы до команды выхода.\n*   Обработка пользовательского ввода для различных команд (добавить, удалить, показать, выход).\n*   Проверка наличия элемента в списке (`in`).\n*   Форматирование вывода.\n\n**Примерный ход выполнения:**\n1.  Инициализировать пустой список для покупок.\n2.  Создать цикл `while True`, который будет продолжаться до тех пор, пока пользователь не выберет опцию выхода.\n3.  Внутри цикла выводить меню с доступными действиями: \"добавить\", \"удалить\", \"показать\", \"выход\".\n4.  Обрабатывать выбор пользователя:\n    *   Если \"добавить\", запрашивать название товара и добавлять его в список.\n    *   Если \"удалить\", запрашивать название товара и удалять его из списка (с проверкой, существует ли товар).\n    *   Если \"показать\", выводить все товары из списка.\n    *   Если \"выход\", прервать цикл.\n\n---\n\n### Идея Задания 3: \"Генератор Случайных Паролей\"\n\n*   **Название:** Генератор Случайных Паролей\n*   **Уровень сложности:** Продвинутый (для начинающих, но требует знакомства с модулями)\n*   **Длительность в минутах:** 60-90 минут\n\n**Описание задания:**\nСоздать программу, которая генерирует случайные пароли заданной длины, с возможностью выбора, какие типы символов (буквы в верхнем и нижнем регистре, цифры, специальные символы) должны использоваться.\n\n**Что изучается:**\n*   Импорт и использование модулей (`random`, `string`).\n*   Создание строк из набора символов.\n*   Генерация случайных выборок из последовательностей (`random.choice()`, `random.sample()`).\n*   Работа с переменными и передача их в функции (при желании можно оформить в виде функции).\n*   Обработка пользовательского ввода для настройки параметров пароля.\n*   Циклы для формирования пароля.\n\n**Примерный ход выполнения:**\n1.  Определить наборы символов: строчные буквы, прописные буквы, цифры, специальные символы.\n2.  Попросить пользователя ввести желаемую длину пароля.\n3.  Попросить пользователя выбрать, какие типы символов включить (например, ответить \"да/нет\" на вопросы: \"Использовать строчные буквы?\", \"Использовать прописные буквы?\", \"Использовать цифры?\", \"Использовать специальные символы?\").\n4.  Сформировать полный набор символов, из которых будет состоять пароль, на основе выбора пользователя.\n5.  Сгенерировать пароль, выбирая случайные символы из сформированного набора, пока длина пароля не достигнет заданной.\n6.  Вывести сгенерированный пароль.\n\n---",
+      "finish_reason": "stop",
+      "complete": true,
+      "actual_model": "google/gemini-2.5-flash-lite",
+      "provider": null,
+      "total_tokens": 1141,
+      "prompt_tokens": 23,
+      "completion_tokens": 1118,
+      "cost_rub": 0.05282076,
+      "http_status": 200,
+      "api_error": null,
+      "duration_seconds": 3.654729,
+      "variant": "baseline",
+      "repeat": 3,
+      "observed_at": "2026-11-08T01:33:36+03:00",
+      "json_valid": false,
+      "schema_valid": false,
+      "task_valid": false,
+      "validation_error": "Исходный текст не разбирается как строгий JSON.",
+      "task_evaluated": false
+    },
+    {
+      "request": {
+        "model": "google/gemini-2.5-flash-lite",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Ответь только JSON без Markdown и пояснений. Объект с единственным ключом ideas: массив объектов с полями title (непустая строка), level (beginner, intermediate или advanced), duration_minutes (положительное целое число). Идей должно быть ровно три, названия разные."
+          },
+          {
+            "role": "user",
+            "content": "Составь три идеи заданий для изучения Python: название, уровень сложности и длительность в минутах."
+          }
+        ],
+        "stream": false,
+        "provider": {
+          "allow_fallbacks": false,
+          "require_parameters": true
+        },
+        "max_tokens": 4096,
+        "temperature": 0.7,
+        "response_format": {
+          "type": "json_object"
+        }
+      },
+      "response": {
+        "id": "gen_2230475566124240897",
+        "object": "chat.completion",
+        "created": 1794090817,
+        "model": "google/gemini-2.5-flash-lite",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"ideas\": [\n    {\n      \"title\": \"Написать простой калькулятор\",\n      \"level\": \"beginner\",\n      \"duration_minutes\": 30\n    },\n    {\n      \"title\": \"Создать парсер веб-страницы\",\n      \"level\": \"intermediate\",\n      \"duration_minutes\": 90\n    },\n    {\n      \"title\": \"Разработать REST API с использованием Flask\",\n      \"level\": \"advanced\",\n      \"duration_minutes\": 180\n    }\n  ]\n}"
+            },
+            "finish_reason": "stop",
+            "logprobs": null
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 86,
+          "completion_tokens": 128,
+          "total_tokens": 214,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "accepted_prediction_tokens": null,
+            "rejected_prediction_tokens": null
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "server_tool_use": null,
+          "cost_rub": 0.00709808,
+          "cost": 0.00709808,
+          "plugins": null
+        }
+      },
+      "content": "{\n  \"ideas\": [\n    {\n      \"title\": \"Написать простой калькулятор\",\n      \"level\": \"beginner\",\n      \"duration_minutes\": 30\n    },\n    {\n      \"title\": \"Создать парсер веб-страницы\",\n      \"level\": \"intermediate\",\n      \"duration_minutes\": 90\n    },\n    {\n      \"title\": \"Разработать REST API с использованием Flask\",\n      \"level\": \"advanced\",\n      \"duration_minutes\": 180\n    }\n  ]\n}",
+      "finish_reason": "stop",
+      "complete": true,
+      "actual_model": "google/gemini-2.5-flash-lite",
+      "provider": null,
+      "total_tokens": 214,
+      "prompt_tokens": 86,
+      "completion_tokens": 128,
+      "cost_rub": 0.00709808,
+      "http_status": 200,
+      "api_error": null,
+      "duration_seconds": 1.183088,
+      "variant": "json_mode",
+      "repeat": 3,
+      "observed_at": "2026-11-08T01:33:37+03:00",
+      "json_valid": true,
+      "schema_valid": true,
+      "task_valid": true,
+      "validation_error": null,
+      "task_evaluated": true
+    },
+    {
+      "request": {
+        "model": "google/gemini-2.5-flash-lite",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Ответь только JSON без Markdown и пояснений. Объект с единственным ключом ideas: массив объектов с полями title (непустая строка), level (beginner, intermediate или advanced), duration_minutes (положительное целое число). Идей должно быть ровно три, названия разные."
+          },
+          {
+            "role": "user",
+            "content": "Составь три идеи заданий для изучения Python: название, уровень сложности и длительность в минутах."
+          }
+        ],
+        "stream": false,
+        "provider": {
+          "allow_fallbacks": false,
+          "require_parameters": true
+        },
+        "max_tokens": 4096,
+        "temperature": 0.7,
+        "response_format": {
+          "type": "json_schema",
+          "json_schema": {
+            "name": "python_ideas",
+            "strict": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "ideas": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string"
+                      },
+                      "level": {
+                        "type": "string",
+                        "enum": [
+                          "beginner",
+                          "intermediate",
+                          "advanced"
+                        ]
+                      },
+                      "duration_minutes": {
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "title",
+                      "level",
+                      "duration_minutes"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "required": [
+                "ideas"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      "response": {
+        "id": "gen_2230475571048353793",
+        "object": "chat.completion",
+        "created": 1794090818,
+        "model": "google/gemini-2.5-flash-lite",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"ideas\": [\n    {\n      \"title\": \"Написать простой калькулятор\",\n      \"level\": \"beginner\",\n      \"duration_minutes\": 60\n    },\n    {\n      \"title\": \"Создать парсер новостного сайта\",\n      \"level\": \"intermediate\",\n      \"duration_minutes\": 180\n    },\n    {\n      \"title\": \"Разработать веб-приложение для управления задачами\",\n      \"level\": \"advanced\",\n      \"duration_minutes\": 300\n    }\n  ]\n}"
+            },
+            "finish_reason": "stop",
+            "logprobs": null
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 86,
+          "completion_tokens": 129,
+          "total_tokens": 215,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "accepted_prediction_tokens": null,
+            "rejected_prediction_tokens": null
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "server_tool_use": null,
+          "cost_rub": 0.0070741,
+          "cost": 0.0070741,
+          "plugins": null
+        }
+      },
+      "content": "{\n  \"ideas\": [\n    {\n      \"title\": \"Написать простой калькулятор\",\n      \"level\": \"beginner\",\n      \"duration_minutes\": 60\n    },\n    {\n      \"title\": \"Создать парсер новостного сайта\",\n      \"level\": \"intermediate\",\n      \"duration_minutes\": 180\n    },\n    {\n      \"title\": \"Разработать веб-приложение для управления задачами\",\n      \"level\": \"advanced\",\n      \"duration_minutes\": 300\n    }\n  ]\n}",
+      "finish_reason": "stop",
+      "complete": true,
+      "actual_model": "google/gemini-2.5-flash-lite",
+      "provider": null,
+      "total_tokens": 215,
+      "prompt_tokens": 86,
+      "completion_tokens": 129,
+      "cost_rub": 0.0070741,
+      "http_status": 200,
+      "api_error": null,
+      "duration_seconds": 1.081632,
+      "variant": "strict_schema",
+      "repeat": 3,
+      "observed_at": "2026-11-08T01:33:38+03:00",
+      "json_valid": true,
+      "schema_valid": true,
+      "task_valid": true,
+      "validation_error": null,
+      "task_evaluated": true
+    },
+    {
+      "request": {
+        "model": "google/gemini-2.5-flash-lite",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Ответь только JSON без Markdown и пояснений. Объект с единственным ключом ideas: массив объектов с полями title (непустая строка), level (beginner, intermediate или advanced), duration_minutes (положительное целое число). Идей должно быть ровно три, названия разные."
+          },
+          {
+            "role": "user",
+            "content": "Составь три идеи заданий для изучения Python: название, уровень сложности и длительность в минутах."
+          }
+        ],
+        "stream": false,
+        "provider": {
+          "allow_fallbacks": false,
+          "require_parameters": true
+        },
+        "max_tokens": 4096,
+        "temperature": 0.7
+      },
+      "response": {
+        "id": "gen_2230475575688564737",
+        "object": "chat.completion",
+        "created": 1794090819,
+        "model": "google/gemini-2.5-flash-lite",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "```json\n{\n  \"ideas\": [\n    {\n      \"title\": \"Создание простого калькулятора\",\n      \"level\": \"beginner\",\n      \"duration_minutes\": 60\n    },\n    {\n      \"title\": \"Разработка игры \\\"Угадай число\\\"\",\n      \"level\": \"intermediate\",\n      \"duration_minutes\": 90\n    },\n    {\n      \"title\": \"Парсинг данных с веб-сайта\",\n      \"level\": \"advanced\",\n      \"duration_minutes\": 120\n    }\n  ]\n}\n```"
+            },
+            "finish_reason": "stop",
+            "logprobs": null
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 86,
+          "completion_tokens": 133,
+          "total_tokens": 219,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "accepted_prediction_tokens": null,
+            "rejected_prediction_tokens": null
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "server_tool_use": null,
+          "cost_rub": 0.00726212,
+          "cost": 0.00726212,
+          "plugins": null
+        }
+      },
+      "content": "```json\n{\n  \"ideas\": [\n    {\n      \"title\": \"Создание простого калькулятора\",\n      \"level\": \"beginner\",\n      \"duration_minutes\": 60\n    },\n    {\n      \"title\": \"Разработка игры \\\"Угадай число\\\"\",\n      \"level\": \"intermediate\",\n      \"duration_minutes\": 90\n    },\n    {\n      \"title\": \"Парсинг данных с веб-сайта\",\n      \"level\": \"advanced\",\n      \"duration_minutes\": 120\n    }\n  ]\n}\n```",
+      "finish_reason": "stop",
+      "complete": true,
+      "actual_model": "google/gemini-2.5-flash-lite",
+      "provider": null,
+      "total_tokens": 219,
+      "prompt_tokens": 86,
+      "completion_tokens": 133,
+      "cost_rub": 0.00726212,
+      "http_status": 200,
+      "api_error": null,
+      "duration_seconds": 1.544602,
+      "variant": "prompt_json",
+      "repeat": 4,
+      "observed_at": "2026-11-08T01:33:39+03:00",
+      "json_valid": false,
+      "schema_valid": false,
+      "task_valid": false,
+      "validation_error": "Исходный текст не разбирается как строгий JSON.",
+      "task_evaluated": false
+    },
+    {
+      "request": {
+        "model": "google/gemini-2.5-flash-lite",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Ответь только JSON без Markdown и пояснений. Объект с единственным ключом ideas: массив объектов с полями title (непустая строка), level (beginner, intermediate или advanced), duration_minutes (положительное целое число). Идей должно быть ровно три, названия разные."
+          },
+          {
+            "role": "user",
+            "content": "Составь три идеи заданий для изучения Python: название, уровень сложности и длительность в минутах."
+          }
+        ],
+        "stream": false,
+        "provider": {
+          "allow_fallbacks": false,
+          "require_parameters": true
+        },
+        "max_tokens": 32,
+        "temperature": 0.7
+      },
+      "response": {
+        "id": "gen_2230475582219096065",
+        "object": "chat.completion",
+        "created": 1794090820,
+        "model": "google/gemini-2.5-flash-lite",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "```json\n{\n  \"ideas\": [\n    {\n      \"title\": \"Создание простого калькулятора\",\n      \"level"
+            },
+            "finish_reason": "length",
+            "logprobs": null
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 86,
+          "completion_tokens": 30,
+          "total_tokens": 116,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "accepted_prediction_tokens": null,
+            "rejected_prediction_tokens": null
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "server_tool_use": null,
+          "cost_rub": 0.00244516,
+          "cost": 0.00244516,
+          "plugins": null
+        }
+      },
+      "content": "```json\n{\n  \"ideas\": [\n    {\n      \"title\": \"Создание простого калькулятора\",\n      \"level",
+      "finish_reason": "length",
+      "complete": false,
+      "actual_model": "google/gemini-2.5-flash-lite",
+      "provider": null,
+      "total_tokens": 116,
+      "prompt_tokens": 86,
+      "completion_tokens": 30,
+      "cost_rub": 0.00244516,
+      "http_status": 200,
+      "api_error": null,
+      "duration_seconds": 0.826603,
+      "variant": "token_limit",
+      "repeat": 4,
+      "observed_at": "2026-11-08T01:33:40+03:00",
+      "json_valid": false,
+      "schema_valid": false,
+      "task_valid": false,
+      "validation_error": "Исходный текст не разбирается как строгий JSON.",
+      "task_evaluated": false
+    },
+    {
+      "request": {
+        "model": "google/gemini-2.5-flash-lite",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Ответь только JSON без Markdown и пояснений. Объект с единственным ключом ideas: массив объектов с полями title (непустая строка), level (beginner, intermediate или advanced), duration_minutes (положительное целое число). Идей должно быть ровно три, названия разные."
+          },
+          {
+            "role": "user",
+            "content": "Составь три идеи заданий для изучения Python: название, уровень сложности и длительность в минутах."
+          }
+        ],
+        "stream": false,
+        "provider": {
+          "allow_fallbacks": false,
+          "require_parameters": true
+        },
+        "max_tokens": 4096,
+        "temperature": 0.7,
+        "stop": [
+          "\"level\""
+        ]
+      },
+      "response": {
+        "id": "gen_2230475585674285057",
+        "object": "chat.completion",
+        "created": 1794090821,
+        "model": "google/gemini-2.5-flash-lite",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "```json\n{\n  \"ideas\": [\n    {\n      \"title\": \"Простой калькулятор\",\n      "
+            },
+            "finish_reason": "stop",
+            "logprobs": null
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 86,
+          "completion_tokens": 23,
+          "total_tokens": 109,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "accepted_prediction_tokens": null,
+            "rejected_prediction_tokens": null
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "server_tool_use": null,
+          "cost_rub": 0.00209168,
+          "cost": 0.00209168,
+          "plugins": null
+        }
+      },
+      "content": "```json\n{\n  \"ideas\": [\n    {\n      \"title\": \"Простой калькулятор\",\n      ",
+      "finish_reason": "stop",
+      "complete": true,
+      "actual_model": "google/gemini-2.5-flash-lite",
+      "provider": null,
+      "total_tokens": 109,
+      "prompt_tokens": 86,
+      "completion_tokens": 23,
+      "cost_rub": 0.00209168,
+      "http_status": 200,
+      "api_error": null,
+      "duration_seconds": 0.86151,
+      "variant": "stop_sequence",
+      "repeat": 4,
+      "observed_at": "2026-11-08T01:33:41+03:00",
+      "json_valid": false,
+      "schema_valid": false,
+      "task_valid": false,
+      "validation_error": "Исходный текст не разбирается как строгий JSON.",
+      "task_evaluated": false
+    },
+    {
+      "request": {
+        "model": "google/gemini-2.5-flash-lite",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Ответь только JSON без Markdown и пояснений. Объект с единственным ключом ideas: массив объектов с полями title (непустая строка), level (beginner, intermediate или advanced), duration_minutes (положительное целое число). Идей должно быть ровно три, названия разные."
+          },
+          {
+            "role": "user",
+            "content": "Составь три идеи заданий для изучения Python: название, уровень сложности и длительность в минутах."
+          }
+        ],
+        "stream": false,
+        "provider": {
+          "allow_fallbacks": false,
+          "require_parameters": true
+        },
+        "max_tokens": 4096,
+        "temperature": 0.7,
+        "response_format": {
+          "type": "json_object"
+        }
+      },
+      "response": {
+        "id": "gen_2230475589394370561",
+        "object": "chat.completion",
+        "created": 1794090822,
+        "model": "google/gemini-2.5-flash-lite",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"ideas\": [\n    {\n      \"title\": \"Создание простого калькулятора\",\n      \"level\": \"beginner\",\n      \"duration_minutes\": 60\n    },\n    {\n      \"title\": \"Разработка веб-скрапера для сбора данных\",\n      \"level\": \"intermediate\",\n      \"duration_minutes\": 180\n    },\n    {\n      \"title\": \"Реализация алгоритма сортировки с нуля\",\n      \"level\": \"advanced\",\n      \"duration_minutes\": 240\n    }\n  ]\n}"
+            },
+            "finish_reason": "stop",
+            "logprobs": null
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 86,
+          "completion_tokens": 134,
+          "total_tokens": 220,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "accepted_prediction_tokens": null,
+            "rejected_prediction_tokens": null
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "server_tool_use": null,
+          "cost_rub": 0.00730912,
+          "cost": 0.00730912,
+          "plugins": null
+        }
+      },
+      "content": "{\n  \"ideas\": [\n    {\n      \"title\": \"Создание простого калькулятора\",\n      \"level\": \"beginner\",\n      \"duration_minutes\": 60\n    },\n    {\n      \"title\": \"Разработка веб-скрапера для сбора данных\",\n      \"level\": \"intermediate\",\n      \"duration_minutes\": 180\n    },\n    {\n      \"title\": \"Реализация алгоритма сортировки с нуля\",\n      \"level\": \"advanced\",\n      \"duration_minutes\": 240\n    }\n  ]\n}",
+      "finish_reason": "stop",
+      "complete": true,
+      "actual_model": "google/gemini-2.5-flash-lite",
+      "provider": null,
+      "total_tokens": 220,
+      "prompt_tokens": 86,
+      "completion_tokens": 134,
+      "cost_rub": 0.00730912,
+      "http_status": 200,
+      "api_error": null,
+      "duration_seconds": 1.200831,
+      "variant": "json_mode",
+      "repeat": 4,
+      "observed_at": "2026-11-08T01:33:42+03:00",
+      "json_valid": true,
+      "schema_valid": true,
+      "task_valid": true,
+      "validation_error": null,
+      "task_evaluated": true
+    },
+    {
+      "request": {
+        "model": "google/gemini-2.5-flash-lite",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Ответь только JSON без Markdown и пояснений. Объект с единственным ключом ideas: массив объектов с полями title (непустая строка), level (beginner, intermediate или advanced), duration_minutes (положительное целое число). Идей должно быть ровно три, названия разные."
+          },
+          {
+            "role": "user",
+            "content": "Составь три идеи заданий для изучения Python: название, уровень сложности и длительность в минутах."
+          }
+        ],
+        "stream": false,
+        "provider": {
+          "allow_fallbacks": false,
+          "require_parameters": true
+        },
+        "max_tokens": 4096,
+        "temperature": 0.7,
+        "response_format": {
+          "type": "json_schema",
+          "json_schema": {
+            "name": "python_ideas",
+            "strict": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "ideas": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string"
+                      },
+                      "level": {
+                        "type": "string",
+                        "enum": [
+                          "beginner",
+                          "intermediate",
+                          "advanced"
+                        ]
+                      },
+                      "duration_minutes": {
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "title",
+                      "level",
+                      "duration_minutes"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "required": [
+                "ideas"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      "response": {
+        "id": "gen_2230475594466201601",
+        "object": "chat.completion",
+        "created": 1794090823,
+        "model": "google/gemini-2.5-flash-lite",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"ideas\": [\n    {\n      \"title\": \"Написать простой калькулятор\",\n      \"level\": \"beginner\",\n      \"duration_minutes\": 60\n    },\n    {\n      \"title\": \"Создать парсер RSS-ленты\",\n      \"level\": \"intermediate\",\n      \"duration_minutes\": 180\n    },\n    {\n      \"title\": \"Разработать веб-приложение для заметок\",\n      \"level\": \"advanced\",\n      \"duration_minutes\": 300\n    }\n  ]\n}"
+            },
+            "finish_reason": "stop",
+            "logprobs": null
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 86,
+          "completion_tokens": 131,
+          "total_tokens": 217,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "accepted_prediction_tokens": null,
+            "rejected_prediction_tokens": null
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "server_tool_use": null,
+          "cost_rub": 0.00716811,
+          "cost": 0.00716811,
+          "plugins": null
+        }
+      },
+      "content": "{\n  \"ideas\": [\n    {\n      \"title\": \"Написать простой калькулятор\",\n      \"level\": \"beginner\",\n      \"duration_minutes\": 60\n    },\n    {\n      \"title\": \"Создать парсер RSS-ленты\",\n      \"level\": \"intermediate\",\n      \"duration_minutes\": 180\n    },\n    {\n      \"title\": \"Разработать веб-приложение для заметок\",\n      \"level\": \"advanced\",\n      \"duration_minutes\": 300\n    }\n  ]\n}",
+      "finish_reason": "stop",
+      "complete": true,
+      "actual_model": "google/gemini-2.5-flash-lite",
+      "provider": null,
+      "total_tokens": 217,
+      "prompt_tokens": 86,
+      "completion_tokens": 131,
+      "cost_rub": 0.00716811,
+      "http_status": 200,
+      "api_error": null,
+      "duration_seconds": 0.887044,
+      "variant": "strict_schema",
+      "repeat": 4,
+      "observed_at": "2026-11-08T01:33:43+03:00",
+      "json_valid": true,
+      "schema_valid": true,
+      "task_valid": true,
+      "validation_error": null,
+      "task_evaluated": true
+    },
+    {
+      "request": {
+        "model": "google/gemini-2.5-flash-lite",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Составь три идеи заданий для изучения Python: название, уровень сложности и длительность в минутах."
+          }
+        ],
+        "stream": false,
+        "provider": {
+          "allow_fallbacks": false,
+          "require_parameters": true
+        },
+        "max_tokens": 4096,
+        "temperature": 0.7
+      },
+      "response": {
+        "id": "gen_2230475598255624193",
+        "object": "chat.completion",
+        "created": 1794090827,
+        "model": "google/gemini-2.5-flash-lite",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "Вот три идеи заданий для изучения Python, составленные с учетом разных уровней сложности и примерной длительности:\n\n---\n\n### Идея задания 1\n\n*   **Название:** \"Калькулятор с историей\"\n*   **Уровень сложности:** Начинающий (Beginner)\n*   **Длительность в минутах:** 60-90 минут\n\n**Описание задания:**\n\nСоздайте простой консольный калькулятор, который поддерживает основные арифметические операции: сложение, вычитание, умножение и деление. Пользователь должен иметь возможность вводить два числа и выбирать операцию.\n\n**Дополнительные требования (для усложнения):**\n\n1.  **История операций:** Реализуйте функцию, которая сохраняет последние 5 выполненных операций (включая операнды и результат) и позволяет пользователю просмотреть их по запросу.\n2.  **Обработка ошибок:** Добавьте обработку некорректного ввода (например, ввод текста вместо чисел, деление на ноль).\n3.  **Цикл для повторных вычислений:** Позвольте пользователю выполнять несколько вычислений подряд, не выходя из программы, пока он явно не решит завершить работу (например, введя \"выход\").\n\n**Цели обучения:**\n\n*   Основы ввода/вывода (`input()`, `print()`).\n*   Переменные и типы данных (числа, строки).\n*   Условные операторы (`if`, `elif`, `else`).\n*   Базовые арифметические операции.\n*   Функции (для организации кода).\n*   Работа со списками (для истории операций).\n*   Обработка исключений (`try-except`).\n\n---\n\n### Идея задания 2\n\n*   **Название:** \"Анализатор текстовых файлов\"\n*   **Уровень сложности:** Средний (Intermediate)\n*   **Длительность в минутах:** 90-120 минут\n\n**Описание задания:**\n\nНапишите скрипт, который принимает путь к текстовому файлу в качестве аргумента командной строки. Скрипт должен проанализировать содержимое файла и вывести следующую информацию:\n\n*   Общее количество строк.\n*   Общее количество слов.\n*   Общее количество символов.\n*   Частоту встречаемости каждого слова (вывести топ-10 самых частых слов).\n*   Количество строк, содержащих определенное пользователем ключевое слово.\n\n**Дополнительные требования (для усложнения):**\n\n1.  **Игнорирование регистра и пунктуации:** При подсчете слов игнорируйте регистр букв и удаляйте знаки пунктуации.\n2.  **Вывод в файл:** Результаты анализа (кроме топ-10 слов) должны быть записаны в новый текстовый файл.\n3.  **Аргументы командной строки:** Используйте модуль `argparse` для более удобного управления аргументами командной строки (путь к файлу, ключевое слово).\n\n**Цели обучения:**\n\n*   Работа с файлами (чтение, запись).\n*   Обработка строк (разделение на слова, удаление пунктуации, приведение к нижнему регистру).\n*   Словари (`dict`) для подсчета частоты слов.\n*   Работа с модулями (`os`, `sys`, `collections`, `argparse`).\n*   Алгоритмы сортировки (для топ-10 слов).\n*   Аргументы командной строки.\n\n---\n\n### Идея задания 3\n\n*   **Название:** \"Простой веб-скрапер новостного сайта\"\n*   **Уровень сложности:** Продвинутый (Advanced)\n*   **Длительность в минутах:** 120-180 минут\n\n**Описание задания:**\n\nСоздайте скрипт, который скрапит (извлекает информацию) с определенной страницы новостного сайта (например, заголовки и ссылки на статьи). Используйте для этого библиотеки `requests` для получения HTML-кода страницы и `BeautifulSoup` для парсинга HTML.\n\n**Дополнительные требования (для усложнения):**\n\n1.  **Извлечение конкретных данных:** Извлекайте заголовки статей, ссылки на полные тексты статей и, возможно, краткие описания (если доступны).\n2.  **Фильтрация:** Реализуйте возможность фильтрации статей по ключевым словам, которые пользователь может указать.\n3.  **Сохранение в CSV:** Сохраните извлеченную информацию (заголовок, ссылка, описание) в файл формата CSV.\n4.  **Обработка ошибок:** Добавьте обработку ошибок, связанных с сетевыми запросами (например, недоступность сайта, ошибки HTTP).\n5.  **Пагинация (опционально):** Если сайт имеет пагинацию, попробуйте реализовать скрапинг нескольких страниц.\n\n**Цели обучения:**\n\n*   Работа с HTTP-запросами (`requests`).\n*   Парсинг HTML (`BeautifulSoup`).\n*   Структуры данных (списки, словари).\n*   Работа с файлами (CSV).\n*   Регулярные выражения (для более сложного поиска).\n*   Основы веб-разметки (HTML).\n*   Обработка ошибок и исключений.\n*   Работа с внешними библиотеками.\n\n---"
+            },
+            "finish_reason": "stop",
+            "logprobs": null
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 23,
+          "completion_tokens": 1198,
+          "total_tokens": 1221,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "accepted_prediction_tokens": null,
+            "rejected_prediction_tokens": null
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "server_tool_use": null,
+          "cost_rub": 0.05658108,
+          "cost": 0.05658108,
+          "plugins": null
+        }
+      },
+      "content": "Вот три идеи заданий для изучения Python, составленные с учетом разных уровней сложности и примерной длительности:\n\n---\n\n### Идея задания 1\n\n*   **Название:** \"Калькулятор с историей\"\n*   **Уровень сложности:** Начинающий (Beginner)\n*   **Длительность в минутах:** 60-90 минут\n\n**Описание задания:**\n\nСоздайте простой консольный калькулятор, который поддерживает основные арифметические операции: сложение, вычитание, умножение и деление. Пользователь должен иметь возможность вводить два числа и выбирать операцию.\n\n**Дополнительные требования (для усложнения):**\n\n1.  **История операций:** Реализуйте функцию, которая сохраняет последние 5 выполненных операций (включая операнды и результат) и позволяет пользователю просмотреть их по запросу.\n2.  **Обработка ошибок:** Добавьте обработку некорректного ввода (например, ввод текста вместо чисел, деление на ноль).\n3.  **Цикл для повторных вычислений:** Позвольте пользователю выполнять несколько вычислений подряд, не выходя из программы, пока он явно не решит завершить работу (например, введя \"выход\").\n\n**Цели обучения:**\n\n*   Основы ввода/вывода (`input()`, `print()`).\n*   Переменные и типы данных (числа, строки).\n*   Условные операторы (`if`, `elif`, `else`).\n*   Базовые арифметические операции.\n*   Функции (для организации кода).\n*   Работа со списками (для истории операций).\n*   Обработка исключений (`try-except`).\n\n---\n\n### Идея задания 2\n\n*   **Название:** \"Анализатор текстовых файлов\"\n*   **Уровень сложности:** Средний (Intermediate)\n*   **Длительность в минутах:** 90-120 минут\n\n**Описание задания:**\n\nНапишите скрипт, который принимает путь к текстовому файлу в качестве аргумента командной строки. Скрипт должен проанализировать содержимое файла и вывести следующую информацию:\n\n*   Общее количество строк.\n*   Общее количество слов.\n*   Общее количество символов.\n*   Частоту встречаемости каждого слова (вывести топ-10 самых частых слов).\n*   Количество строк, содержащих определенное пользователем ключевое слово.\n\n**Дополнительные требования (для усложнения):**\n\n1.  **Игнорирование регистра и пунктуации:** При подсчете слов игнорируйте регистр букв и удаляйте знаки пунктуации.\n2.  **Вывод в файл:** Результаты анализа (кроме топ-10 слов) должны быть записаны в новый текстовый файл.\n3.  **Аргументы командной строки:** Используйте модуль `argparse` для более удобного управления аргументами командной строки (путь к файлу, ключевое слово).\n\n**Цели обучения:**\n\n*   Работа с файлами (чтение, запись).\n*   Обработка строк (разделение на слова, удаление пунктуации, приведение к нижнему регистру).\n*   Словари (`dict`) для подсчета частоты слов.\n*   Работа с модулями (`os`, `sys`, `collections`, `argparse`).\n*   Алгоритмы сортировки (для топ-10 слов).\n*   Аргументы командной строки.\n\n---\n\n### Идея задания 3\n\n*   **Название:** \"Простой веб-скрапер новостного сайта\"\n*   **Уровень сложности:** Продвинутый (Advanced)\n*   **Длительность в минутах:** 120-180 минут\n\n**Описание задания:**\n\nСоздайте скрипт, который скрапит (извлекает информацию) с определенной страницы новостного сайта (например, заголовки и ссылки на статьи). Используйте для этого библиотеки `requests` для получения HTML-кода страницы и `BeautifulSoup` для парсинга HTML.\n\n**Дополнительные требования (для усложнения):**\n\n1.  **Извлечение конкретных данных:** Извлекайте заголовки статей, ссылки на полные тексты статей и, возможно, краткие описания (если доступны).\n2.  **Фильтрация:** Реализуйте возможность фильтрации статей по ключевым словам, которые пользователь может указать.\n3.  **Сохранение в CSV:** Сохраните извлеченную информацию (заголовок, ссылка, описание) в файл формата CSV.\n4.  **Обработка ошибок:** Добавьте обработку ошибок, связанных с сетевыми запросами (например, недоступность сайта, ошибки HTTP).\n5.  **Пагинация (опционально):** Если сайт имеет пагинацию, попробуйте реализовать скрапинг нескольких страниц.\n\n**Цели обучения:**\n\n*   Работа с HTTP-запросами (`requests`).\n*   Парсинг HTML (`BeautifulSoup`).\n*   Структуры данных (списки, словари).\n*   Работа с файлами (CSV).\n*   Регулярные выражения (для более сложного поиска).\n*   Основы веб-разметки (HTML).\n*   Обработка ошибок и исключений.\n*   Работа с внешними библиотеками.\n\n---",
+      "finish_reason": "stop",
+      "complete": true,
+      "actual_model": "google/gemini-2.5-flash-lite",
+      "provider": null,
+      "total_tokens": 1221,
+      "prompt_tokens": 23,
+      "completion_tokens": 1198,
+      "cost_rub": 0.05658108,
+      "http_status": 200,
+      "api_error": null,
+      "duration_seconds": 4.163527,
+      "variant": "baseline",
+      "repeat": 4,
+      "observed_at": "2026-11-08T01:33:47+03:00",
+      "json_valid": false,
+      "schema_valid": false,
+      "task_valid": false,
+      "validation_error": "Исходный текст не разбирается как строгий JSON.",
+      "task_evaluated": false
+    },
+    {
+      "request": {
+        "model": "google/gemini-2.5-flash-lite",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Ответь только JSON без Markdown и пояснений. Объект с единственным ключом ideas: массив объектов с полями title (непустая строка), level (beginner, intermediate или advanced), duration_minutes (положительное целое число). Идей должно быть ровно три, названия разные."
+          },
+          {
+            "role": "user",
+            "content": "Составь три идеи заданий для изучения Python: название, уровень сложности и длительность в минутах."
+          }
+        ],
+        "stream": false,
+        "provider": {
+          "allow_fallbacks": false,
+          "require_parameters": true
+        },
+        "max_tokens": 4096,
+        "temperature": 0.7
+      },
+      "response": {
+        "id": "gen_2230475615723458561",
+        "object": "chat.completion",
+        "created": 1794090828,
+        "model": "google/gemini-2.5-flash-lite",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "```json\n{\n  \"ideas\": [\n    {\n      \"title\": \"Создание простого калькулятора\",\n      \"level\": \"beginner\",\n      \"duration_minutes\": 60\n    },\n    {\n      \"title\": \"Парсинг данных с веб-сайта\",\n      \"level\": \"intermediate\",\n      \"duration_minutes\": 180\n    },\n    {\n      \"title\": \"Разработка REST API с использованием Flask\",\n      \"level\": \"advanced\",\n      \"duration_minutes\": 300\n    }\n  ]\n}\n```"
+            },
+            "finish_reason": "stop",
+            "logprobs": null
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 86,
+          "completion_tokens": 135,
+          "total_tokens": 221,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "accepted_prediction_tokens": null,
+            "rejected_prediction_tokens": null
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "server_tool_use": null,
+          "cost_rub": 0.00735613,
+          "cost": 0.00735613,
+          "plugins": null
+        }
+      },
+      "content": "```json\n{\n  \"ideas\": [\n    {\n      \"title\": \"Создание простого калькулятора\",\n      \"level\": \"beginner\",\n      \"duration_minutes\": 60\n    },\n    {\n      \"title\": \"Парсинг данных с веб-сайта\",\n      \"level\": \"intermediate\",\n      \"duration_minutes\": 180\n    },\n    {\n      \"title\": \"Разработка REST API с использованием Flask\",\n      \"level\": \"advanced\",\n      \"duration_minutes\": 300\n    }\n  ]\n}\n```",
+      "finish_reason": "stop",
+      "complete": true,
+      "actual_model": "google/gemini-2.5-flash-lite",
+      "provider": null,
+      "total_tokens": 221,
+      "prompt_tokens": 86,
+      "completion_tokens": 135,
+      "cost_rub": 0.00735613,
+      "http_status": 200,
+      "api_error": null,
+      "duration_seconds": 0.822952,
+      "variant": "prompt_json",
+      "repeat": 5,
+      "observed_at": "2026-11-08T01:33:48+03:00",
+      "json_valid": false,
+      "schema_valid": false,
+      "task_valid": false,
+      "validation_error": "Исходный текст не разбирается как строгий JSON.",
+      "task_evaluated": false
+    },
+    {
+      "request": {
+        "model": "google/gemini-2.5-flash-lite",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Ответь только JSON без Markdown и пояснений. Объект с единственным ключом ideas: массив объектов с полями title (непустая строка), level (beginner, intermediate или advanced), duration_minutes (положительное целое число). Идей должно быть ровно три, названия разные."
+          },
+          {
+            "role": "user",
+            "content": "Составь три идеи заданий для изучения Python: название, уровень сложности и длительность в минутах."
+          }
+        ],
+        "stream": false,
+        "provider": {
+          "allow_fallbacks": false,
+          "require_parameters": true
+        },
+        "max_tokens": 4096,
+        "temperature": 0.7,
+        "stop": [
+          "\"level\""
+        ]
+      },
+      "response": {
+        "id": "gen_2230475619265941505",
+        "object": "chat.completion",
+        "created": 1794090829,
+        "model": "google/gemini-2.5-flash-lite",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "```json\n{\n  \"ideas\": [\n    {\n      \"title\": \"Напишите простой калькулятор\",\n      "
+            },
+            "finish_reason": "stop",
+            "logprobs": null
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 86,
+          "completion_tokens": 26,
+          "total_tokens": 112,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "accepted_prediction_tokens": null,
+            "rejected_prediction_tokens": null
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "server_tool_use": null,
+          "cost_rub": 0.00223269,
+          "cost": 0.00223269,
+          "plugins": null
+        }
+      },
+      "content": "```json\n{\n  \"ideas\": [\n    {\n      \"title\": \"Напишите простой калькулятор\",\n      ",
+      "finish_reason": "stop",
+      "complete": true,
+      "actual_model": "google/gemini-2.5-flash-lite",
+      "provider": null,
+      "total_tokens": 112,
+      "prompt_tokens": 86,
+      "completion_tokens": 26,
+      "cost_rub": 0.00223269,
+      "http_status": 200,
+      "api_error": null,
+      "duration_seconds": 0.841696,
+      "variant": "stop_sequence",
+      "repeat": 5,
+      "observed_at": "2026-11-08T01:33:49+03:00",
+      "json_valid": false,
+      "schema_valid": false,
+      "task_valid": false,
+      "validation_error": "Исходный текст не разбирается как строгий JSON.",
+      "task_evaluated": false
+    },
+    {
+      "request": {
+        "model": "google/gemini-2.5-flash-lite",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Ответь только JSON без Markdown и пояснений. Объект с единственным ключом ideas: массив объектов с полями title (непустая строка), level (beginner, intermediate или advanced), duration_minutes (положительное целое число). Идей должно быть ровно три, названия разные."
+          },
+          {
+            "role": "user",
+            "content": "Составь три идеи заданий для изучения Python: название, уровень сложности и длительность в минутах."
+          }
+        ],
+        "stream": false,
+        "provider": {
+          "allow_fallbacks": false,
+          "require_parameters": true
+        },
+        "max_tokens": 32,
+        "temperature": 0.7
+      },
+      "response": {
+        "id": "gen_2230475622890344449",
+        "object": "chat.completion",
+        "created": 1794090830,
+        "model": "google/gemini-2.5-flash-lite",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "```json\n{\n  \"ideas\": [\n    {\n      \"title\": \"Напиши скрипт для подсчета слов в текстовом"
+            },
+            "finish_reason": "length",
+            "logprobs": null
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 86,
+          "completion_tokens": 30,
+          "total_tokens": 116,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "accepted_prediction_tokens": null,
+            "rejected_prediction_tokens": null
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "server_tool_use": null,
+          "cost_rub": 0.00242071,
+          "cost": 0.00242071,
+          "plugins": null
+        }
+      },
+      "content": "```json\n{\n  \"ideas\": [\n    {\n      \"title\": \"Напиши скрипт для подсчета слов в текстовом",
+      "finish_reason": "length",
+      "complete": false,
+      "actual_model": "google/gemini-2.5-flash-lite",
+      "provider": null,
+      "total_tokens": 116,
+      "prompt_tokens": 86,
+      "completion_tokens": 30,
+      "cost_rub": 0.00242071,
+      "http_status": 200,
+      "api_error": null,
+      "duration_seconds": 0.789249,
+      "variant": "token_limit",
+      "repeat": 5,
+      "observed_at": "2026-11-08T01:33:50+03:00",
+      "json_valid": false,
+      "schema_valid": false,
+      "task_valid": false,
+      "validation_error": "Исходный текст не разбирается как строгий JSON.",
+      "task_evaluated": false
+    },
+    {
+      "request": {
+        "model": "google/gemini-2.5-flash-lite",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Составь три идеи заданий для изучения Python: название, уровень сложности и длительность в минутах."
+          }
+        ],
+        "stream": false,
+        "provider": {
+          "allow_fallbacks": false,
+          "require_parameters": true
+        },
+        "max_tokens": 4096,
+        "temperature": 0.7
+      },
+      "response": {
+        "id": "gen_2230475626226782209",
+        "object": "chat.completion",
+        "created": 1794090835,
+        "model": "google/gemini-2.5-flash-lite",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "Конечно, вот три идеи заданий для изучения Python, с названиями, уровнями сложности и примерной длительностью:\n\n---\n\n**Идея 1: \"Мастер слов: Анализатор текста\"**\n\n*   **Название:** Мастер слов: Анализатор текста\n*   **Уровень сложности:** Начинающий\n*   **Длительность (в минутах):** 45-60 минут\n\n**Описание задания:**\n\nЦель этого задания — научиться работать с текстом, использовать базовые структуры данных (списки, словари) и применять строковые методы.\n\n**Задачи:**\n\n1.  **Ввод текста:** Программа должна запрашивать у пользователя ввод некоторого текста (например, предложения или короткого абзаца).\n2.  **Подсчет слов:** Определить общее количество слов в введенном тексте. Словами считаются последовательности символов, разделенные пробелами.\n3.  **Подсчет уникальных слов:** Определить количество уникальных слов в тексте.\n4.  **Частота слов:** Посчитать, сколько раз каждое уникальное слово встречается в тексте. Результат представить в виде словаря, где ключ — слово, а значение — его частота.\n5.  **Самое частое слово:** Найти и вывести самое часто встречающееся слово (или слова, если их несколько с одинаковой максимальной частотой).\n6.  **Дополнительно (для более продвинутых):**\n    *   Игнорировать регистр при подсчете слов (например, \"Привет\" и \"привет\" считать одним словом).\n    *   Удалять знаки препинания перед подсчетом слов.\n\n**Что изучается:**\n\n*   Работа с вводом пользователя (`input()`).\n*   Строковые методы: `.split()`, `.lower()`, `.strip()`.\n*   Списки и циклы для итерации по ним.\n*   Словари для хранения пар \"ключ-значение\".\n*   Базовые условные операторы (`if`, `else`).\n*   Типы данных: строки, списки, словари.\n\n---\n\n**Идея 2: \"Список покупок: Управление данными\"**\n\n*   **Название:** Список покупок: Управление данными\n*   **Уровень сложности:** Средний\n*   **Длительность (в минутах):** 60-90 минут\n\n**Описание задания:**\n\nЭто задание фокусируется на создании интерактивной программы, которая позволяет пользователю управлять списком элементов. Здесь будут использоваться списки, функции и более сложные взаимодействия.\n\n**Задачи:**\n\n1.  **Инициализация списка:** Создать пустой список, который будет представлять список покупок.\n2.  **Меню действий:** Программа должна отображать меню с несколькими опциями:\n    *   Добавить товар в список.\n    *   Удалить товар из списка.\n    *   Показать список покупок.\n    *   Посчитать количество товаров в списке.\n    *   Выйти из программы.\n3.  **Реализация функций:** Каждая опция меню должна быть реализована как отдельная функция.\n    *   `добавить_товар(список, товар)`: Добавляет указанный товар в список.\n    *   `удалить_товар(список, товар)`: Удаляет указанный товар из списка (если он существует).\n    *   `показать_список(список)`: Выводит все элементы списка с их номерами.\n    *   `посчитать_товары(список)`: Возвращает количество элементов в списке.\n4.  **Цикл программы:** Программа должна работать в цикле, пока пользователь не выберет опцию \"Выйти\".\n5.  **Обработка ошибок:** Предусмотреть случаи, когда пользователь пытается удалить товар, которого нет в списке, или вводит некорректный выбор из меню.\n\n**Что изучается:**\n\n*   Создание и манипулирование списками (`append`, `remove`, `len`).\n*   Определение и вызов функций.\n*   Передача аргументов в функции.\n*   Циклы (`while`) для построения интерактивного меню.\n*   Обработка пользовательского ввода и его преобразование (например, в число).\n*   Условные операторы (`if`, `elif`, `else`) для выбора действия.\n*   Базовая обработка исключений (например, `try-except` для некорректного ввода).\n\n---\n\n**Идея 3: \"Книга контактов: Работа с файлами и структурированными данными\"**\n\n*   **Название:** Книга контактов: Работа с файлами и структурированными данными\n*   **Уровень сложности:** Продвинутый\n*   **Длительность (в минутах):** 90-120+ минут\n\n**Описание задания:**\n\nЭто более комплексное задание, которое включает в себя работу с файлами для сохранения и загрузки данных. Здесь мы будем использовать словари для представления контактов и освоим основы работы с файлами.\n\n**Задачи:**\n\n1.  **Структура данных для контакта:** Каждый контакт будет представлен словарем с ключами: \"имя\", \"телефон\", \"email\".\n2.  **Хранение контактов:** Все контакты будут храниться в списке словарей.\n3.  **Меню действий:** Программа должна иметь меню с опциями:\n    *   Добавить новый контакт.\n    *   Найти контакт по имени.\n    *   Показать все контакты.\n    *   Удалить контакт по имени.\n    *   Сохранить контакты в файл.\n    *   Загрузить контакты из файла.\n    *   Выйти из программы.\n4.  **Работа с файлами:**\n    *   **Сохранение:** При выборе опции \"Сохранить\", контакты должны быть записаны в текстовый файл. Можно использовать формат CSV (Comma Separated Values) или JSON (JavaScript Object Notation). JSON предпочтительнее для более структурированных данных.\n    *   **Загрузка:** При выборе опции \"Загрузить\", программа должна считать данные из файла и восстановить список контактов в памяти.\n5.  **Реализация функций:** Каждая опция меню должна быть реализована как отдельная функция.\n    *   `добавить_контакт(книга_контактов)`\n    *   `найти_контакт(книга_контактов, имя)`\n    *   `показать_все_контакты(книга_контактов)`\n    *   `удалить_контакт(книга_контактов, имя)`\n    *   `сохранить_в_файл(книга_контактов, имя_файла)`\n    *   `загрузить_из_файла(имя_файла)`\n6.  **Обработка ошибок:** Предусмотреть ошибки при работе с файлами (например, файл не найден), некорректный ввод данных при добавлении контакта.\n\n**Что изучается:**\n\n*   Работа со списками словарей для представления структурированных данных.\n*   Работа с файлами: открытие, чтение, запись (`open()`, `read()`, `write()`, `close()`).\n*   Использование модуля `json` для работы с JSON-файлами (сериализация и десериализация).\n*   Более сложная логика поиска и удаления элементов из списка словарей.\n*   Обработка исключений (`try-except`) для более надежной работы с файлами и вводом.\n*   Функции с возвращаемыми значениями.\n\n---\n\nЭти задания построены по принципу \"от простого к сложному\" и позволяют постепенно осваивать различные аспекты языка Python."
+            },
+            "finish_reason": "stop",
+            "logprobs": null
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 23,
+          "completion_tokens": 1728,
+          "total_tokens": 1751,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "accepted_prediction_tokens": null,
+            "rejected_prediction_tokens": null
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "server_tool_use": null,
+          "cost_rub": 0.08149321,
+          "cost": 0.08149321,
+          "plugins": null
+        }
+      },
+      "content": "Конечно, вот три идеи заданий для изучения Python, с названиями, уровнями сложности и примерной длительностью:\n\n---\n\n**Идея 1: \"Мастер слов: Анализатор текста\"**\n\n*   **Название:** Мастер слов: Анализатор текста\n*   **Уровень сложности:** Начинающий\n*   **Длительность (в минутах):** 45-60 минут\n\n**Описание задания:**\n\nЦель этого задания — научиться работать с текстом, использовать базовые структуры данных (списки, словари) и применять строковые методы.\n\n**Задачи:**\n\n1.  **Ввод текста:** Программа должна запрашивать у пользователя ввод некоторого текста (например, предложения или короткого абзаца).\n2.  **Подсчет слов:** Определить общее количество слов в введенном тексте. Словами считаются последовательности символов, разделенные пробелами.\n3.  **Подсчет уникальных слов:** Определить количество уникальных слов в тексте.\n4.  **Частота слов:** Посчитать, сколько раз каждое уникальное слово встречается в тексте. Результат представить в виде словаря, где ключ — слово, а значение — его частота.\n5.  **Самое частое слово:** Найти и вывести самое часто встречающееся слово (или слова, если их несколько с одинаковой максимальной частотой).\n6.  **Дополнительно (для более продвинутых):**\n    *   Игнорировать регистр при подсчете слов (например, \"Привет\" и \"привет\" считать одним словом).\n    *   Удалять знаки препинания перед подсчетом слов.\n\n**Что изучается:**\n\n*   Работа с вводом пользователя (`input()`).\n*   Строковые методы: `.split()`, `.lower()`, `.strip()`.\n*   Списки и циклы для итерации по ним.\n*   Словари для хранения пар \"ключ-значение\".\n*   Базовые условные операторы (`if`, `else`).\n*   Типы данных: строки, списки, словари.\n\n---\n\n**Идея 2: \"Список покупок: Управление данными\"**\n\n*   **Название:** Список покупок: Управление данными\n*   **Уровень сложности:** Средний\n*   **Длительность (в минутах):** 60-90 минут\n\n**Описание задания:**\n\nЭто задание фокусируется на создании интерактивной программы, которая позволяет пользователю управлять списком элементов. Здесь будут использоваться списки, функции и более сложные взаимодействия.\n\n**Задачи:**\n\n1.  **Инициализация списка:** Создать пустой список, который будет представлять список покупок.\n2.  **Меню действий:** Программа должна отображать меню с несколькими опциями:\n    *   Добавить товар в список.\n    *   Удалить товар из списка.\n    *   Показать список покупок.\n    *   Посчитать количество товаров в списке.\n    *   Выйти из программы.\n3.  **Реализация функций:** Каждая опция меню должна быть реализована как отдельная функция.\n    *   `добавить_товар(список, товар)`: Добавляет указанный товар в список.\n    *   `удалить_товар(список, товар)`: Удаляет указанный товар из списка (если он существует).\n    *   `показать_список(список)`: Выводит все элементы списка с их номерами.\n    *   `посчитать_товары(список)`: Возвращает количество элементов в списке.\n4.  **Цикл программы:** Программа должна работать в цикле, пока пользователь не выберет опцию \"Выйти\".\n5.  **Обработка ошибок:** Предусмотреть случаи, когда пользователь пытается удалить товар, которого нет в списке, или вводит некорректный выбор из меню.\n\n**Что изучается:**\n\n*   Создание и манипулирование списками (`append`, `remove`, `len`).\n*   Определение и вызов функций.\n*   Передача аргументов в функции.\n*   Циклы (`while`) для построения интерактивного меню.\n*   Обработка пользовательского ввода и его преобразование (например, в число).\n*   Условные операторы (`if`, `elif`, `else`) для выбора действия.\n*   Базовая обработка исключений (например, `try-except` для некорректного ввода).\n\n---\n\n**Идея 3: \"Книга контактов: Работа с файлами и структурированными данными\"**\n\n*   **Название:** Книга контактов: Работа с файлами и структурированными данными\n*   **Уровень сложности:** Продвинутый\n*   **Длительность (в минутах):** 90-120+ минут\n\n**Описание задания:**\n\nЭто более комплексное задание, которое включает в себя работу с файлами для сохранения и загрузки данных. Здесь мы будем использовать словари для представления контактов и освоим основы работы с файлами.\n\n**Задачи:**\n\n1.  **Структура данных для контакта:** Каждый контакт будет представлен словарем с ключами: \"имя\", \"телефон\", \"email\".\n2.  **Хранение контактов:** Все контакты будут храниться в списке словарей.\n3.  **Меню действий:** Программа должна иметь меню с опциями:\n    *   Добавить новый контакт.\n    *   Найти контакт по имени.\n    *   Показать все контакты.\n    *   Удалить контакт по имени.\n    *   Сохранить контакты в файл.\n    *   Загрузить контакты из файла.\n    *   Выйти из программы.\n4.  **Работа с файлами:**\n    *   **Сохранение:** При выборе опции \"Сохранить\", контакты должны быть записаны в текстовый файл. Можно использовать формат CSV (Comma Separated Values) или JSON (JavaScript Object Notation). JSON предпочтительнее для более структурированных данных.\n    *   **Загрузка:** При выборе опции \"Загрузить\", программа должна считать данные из файла и восстановить список контактов в памяти.\n5.  **Реализация функций:** Каждая опция меню должна быть реализована как отдельная функция.\n    *   `добавить_контакт(книга_контактов)`\n    *   `найти_контакт(книга_контактов, имя)`\n    *   `показать_все_контакты(книга_контактов)`\n    *   `удалить_контакт(книга_контактов, имя)`\n    *   `сохранить_в_файл(книга_контактов, имя_файла)`\n    *   `загрузить_из_файла(имя_файла)`\n6.  **Обработка ошибок:** Предусмотреть ошибки при работе с файлами (например, файл не найден), некорректный ввод данных при добавлении контакта.\n\n**Что изучается:**\n\n*   Работа со списками словарей для представления структурированных данных.\n*   Работа с файлами: открытие, чтение, запись (`open()`, `read()`, `write()`, `close()`).\n*   Использование модуля `json` для работы с JSON-файлами (сериализация и десериализация).\n*   Более сложная логика поиска и удаления элементов из списка словарей.\n*   Обработка исключений (`try-except`) для более надежной работы с файлами и вводом.\n*   Функции с возвращаемыми значениями.\n\n---\n\nЭти задания построены по принципу \"от простого к сложному\" и позволяют постепенно осваивать различные аспекты языка Python.",
+      "finish_reason": "stop",
+      "complete": true,
+      "actual_model": "google/gemini-2.5-flash-lite",
+      "provider": null,
+      "total_tokens": 1751,
+      "prompt_tokens": 23,
+      "completion_tokens": 1728,
+      "cost_rub": 0.08149321,
+      "http_status": 200,
+      "api_error": null,
+      "duration_seconds": 4.902362,
+      "variant": "baseline",
+      "repeat": 5,
+      "observed_at": "2026-11-08T01:33:55+03:00",
+      "json_valid": false,
+      "schema_valid": false,
+      "task_valid": false,
+      "validation_error": "Исходный текст не разбирается как строгий JSON.",
+      "task_evaluated": false
+    },
+    {
+      "request": {
+        "model": "google/gemini-2.5-flash-lite",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Ответь только JSON без Markdown и пояснений. Объект с единственным ключом ideas: массив объектов с полями title (непустая строка), level (beginner, intermediate или advanced), duration_minutes (положительное целое число). Идей должно быть ровно три, названия разные."
+          },
+          {
+            "role": "user",
+            "content": "Составь три идеи заданий для изучения Python: название, уровень сложности и длительность в минутах."
+          }
+        ],
+        "stream": false,
+        "provider": {
+          "allow_fallbacks": false,
+          "require_parameters": true
+        },
+        "max_tokens": 4096,
+        "temperature": 0.7,
+        "response_format": {
+          "type": "json_schema",
+          "json_schema": {
+            "name": "python_ideas",
+            "strict": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "ideas": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string"
+                      },
+                      "level": {
+                        "type": "string",
+                        "enum": [
+                          "beginner",
+                          "intermediate",
+                          "advanced"
+                        ]
+                      },
+                      "duration_minutes": {
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "title",
+                      "level",
+                      "duration_minutes"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "required": [
+                "ideas"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      "response": {
+        "id": "gen_2230475646818455553",
+        "object": "chat.completion",
+        "created": 1794090836,
+        "model": "google/gemini-2.5-flash-lite",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"ideas\": [\n    {\n      \"title\": \"Написать простой калькулятор\",\n      \"level\": \"beginner\",\n      \"duration_minutes\": 60\n    },\n    {\n      \"title\": \"Создать парсер новостей с веб-сайта\",\n      \"level\": \"intermediate\",\n      \"duration_minutes\": 180\n    },\n    {\n      \"title\": \"Разработать Telegram-бота для управления задачами\",\n      \"level\": \"advanced\",\n      \"duration_minutes\": 300\n    }\n  ]\n}"
+            },
+            "finish_reason": "stop",
+            "logprobs": null
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 86,
+          "completion_tokens": 134,
+          "total_tokens": 220,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "accepted_prediction_tokens": null,
+            "rejected_prediction_tokens": null
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "server_tool_use": null,
+          "cost_rub": 0.00730912,
+          "cost": 0.00730912,
+          "plugins": null
+        }
+      },
+      "content": "{\n  \"ideas\": [\n    {\n      \"title\": \"Написать простой калькулятор\",\n      \"level\": \"beginner\",\n      \"duration_minutes\": 60\n    },\n    {\n      \"title\": \"Создать парсер новостей с веб-сайта\",\n      \"level\": \"intermediate\",\n      \"duration_minutes\": 180\n    },\n    {\n      \"title\": \"Разработать Telegram-бота для управления задачами\",\n      \"level\": \"advanced\",\n      \"duration_minutes\": 300\n    }\n  ]\n}",
+      "finish_reason": "stop",
+      "complete": true,
+      "actual_model": "google/gemini-2.5-flash-lite",
+      "provider": null,
+      "total_tokens": 220,
+      "prompt_tokens": 86,
+      "completion_tokens": 134,
+      "cost_rub": 0.00730912,
+      "http_status": 200,
+      "api_error": null,
+      "duration_seconds": 1.064282,
+      "variant": "strict_schema",
+      "repeat": 5,
+      "observed_at": "2026-11-08T01:33:56+03:00",
+      "json_valid": true,
+      "schema_valid": true,
+      "task_valid": true,
+      "validation_error": null,
+      "task_evaluated": true
+    },
+    {
+      "request": {
+        "model": "google/gemini-2.5-flash-lite",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Ответь только JSON без Markdown и пояснений. Объект с единственным ключом ideas: массив объектов с полями title (непустая строка), level (beginner, intermediate или advanced), duration_minutes (положительное целое число). Идей должно быть ровно три, названия разные."
+          },
+          {
+            "role": "user",
+            "content": "Составь три идеи заданий для изучения Python: название, уровень сложности и длительность в минутах."
+          }
+        ],
+        "stream": false,
+        "provider": {
+          "allow_fallbacks": false,
+          "require_parameters": true
+        },
+        "max_tokens": 4096,
+        "temperature": 0.7,
+        "response_format": {
+          "type": "json_object"
+        }
+      },
+      "response": {
+        "id": "gen_2230475651320254465",
+        "object": "chat.completion",
+        "created": 1794090837,
+        "model": "google/gemini-2.5-flash-lite",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"ideas\": [\n    {\n      \"title\": \"Создание простого калькулятора\",\n      \"level\": \"beginner\",\n      \"duration_minutes\": 30\n    },\n    {\n      \"title\": \"Разработка веб-скрапера для сбора данных\",\n      \"level\": \"intermediate\",\n      \"duration_minutes\": 90\n    },\n    {\n      \"title\": \"Реализация алгоритма сортировки пузырьком\",\n      \"level\": \"beginner\",\n      \"duration_minutes\": 45\n    }\n  ]\n}"
+            },
+            "finish_reason": "stop",
+            "logprobs": null
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 86,
+          "completion_tokens": 132,
+          "total_tokens": 218,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "accepted_prediction_tokens": null,
+            "rejected_prediction_tokens": null
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "server_tool_use": null,
+          "cost_rub": 0.00721512,
+          "cost": 0.00721512,
+          "plugins": null
+        }
+      },
+      "content": "{\n  \"ideas\": [\n    {\n      \"title\": \"Создание простого калькулятора\",\n      \"level\": \"beginner\",\n      \"duration_minutes\": 30\n    },\n    {\n      \"title\": \"Разработка веб-скрапера для сбора данных\",\n      \"level\": \"intermediate\",\n      \"duration_minutes\": 90\n    },\n    {\n      \"title\": \"Реализация алгоритма сортировки пузырьком\",\n      \"level\": \"beginner\",\n      \"duration_minutes\": 45\n    }\n  ]\n}",
+      "finish_reason": "stop",
+      "complete": true,
+      "actual_model": "google/gemini-2.5-flash-lite",
+      "provider": null,
+      "total_tokens": 218,
+      "prompt_tokens": 86,
+      "completion_tokens": 132,
+      "cost_rub": 0.00721512,
+      "http_status": 200,
+      "api_error": null,
+      "duration_seconds": 0.942831,
+      "variant": "json_mode",
+      "repeat": 5,
+      "observed_at": "2026-11-08T01:33:57+03:00",
+      "json_valid": true,
+      "schema_valid": true,
+      "task_valid": true,
+      "validation_error": null,
+      "task_evaluated": true
+    }
+  ]
+}

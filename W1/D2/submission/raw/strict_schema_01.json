@@ -1,0 +1,125 @@
+{
+  "request": {
+    "model": "google/gemini-2.5-flash-lite",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Ответь только JSON без Markdown и пояснений. Объект с единственным ключом ideas: массив объектов с полями title (непустая строка), level (beginner, intermediate или advanced), duration_minutes (положительное целое число). Идей должно быть ровно три, названия разные."
+      },
+      {
+        "role": "user",
+        "content": "Составь три идеи заданий для изучения Python: название, уровень сложности и длительность в минутах."
+      }
+    ],
+    "stream": false,
+    "provider": {
+      "allow_fallbacks": false,
+      "require_parameters": true
+    },
+    "max_tokens": 4096,
+    "temperature": 0.7,
+    "response_format": {
+      "type": "json_schema",
+      "json_schema": {
+        "name": "python_ideas",
+        "strict": true,
+        "schema": {
+          "type": "object",
+          "properties": {
+            "ideas": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "level": {
+                    "type": "string",
+                    "enum": [
+                      "beginner",
+                      "intermediate",
+                      "advanced"
+                    ]
+                  },
+                  "duration_minutes": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "title",
+                  "level",
+                  "duration_minutes"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "ideas"
+          ],
+          "additionalProperties": false
+        }
+      }
+    }
+  },
+  "response": {
+    "id": "gen_2230475488812339201",
+    "object": "chat.completion",
+    "created": 1794090798,
+    "model": "google/gemini-2.5-flash-lite",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"ideas\": [\n    {\n      \"title\": \"Напиши программу для подсчета гласных в строке\",\n      \"level\": \"beginner\",\n      \"duration_minutes\": 30\n    },\n    {\n      \"title\": \"Реализуй простой калькулятор с использованием функций\",\n      \"level\": \"intermediate\",\n      \"duration_minutes\": 60\n    },\n    {\n      \"title\": \"Создай веб-скрапер для извлечения заголовков новостей\",\n      \"level\": \"advanced\",\n      \"duration_minutes\": 120\n    }\n  ]\n}"
+        },
+        "finish_reason": "stop",
+        "logprobs": null
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 86,
+      "completion_tokens": 144,
+      "total_tokens": 230,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "image_tokens": 0,
+        "accepted_prediction_tokens": null,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "server_tool_use": null,
+      "cost_rub": 0.00777916,
+      "cost": 0.00777916,
+      "plugins": null
+    }
+  },
+  "content": "{\n  \"ideas\": [\n    {\n      \"title\": \"Напиши программу для подсчета гласных в строке\",\n      \"level\": \"beginner\",\n      \"duration_minutes\": 30\n    },\n    {\n      \"title\": \"Реализуй простой калькулятор с использованием функций\",\n      \"level\": \"intermediate\",\n      \"duration_minutes\": 60\n    },\n    {\n      \"title\": \"Создай веб-скрапер для извлечения заголовков новостей\",\n      \"level\": \"advanced\",\n      \"duration_minutes\": 120\n    }\n  ]\n}",
+  "finish_reason": "stop",
+  "complete": true,
+  "actual_model": "google/gemini-2.5-flash-lite",
+  "provider": null,
+  "total_tokens": 230,
+  "prompt_tokens": 86,
+  "completion_tokens": 144,
+  "cost_rub": 0.00777916,
+  "http_status": 200,
+  "api_error": null,
+  "duration_seconds": 0.969537,
+  "variant": "strict_schema",
+  "repeat": 1,
+  "observed_at": "2026-11-08T01:33:18+03:00",
+  "json_valid": true,
+  "schema_valid": true,
+  "task_valid": true,
+  "validation_error": null,
+  "task_evaluated": true
+}

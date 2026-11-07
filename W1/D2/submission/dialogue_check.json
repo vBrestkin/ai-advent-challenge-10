@@ -1,0 +1,27 @@
+{
+  "session": "check-2026-11-08_01-35-56_4ac40b93c641",
+  "model": "google/gemini-2.5-flash-lite",
+  "parameters": {
+    "max_tokens": 4096,
+    "temperature": 0.7
+  },
+  "messages": [
+    {
+      "role": "user",
+      "content": "Запомни кодовое слово Сосна. Подтверди одним словом."
+    },
+    {
+      "role": "assistant",
+      "content": "Сосна"
+    },
+    {
+      "role": "user",
+      "content": "Какое кодовое слово я попросил запомнить? Ответь одним словом."
+    },
+    {
+      "role": "assistant",
+      "content": "Сосна"
+    }
+  ],
+  "verified": "Два отдельных запуска CLI, восстановление файла истории, кодовое слово сохранено."
+}
