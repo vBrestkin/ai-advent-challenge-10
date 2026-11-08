@@ -1,0 +1,185 @@
+{
+  "task_id": "T7",
+  "task_title": "Доли по сегментам",
+  "method": "direct",
+  "mode": "min",
+  "stages": [
+    {
+      "request": {
+        "model": "google/gemini-2.5-flash-lite",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Выполняй текущий запрос пользователя. Отвечай JSON по схеме API без Markdown. В решении поле answer содержит только ответ в формате условия; explanation — краткое объяснение до 150 слов, если оно запрошено, иначе пустую строку. experts — пустой массив, если роли экспертов не запрошены. Не используй внешние инструменты."
+          },
+          {
+            "role": "user",
+            "content": "У алгоритма A в простых случаях 81 успех из 87, у B — 234 из 270. В сложных случаях у A 192 из 263, у B 55 из 80. Кто имеет более высокую долю успеха: в простых, в сложных и суммарно? Суммарно складывай успехи и попытки, не усредняй проценты. Ответ — три латинские буквы через запятую в указанном порядке.\nДай прямой ответ. explanation — пустая строка, experts — пустой массив."
+          }
+        ],
+        "stream": false,
+        "provider": {
+          "only": [
+            "google-ai-studio/flex"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true,
+          "max_price": {
+            "prompt": 5.99346625,
+            "completion": 23.973865
+          }
+        },
+        "max_tokens": 32768,
+        "temperature": 0.7,
+        "reasoning": {
+          "enabled": true,
+          "max_tokens": 512
+        },
+        "response_format": {
+          "type": "json_schema",
+          "json_schema": {
+            "name": "solution",
+            "strict": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "answer": {
+                  "type": "string"
+                },
+                "explanation": {
+                  "type": "string"
+                },
+                "experts": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "role": {
+                        "type": "string",
+                        "enum": [
+                          "analyst",
+                          "engineer",
+                          "critic"
+                        ]
+                      },
+                      "answer": {
+                        "type": "string"
+                      },
+                      "explanation": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "role",
+                      "answer",
+                      "explanation"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "required": [
+                "answer",
+                "explanation",
+                "experts"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      "response": {
+        "id": "gen_2230798420026593281",
+        "object": "chat.completion",
+        "created": 1794167793,
+        "model": "google/gemini-2.5-flash-lite",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"answer\": \"A,A,B\",\n  \"explanation\": \"\",\n  \"experts\": []\n}",
+              "reasoning": "**Analyzing Algorithm Success**\n\nOkay, I'm working on comparing the success rates of algorithms A and B across simple, complex, and overall scenarios. My plan involves calculating the success rate for each algorithm in each scenario. After that, I will evaluate which algorithm performs better in each case, and summarize the result for each scenario as \"A,\" or \"B.\" I think that I'm on track to deliver this report by the requested output style.\n\n\n**Determining the Winners**\n\nI've crunched the numbers and now have the success rates for both algorithms A and B in simple, complex, and total scenarios. Based on the data, I can see that algorithm A performed better in both simple and complex situations, but Algorithm B was victorious in the total scenario. The result is \"A, A, B\".\n\n\n",
+              "reasoning_details": [
+                {
+                  "type": "reasoning.text",
+                  "text": "**Analyzing Algorithm Success**\n\nOkay, I'm working on comparing the success rates of algorithms A and B across simple, complex, and overall scenarios. My plan involves calculating the success rate for each algorithm in each scenario. After that, I will evaluate which algorithm performs better in each case, and summarize the result for each scenario as \"A,\" or \"B.\" I think that I'm on track to deliver this report by the requested output style.\n\n\n",
+                  "format": "google-gemini-v1",
+                  "index": 0
+                },
+                {
+                  "type": "reasoning.text",
+                  "text": "**Determining the Winners**\n\nI've crunched the numbers and now have the success rates for both algorithms A and B in simple, complex, and total scenarios. Based on the data, I can see that algorithm A performed better in both simple and complex situations, but Algorithm B was victorious in the total scenario. The result is \"A, A, B\".\n\n\n",
+                  "format": "google-gemini-v1",
+                  "index": 0
+                }
+              ]
+            },
+            "finish_reason": "stop",
+            "logprobs": null
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 203,
+          "completion_tokens": 471,
+          "total_tokens": 674,
+          "completion_tokens_details": {
+            "reasoning_tokens": 446,
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "accepted_prediction_tokens": null,
+            "rejected_prediction_tokens": null
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "server_tool_use": null,
+          "cost_rub": 0.01238452,
+          "cost": 0.01238452,
+          "plugins": null
+        }
+      },
+      "content": "{\n  \"answer\": \"A,A,B\",\n  \"explanation\": \"\",\n  \"experts\": []\n}",
+      "finish_reason": "stop",
+      "complete": true,
+      "actual_model": "google/gemini-2.5-flash-lite",
+      "provider": null,
+      "total_tokens": 674,
+      "prompt_tokens": 203,
+      "completion_tokens": 471,
+      "reasoning_tokens": 446,
+      "cost_rub": 0.01238452,
+      "http_status": 200,
+      "api_error": null,
+      "duration_seconds": 2.848197
+    }
+  ],
+  "parsed": {
+    "answer": "A,A,B",
+    "explanation": "",
+    "experts": []
+  },
+  "format_valid": true,
+  "method_valid": true,
+  "answer_correct": true,
+  "correct": true,
+  "failure": null,
+  "metrics": {
+    "calls": 1,
+    "prompt_tokens": 203,
+    "unknown_prompt_tokens": 0,
+    "completion_tokens": 471,
+    "unknown_completion_tokens": 0,
+    "total_tokens": 674,
+    "unknown_total_tokens": 0,
+    "reasoning_tokens": 446,
+    "unknown_reasoning_tokens": 0,
+    "cost_rub": 0.01238452,
+    "unknown_costs": 0,
+    "duration_seconds": 2.848197,
+    "unknown_duration_seconds": 0
+  }
+}

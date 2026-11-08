@@ -1,0 +1,279 @@
+{
+  "task_id": "T3",
+  "task_title": "Ровно один делитель",
+  "method": "experts",
+  "mode": "max",
+  "stages": [
+    {
+      "request": {
+        "model": "google/gemini-2.5-flash-lite",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Выполняй текущий запрос пользователя. Отвечай JSON по схеме API без Markdown. В решении поле answer содержит только ответ в формате условия; explanation — краткое объяснение до 150 слов, если оно запрошено, иначе пустую строку. experts — пустой массив, если роли экспертов не запрошены. Не используй внешние инструменты."
+          },
+          {
+            "role": "user",
+            "content": "Сколько целых чисел от 1 до 1000 включительно делятся ровно на одно из чисел 6, 10, 15? Числа, делящиеся на два или три указанных делителя, не учитывай. Ответ — целое число.\nЭКСПЕРТЫ: аналитик (analyst), инженер (engineer) и критик (critic). В experts дай отдельный ответ и краткое объяснение каждого. В answer дай общий итог, в explanation кратко обоснуй его."
+          }
+        ],
+        "stream": false,
+        "provider": {
+          "only": [
+            "google-ai-studio/flex"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true,
+          "max_price": {
+            "prompt": 5.99346625,
+            "completion": 23.973865
+          }
+        },
+        "max_tokens": 32768,
+        "temperature": 0.7,
+        "reasoning": {
+          "enabled": true,
+          "max_tokens": 24576
+        },
+        "response_format": {
+          "type": "json_schema",
+          "json_schema": {
+            "name": "solution",
+            "strict": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "answer": {
+                  "type": "string"
+                },
+                "explanation": {
+                  "type": "string"
+                },
+                "experts": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "role": {
+                        "type": "string",
+                        "enum": [
+                          "analyst",
+                          "engineer",
+                          "critic"
+                        ]
+                      },
+                      "answer": {
+                        "type": "string"
+                      },
+                      "explanation": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "role",
+                      "answer",
+                      "explanation"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "required": [
+                "answer",
+                "explanation",
+                "experts"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      "response": {
+        "id": "gen_2230796508759199745",
+        "object": "chat.completion",
+        "created": 1794167349,
+        "model": "google/gemini-2.5-flash-lite",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n\"answer\": \"233\",\n\"explanation\": \"Для решения задачи находим количество целых чисел от 1 до 1000, которые делятся ровно на одно из чисел 6, 10, 15. Количество чисел, кратных 6: floor(1000/6) = 166. Количество чисел, кратных 10: floor(1000/10) = 100. Количество чисел, кратных 15: floor(1000/15) = 66. Наименьшее общее кратное для любых двух или трех чисел из {6, 10, 15} равно 30. Количество чисел, кратных 30: floor(1000/30) = 33. Числа, делящиеся ровно на 6: 166 - 33 = 133 (кратные 6, но не 30). Числа, делящиеся ровно на 10: 100 - 33 = 67 (кратные 10, но не 30). Числа, делящиеся ровно на 15: 66 - 33 = 33 (кратные 15, но не 30). Общее количество: 133 + 67 + 33 = 233.\",\n\"experts\": [\n{\n\"role\": \"analyst\",\n\"answer\": \"233\",\n\"explanation\": \"Анализ задачи показал, что нужно найти числа, удовлетворяющие ровно одному условию делимости из трех. Рассчитано общее количество чисел, кратных 6 (166), 10 (100) и 15 (66) в диапазоне от 1 до 1000. Наименьшие общие кратные пар (30) и тройки (30) оказались одинаковыми. Количество чисел, кратных 30, равно 33. Количество чисел, кратных только 6, равно 166 - 33 = 133. Только 10: 100 - 33 = 67. Только 15: 66 - 33 = 33. Суммарно: 133 + 67 + 33 = 233.\"\n},\n{\n\"role\": \"engineer\",\n\"answer\": \"233\",\n\"explanation\": \"Проверка расчетов произведена с использованием формулы для нахождения элементов, принадлежащих ровно одному множеству из трех: |A|+|B|+|C| - 2(|A∩B|+|A∩C|+|B∩C|) + 3|A∩B∩C|. Подстановка значений: 166+100+66 - 2(33+33+33) + 3(33) = 332 - 2(99) + 99 = 332 - 198 + 99 = 233. Альтернативный метод расчета (исключение общих кратных 30 из каждого множества) дал тот же результат: (166-33) + (100-33) + (66-33) = 133 + 67 + 33 = 233. Расчеты верны.\"\n},\n{\n\"role\": \"critic\",\n\"answer\": \"233\",\n\"explanation\": \"Критический анализ условия 'Числа, делящиеся на два или три указанных делителя, не учитывай' подтверждает, что ищется количество чисел, удовлетворяющих ровно одному свойству делимости. Важным аспектом является то, что lcm(6,10)=lcm(6,15)=lcm(10,15)=lcm(6,10,15)=30. Это означает, что любое число, делящееся на два из делителей (6, 10, 15), автоматически делится и на третий, и на все три. Следовательно, корректно вычитать из общего числа кратных каждому делителю количество кратных 30. Полученный результат 233 является верным.\"\n}\n]\n}",
+              "reasoning": "**Calculating Divisibility Counts**\n\nOkay, I'm working on calculating the count of integers divisible by exactly one of the numbers 6, 10, or 15 within the range of 1 to 1000. I've defined sets for each divisor and plan to exclude numbers divisible by more than one. I'm focusing on the inclusion-exclusion principle to handle the overlaps, ensuring I only count those numbers divisible by *exactly* one. I'm currently figuring out how to precisely apply the principle here.\n\n\n**Refining Set Calculations**\n\nI've refined the set calculations, using the inclusion-exclusion principle for a comprehensive approach. I've now calculated the individual set sizes and their intersections. The intersection of A and B, A and C, and B and C are all the same, and now I'm working towards the intersection of all three sets, to use the principle accurately. I need to be exact here.\n\n\n**Refining Calculations Again**\n\nI've got the sets and intersections defined clearly now, based on divisibility. The initial application of the inclusion-exclusion principle didn't quite capture \"exactly one.\" I now realize the crucial element is to eliminate the numbers belonging to more than one of the sets. I am now working on determining the numbers divisible by only one factor.\n\n\n**Confirming Precise Counts**\n\nI've rigorously verified the core formula to calculate integers divisible by *exactly* one of the given numbers. My calculations for individual and intersecting sets, using inclusion-exclusion principles, have been confirmed. I am satisfied with the results, and the formula and the solution has been reviewed, and verified. I now have confidence in the final result.\n\n\n**Finalizing Count Verification**\n\nI've meticulously reviewed my logic, formulas, and calculations. The core formula |A only| + |B only| + |C only| provides the correct result. The final count of integers divisible by exactly one of 6, 10, or 15 within the specified range is 233. My approach leverages the inclusion-exclusion principle, effectively accounting for overlaps and ensuring precision in determining numbers divisible by exactly one of the three divisors. I'm confident in the completeness and accuracy of my solution now.\n\n\n**Finalizing Formula Verification**\n\nI'm confident in applying the refined formula, leveraging the inclusion-exclusion principle for precision. Using the equation |A only| + |B only| + |C only| provides the accurate results. I've performed extensive testing to verify, and the formula and the solution have been reviewed and approved. With everything verified, the complete and accurate result is 233.\n\n\n**Refining Set Equations**\n\nI'm now confident in the approach; I've simplified my formula, calculating numbers divisible by exactly one of 6, 10, or 15. The inclusion-exclusion principle is applied correctly, accounting for all overlaps in divisors. My analysis confirms the formula: |A only| + |B only| + |C only| = 233. The logic and individual counts are all consistent and accurate.\n\n\n**Refining Count Accuracy**\n\nI'm now confident in the approach; I've meticulously refined the formula to determine integers divisible by *exactly* one of the divisors. My set definitions, calculations, and the application of the inclusion-exclusion principle have been thoroughly verified. I'm now certain of the correctness of the final result.\n\n\n**Finalizing Result Verification**\n\nI'm confident in applying the simplified approach I've developed, meticulously ensuring no overlaps when applying the inclusion-exclusion principle. The calculation of individual counts aligns perfectly with my understanding. By calculating |A only| + |B only| + |C only| where A, B and C are the set of number which are divisible only by 6, 10, and 15 respectively, the result is 233.\n\n\n**Refining Divisibility Logic**\n\nI'm now focusing on a direct method to find numbers divisible by *exactly* one of the divisors. My logic centers on subtracting the count of numbers divisible by the LCM of pairs from the individual divisors, then adding back the count of the LCM of all three for accuracy. The inclusion-exclusion principle is key to this streamlined approach. I'm verifying the individual calculations again, ensuring no calculation errors.\n\n\n**Refining Precise Calculation**\n\nI'm now determining the most direct formula for accurate results. I've broken down each scenario for divisibility, focusing on those integers divisible by *only* one of the given numbers: 6, 10, or 15. The formula |A only| + |B only| + |C only| provides the accurate results, which totals 233.\n\n\n**Confirming Divisibility Calculations**\n\nI've streamlined the divisibility logic, using a more direct method for accurate counts. It is clear that the key is subtracting the count of numbers divisible by the LCM of pairs, then adding back the count of the LCM of all three for accuracy. My calculations for the individual intersections are now confirmed.\n\n**Refining Formula Application**\n\nI'm now certain I've streamlined the formula for calculating integers divisible by *exactly* one of 6, 10, or 15 within the range. My approach, which involves subtracting the intersections from the individual set sizes and applying the inclusion-exclusion principle, is precise. I'm confident in the correctness and the approach now.\n\n\n**Streamlining Solution Approach**\n\nI'm now streamlining the calculation using a formula. I am focusing on ensuring that the formula works for exactly one of the values: 6, 10, or 15. The formula is now |A| + |B| + |C| - 2 * (|A ∩ B| + |A ∩ C| + |B ∩ C|) + 3 * |A ∩ B ∩ C|.\n\n\n**Verifying Calculations Accuracy**\n\nI'm checking the final formula for precision using direct methods. The inclusion-exclusion principle is applied. I am now confident with all values from individual set counts, to intersections and unions. My calculations using the approach are now validated and verified.\n\n\n",
+              "reasoning_details": [
+                {
+                  "type": "reasoning.text",
+                  "text": "**Calculating Divisibility Counts**\n\nOkay, I'm working on calculating the count of integers divisible by exactly one of the numbers 6, 10, or 15 within the range of 1 to 1000. I've defined sets for each divisor and plan to exclude numbers divisible by more than one. I'm focusing on the inclusion-exclusion principle to handle the overlaps, ensuring I only count those numbers divisible by *exactly* one. I'm currently figuring out how to precisely apply the principle here.\n\n\n",
+                  "format": "google-gemini-v1",
+                  "index": 0
+                },
+                {
+                  "type": "reasoning.text",
+                  "text": "**Refining Set Calculations**\n\nI've refined the set calculations, using the inclusion-exclusion principle for a comprehensive approach. I've now calculated the individual set sizes and their intersections. The intersection of A and B, A and C, and B and C are all the same, and now I'm working towards the intersection of all three sets, to use the principle accurately. I need to be exact here.\n\n\n",
+                  "format": "google-gemini-v1",
+                  "index": 0
+                },
+                {
+                  "type": "reasoning.text",
+                  "text": "**Refining Calculations Again**\n\nI've got the sets and intersections defined clearly now, based on divisibility. The initial application of the inclusion-exclusion principle didn't quite capture \"exactly one.\" I now realize the crucial element is to eliminate the numbers belonging to more than one of the sets. I am now working on determining the numbers divisible by only one factor.\n\n\n",
+                  "format": "google-gemini-v1",
+                  "index": 0
+                },
+                {
+                  "type": "reasoning.text",
+                  "text": "**Confirming Precise Counts**\n\nI've rigorously verified the core formula to calculate integers divisible by *exactly* one of the given numbers. My calculations for individual and intersecting sets, using inclusion-exclusion principles, have been confirmed. I am satisfied with the results, and the formula and the solution has been reviewed, and verified. I now have confidence in the final result.\n\n\n",
+                  "format": "google-gemini-v1",
+                  "index": 0
+                },
+                {
+                  "type": "reasoning.text",
+                  "text": "**Finalizing Count Verification**\n\nI've meticulously reviewed my logic, formulas, and calculations. The core formula |A only| + |B only| + |C only| provides the correct result. The final count of integers divisible by exactly one of 6, 10, or 15 within the specified range is 233. My approach leverages the inclusion-exclusion principle, effectively accounting for overlaps and ensuring precision in determining numbers divisible by exactly one of the three divisors. I'm confident in the completeness and accuracy of my solution now.\n\n\n",
+                  "format": "google-gemini-v1",
+                  "index": 0
+                },
+                {
+                  "type": "reasoning.text",
+                  "text": "**Finalizing Formula Verification**\n\nI'm confident in applying the refined formula, leveraging the inclusion-exclusion principle for precision. Using the equation |A only| + |B only| + |C only| provides the accurate results. I've performed extensive testing to verify, and the formula and the solution have been reviewed and approved. With everything verified, the complete and accurate result is 233.\n\n\n",
+                  "format": "google-gemini-v1",
+                  "index": 0
+                },
+                {
+                  "type": "reasoning.text",
+                  "text": "**Refining Set Equations**\n\nI'm now confident in the approach; I've simplified my formula, calculating numbers divisible by exactly one of 6, 10, or 15. The inclusion-exclusion principle is applied correctly, accounting for all overlaps in divisors. My analysis confirms the formula: |A only| + |B only| + |C only| = 233. The logic and individual counts are all consistent and accurate.\n\n\n",
+                  "format": "google-gemini-v1",
+                  "index": 0
+                },
+                {
+                  "type": "reasoning.text",
+                  "text": "**Refining Count Accuracy**\n\nI'm now confident in the approach; I've meticulously refined the formula to determine integers divisible by *exactly* one of the divisors. My set definitions, calculations, and the application of the inclusion-exclusion principle have been thoroughly verified. I'm now certain of the correctness of the final result.\n\n\n",
+                  "format": "google-gemini-v1",
+                  "index": 0
+                },
+                {
+                  "type": "reasoning.text",
+                  "text": "**Finalizing Result Verification**\n\nI'm confident in applying the simplified approach I've developed, meticulously ensuring no overlaps when applying the inclusion-exclusion principle. The calculation of individual counts aligns perfectly with my understanding. By calculating |A only| + |B only| + |C only| where A, B and C are the set of number which are divisible only by 6, 10, and 15 respectively, the result is 233.\n\n\n",
+                  "format": "google-gemini-v1",
+                  "index": 0
+                },
+                {
+                  "type": "reasoning.text",
+                  "text": "**Refining Divisibility Logic**\n\nI'm now focusing on a direct method to find numbers divisible by *exactly* one of the divisors. My logic centers on subtracting the count of numbers divisible by the LCM of pairs from the individual divisors, then adding back the count of the LCM of all three for accuracy. The inclusion-exclusion principle is key to this streamlined approach. I'm verifying the individual calculations again, ensuring no calculation errors.\n\n\n",
+                  "format": "google-gemini-v1",
+                  "index": 0
+                },
+                {
+                  "type": "reasoning.text",
+                  "text": "**Refining Precise Calculation**\n\nI'm now determining the most direct formula for accurate results. I've broken down each scenario for divisibility, focusing on those integers divisible by *only* one of the given numbers: 6, 10, or 15. The formula |A only| + |B only| + |C only| provides the accurate results, which totals 233.\n\n\n",
+                  "format": "google-gemini-v1",
+                  "index": 0
+                },
+                {
+                  "type": "reasoning.text",
+                  "text": "**Confirming Divisibility Calculations**\n\nI've streamlined the divisibility logic, using a more direct method for accurate counts. It is clear that the key is subtracting the count of numbers divisible by the LCM of pairs, then adding back the count of the LCM of all three for accuracy. My calculations for the individual intersections are now confirmed.\n\n",
+                  "format": "google-gemini-v1",
+                  "index": 0
+                },
+                {
+                  "type": "reasoning.text",
+                  "text": "**Refining Formula Application**\n\nI'm now certain I've streamlined the formula for calculating integers divisible by *exactly* one of 6, 10, or 15 within the range. My approach, which involves subtracting the intersections from the individual set sizes and applying the inclusion-exclusion principle, is precise. I'm confident in the correctness and the approach now.\n\n\n",
+                  "format": "google-gemini-v1",
+                  "index": 0
+                },
+                {
+                  "type": "reasoning.text",
+                  "text": "**Streamlining Solution Approach**\n\nI'm now streamlining the calculation using a formula. I am focusing on ensuring that the formula works for exactly one of the values: 6, 10, or 15. The formula is now |A| + |B| + |C| - 2 * (|A ∩ B| + |A ∩ C| + |B ∩ C|) + 3 * |A ∩ B ∩ C|.\n\n\n",
+                  "format": "google-gemini-v1",
+                  "index": 0
+                },
+                {
+                  "type": "reasoning.text",
+                  "text": "**Verifying Calculations Accuracy**\n\nI'm checking the final formula for precision using direct methods. The inclusion-exclusion principle is applied. I am now confident with all values from individual set counts, to intersections and unions. My calculations using the approach are now validated and verified.\n\n\n",
+                  "format": "google-gemini-v1",
+                  "index": 0
+                }
+              ]
+            },
+            "finish_reason": "stop",
+            "logprobs": null
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 194,
+          "completion_tokens": 6433,
+          "total_tokens": 6627,
+          "completion_tokens_details": {
+            "reasoning_tokens": 5487,
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "accepted_prediction_tokens": null,
+            "rejected_prediction_tokens": null
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "server_tool_use": null,
+          "cost_rub": 0.15230964,
+          "cost": 0.15230964,
+          "plugins": null
+        }
+      },
+      "content": "{\n\"answer\": \"233\",\n\"explanation\": \"Для решения задачи находим количество целых чисел от 1 до 1000, которые делятся ровно на одно из чисел 6, 10, 15. Количество чисел, кратных 6: floor(1000/6) = 166. Количество чисел, кратных 10: floor(1000/10) = 100. Количество чисел, кратных 15: floor(1000/15) = 66. Наименьшее общее кратное для любых двух или трех чисел из {6, 10, 15} равно 30. Количество чисел, кратных 30: floor(1000/30) = 33. Числа, делящиеся ровно на 6: 166 - 33 = 133 (кратные 6, но не 30). Числа, делящиеся ровно на 10: 100 - 33 = 67 (кратные 10, но не 30). Числа, делящиеся ровно на 15: 66 - 33 = 33 (кратные 15, но не 30). Общее количество: 133 + 67 + 33 = 233.\",\n\"experts\": [\n{\n\"role\": \"analyst\",\n\"answer\": \"233\",\n\"explanation\": \"Анализ задачи показал, что нужно найти числа, удовлетворяющие ровно одному условию делимости из трех. Рассчитано общее количество чисел, кратных 6 (166), 10 (100) и 15 (66) в диапазоне от 1 до 1000. Наименьшие общие кратные пар (30) и тройки (30) оказались одинаковыми. Количество чисел, кратных 30, равно 33. Количество чисел, кратных только 6, равно 166 - 33 = 133. Только 10: 100 - 33 = 67. Только 15: 66 - 33 = 33. Суммарно: 133 + 67 + 33 = 233.\"\n},\n{\n\"role\": \"engineer\",\n\"answer\": \"233\",\n\"explanation\": \"Проверка расчетов произведена с использованием формулы для нахождения элементов, принадлежащих ровно одному множеству из трех: |A|+|B|+|C| - 2(|A∩B|+|A∩C|+|B∩C|) + 3|A∩B∩C|. Подстановка значений: 166+100+66 - 2(33+33+33) + 3(33) = 332 - 2(99) + 99 = 332 - 198 + 99 = 233. Альтернативный метод расчета (исключение общих кратных 30 из каждого множества) дал тот же результат: (166-33) + (100-33) + (66-33) = 133 + 67 + 33 = 233. Расчеты верны.\"\n},\n{\n\"role\": \"critic\",\n\"answer\": \"233\",\n\"explanation\": \"Критический анализ условия 'Числа, делящиеся на два или три указанных делителя, не учитывай' подтверждает, что ищется количество чисел, удовлетворяющих ровно одному свойству делимости. Важным аспектом является то, что lcm(6,10)=lcm(6,15)=lcm(10,15)=lcm(6,10,15)=30. Это означает, что любое число, делящееся на два из делителей (6, 10, 15), автоматически делится и на третий, и на все три. Следовательно, корректно вычитать из общего числа кратных каждому делителю количество кратных 30. Полученный результат 233 является верным.\"\n}\n]\n}",
+      "finish_reason": "stop",
+      "complete": true,
+      "actual_model": "google/gemini-2.5-flash-lite",
+      "provider": null,
+      "total_tokens": 6627,
+      "prompt_tokens": 194,
+      "completion_tokens": 6433,
+      "reasoning_tokens": 5487,
+      "cost_rub": 0.15230964,
+      "http_status": 200,
+      "api_error": null,
+      "duration_seconds": 14.608838
+    }
+  ],
+  "parsed": {
+    "answer": "233",
+    "explanation": "Для решения задачи находим количество целых чисел от 1 до 1000, которые делятся ровно на одно из чисел 6, 10, 15. Количество чисел, кратных 6: floor(1000/6) = 166. Количество чисел, кратных 10: floor(1000/10) = 100. Количество чисел, кратных 15: floor(1000/15) = 66. Наименьшее общее кратное для любых двух или трех чисел из {6, 10, 15} равно 30. Количество чисел, кратных 30: floor(1000/30) = 33. Числа, делящиеся ровно на 6: 166 - 33 = 133 (кратные 6, но не 30). Числа, делящиеся ровно на 10: 100 - 33 = 67 (кратные 10, но не 30). Числа, делящиеся ровно на 15: 66 - 33 = 33 (кратные 15, но не 30). Общее количество: 133 + 67 + 33 = 233.",
+    "experts": [
+      {
+        "role": "analyst",
+        "answer": "233",
+        "explanation": "Анализ задачи показал, что нужно найти числа, удовлетворяющие ровно одному условию делимости из трех. Рассчитано общее количество чисел, кратных 6 (166), 10 (100) и 15 (66) в диапазоне от 1 до 1000. Наименьшие общие кратные пар (30) и тройки (30) оказались одинаковыми. Количество чисел, кратных 30, равно 33. Количество чисел, кратных только 6, равно 166 - 33 = 133. Только 10: 100 - 33 = 67. Только 15: 66 - 33 = 33. Суммарно: 133 + 67 + 33 = 233."
+      },
+      {
+        "role": "engineer",
+        "answer": "233",
+        "explanation": "Проверка расчетов произведена с использованием формулы для нахождения элементов, принадлежащих ровно одному множеству из трех: |A|+|B|+|C| - 2(|A∩B|+|A∩C|+|B∩C|) + 3|A∩B∩C|. Подстановка значений: 166+100+66 - 2(33+33+33) + 3(33) = 332 - 2(99) + 99 = 332 - 198 + 99 = 233. Альтернативный метод расчета (исключение общих кратных 30 из каждого множества) дал тот же результат: (166-33) + (100-33) + (66-33) = 133 + 67 + 33 = 233. Расчеты верны."
+      },
+      {
+        "role": "critic",
+        "answer": "233",
+        "explanation": "Критический анализ условия 'Числа, делящиеся на два или три указанных делителя, не учитывай' подтверждает, что ищется количество чисел, удовлетворяющих ровно одному свойству делимости. Важным аспектом является то, что lcm(6,10)=lcm(6,15)=lcm(10,15)=lcm(6,10,15)=30. Это означает, что любое число, делящееся на два из делителей (6, 10, 15), автоматически делится и на третий, и на все три. Следовательно, корректно вычитать из общего числа кратных каждому делителю количество кратных 30. Полученный результат 233 является верным."
+      }
+    ]
+  },
+  "format_valid": true,
+  "method_valid": true,
+  "answer_correct": true,
+  "correct": true,
+  "failure": null,
+  "metrics": {
+    "calls": 1,
+    "prompt_tokens": 194,
+    "unknown_prompt_tokens": 0,
+    "completion_tokens": 6433,
+    "unknown_completion_tokens": 0,
+    "total_tokens": 6627,
+    "unknown_total_tokens": 0,
+    "reasoning_tokens": 5487,
+    "unknown_reasoning_tokens": 0,
+    "cost_rub": 0.15230964,
+    "unknown_costs": 0,
+    "duration_seconds": 14.608838,
+    "unknown_duration_seconds": 0
+  }
+}

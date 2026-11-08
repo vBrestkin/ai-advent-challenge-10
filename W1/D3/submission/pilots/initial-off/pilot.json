@@ -1,0 +1,503 @@
+{
+  "config": {
+    "version": 1,
+    "model": "google/gemini-2.5-flash-lite",
+    "provider": "google-ai-studio/flex",
+    "modes": {
+      "off": {
+        "enabled": false
+      },
+      "max": {
+        "enabled": true,
+        "max_tokens": 24576
+      }
+    },
+    "max_tokens": 32768,
+    "temperature": 0.7,
+    "schema": {
+      "type": "object",
+      "properties": {
+        "answer": {
+          "type": "string"
+        },
+        "explanation": {
+          "type": "string"
+        },
+        "experts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "role": {
+                "type": "string",
+                "enum": [
+                  "analyst",
+                  "engineer",
+                  "critic"
+                ]
+              },
+              "answer": {
+                "type": "string"
+              },
+              "explanation": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "role",
+              "answer",
+              "explanation"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "answer",
+        "explanation",
+        "experts"
+      ],
+      "additionalProperties": false
+    },
+    "task_fingerprint": "8a64f25303c13bc0a74270bc4e7d7dac93506088384b0e0f9719b0d336e683f6"
+  },
+  "started_at": "2026-11-08T22:39:27+03:00",
+  "records": [
+    {
+      "task_id": "T8",
+      "task_title": "Расписание",
+      "method": "direct",
+      "mode": "off",
+      "stages": [
+        {
+          "request": {
+            "model": "google/gemini-2.5-flash-lite",
+            "messages": [
+              {
+                "role": "system",
+                "content": "Выполняй текущий запрос пользователя. Отвечай JSON по схеме API без Markdown. В решении поле answer содержит только ответ в формате условия; explanation — краткое объяснение до 150 слов, если оно запрошено, иначе пустую строку. experts — пустой массив, если роли экспертов не запрошены. Не используй внешние инструменты."
+              },
+              {
+                "role": "user",
+                "content": "Есть два одинаковых исполнителя; каждый выполняет не более одной задачи одновременно. Задачу нельзя прерывать или выполнять вдвоём. Переключение мгновенно, начало времени 0. Длительности и предшественники: A=3 (нет), B=5 (нет), C=4 (A), D=6 (A), E=4 (B,C), F=3 (D,E). Задача может начаться только после завершения всех предшественников. Найди минимальное время завершения всех задач. Ответ — целое число.\nДай прямой ответ. explanation — пустая строка, experts — пустой массив."
+              }
+            ],
+            "stream": false,
+            "provider": {
+              "only": [
+                "google-ai-studio/flex"
+              ],
+              "allow_fallbacks": false,
+              "require_parameters": true,
+              "max_price": {
+                "prompt": 5.99346625,
+                "completion": 23.973865
+              }
+            },
+            "max_tokens": 32768,
+            "temperature": 0.7,
+            "reasoning": {
+              "enabled": false
+            },
+            "response_format": {
+              "type": "json_schema",
+              "json_schema": {
+                "name": "solution",
+                "strict": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "answer": {
+                      "type": "string"
+                    },
+                    "explanation": {
+                      "type": "string"
+                    },
+                    "experts": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "role": {
+                            "type": "string",
+                            "enum": [
+                              "analyst",
+                              "engineer",
+                              "critic"
+                            ]
+                          },
+                          "answer": {
+                            "type": "string"
+                          },
+                          "explanation": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "role",
+                          "answer",
+                          "explanation"
+                        ],
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "required": [
+                    "answer",
+                    "explanation",
+                    "experts"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "response": {
+            "id": "gen_2230794128161902593",
+            "object": "chat.completion",
+            "created": 1794166767,
+            "model": "google/gemini-2.5-flash-lite",
+            "choices": [
+              {
+                "index": 0,
+                "message": {
+                  "role": "assistant",
+                  "content": "{\n  \"answer\": \"15\",\n  \"explanation\": \"\",\n  \"experts\": []\n}"
+                },
+                "finish_reason": "stop",
+                "logprobs": null
+              }
+            ],
+            "usage": {
+              "prompt_tokens": 214,
+              "completion_tokens": 26,
+              "total_tokens": 240,
+              "completion_tokens_details": {
+                "reasoning_tokens": 2,
+                "audio_tokens": 0,
+                "image_tokens": 0,
+                "accepted_prediction_tokens": null,
+                "rejected_prediction_tokens": null
+              },
+              "prompt_tokens_details": {
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "audio_tokens": 0,
+                "video_tokens": 0
+              },
+              "server_tool_use": null,
+              "cost_rub": 0.00186818,
+              "cost": 0.00186818,
+              "plugins": null
+            }
+          },
+          "content": "{\n  \"answer\": \"15\",\n  \"explanation\": \"\",\n  \"experts\": []\n}",
+          "finish_reason": "stop",
+          "complete": true,
+          "actual_model": "google/gemini-2.5-flash-lite",
+          "provider": null,
+          "total_tokens": 240,
+          "prompt_tokens": 214,
+          "completion_tokens": 26,
+          "reasoning_tokens": 2,
+          "cost_rub": 0.00186818,
+          "http_status": 200,
+          "api_error": null,
+          "duration_seconds": 0.718617
+        }
+      ],
+      "parsed": {
+        "answer": "15",
+        "explanation": "",
+        "experts": []
+      },
+      "format_valid": true,
+      "method_valid": true,
+      "answer_correct": false,
+      "correct": false,
+      "failure": "wrong_answer",
+      "metrics": {
+        "calls": 1,
+        "prompt_tokens": 214,
+        "unknown_prompt_tokens": 0,
+        "completion_tokens": 26,
+        "unknown_completion_tokens": 0,
+        "total_tokens": 240,
+        "unknown_total_tokens": 0,
+        "reasoning_tokens": 2,
+        "unknown_reasoning_tokens": 0,
+        "cost_rub": 0.00186818,
+        "unknown_costs": 0,
+        "duration_seconds": 0.718617,
+        "unknown_duration_seconds": 0
+      }
+    },
+    {
+      "task_id": "T8",
+      "task_title": "Расписание",
+      "method": "direct",
+      "mode": "max",
+      "stages": [
+        {
+          "request": {
+            "model": "google/gemini-2.5-flash-lite",
+            "messages": [
+              {
+                "role": "system",
+                "content": "Выполняй текущий запрос пользователя. Отвечай JSON по схеме API без Markdown. В решении поле answer содержит только ответ в формате условия; explanation — краткое объяснение до 150 слов, если оно запрошено, иначе пустую строку. experts — пустой массив, если роли экспертов не запрошены. Не используй внешние инструменты."
+              },
+              {
+                "role": "user",
+                "content": "Есть два одинаковых исполнителя; каждый выполняет не более одной задачи одновременно. Задачу нельзя прерывать или выполнять вдвоём. Переключение мгновенно, начало времени 0. Длительности и предшественники: A=3 (нет), B=5 (нет), C=4 (A), D=6 (A), E=4 (B,C), F=3 (D,E). Задача может начаться только после завершения всех предшественников. Найди минимальное время завершения всех задач. Ответ — целое число.\nДай прямой ответ. explanation — пустая строка, experts — пустой массив."
+              }
+            ],
+            "stream": false,
+            "provider": {
+              "only": [
+                "google-ai-studio/flex"
+              ],
+              "allow_fallbacks": false,
+              "require_parameters": true,
+              "max_price": {
+                "prompt": 5.99346625,
+                "completion": 23.973865
+              }
+            },
+            "max_tokens": 32768,
+            "temperature": 0.7,
+            "reasoning": {
+              "enabled": true,
+              "max_tokens": 24576
+            },
+            "response_format": {
+              "type": "json_schema",
+              "json_schema": {
+                "name": "solution",
+                "strict": true,
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "answer": {
+                      "type": "string"
+                    },
+                    "explanation": {
+                      "type": "string"
+                    },
+                    "experts": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "role": {
+                            "type": "string",
+                            "enum": [
+                              "analyst",
+                              "engineer",
+                              "critic"
+                            ]
+                          },
+                          "answer": {
+                            "type": "string"
+                          },
+                          "explanation": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "role",
+                          "answer",
+                          "explanation"
+                        ],
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "required": [
+                    "answer",
+                    "explanation",
+                    "experts"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "response": {
+            "id": "gen_2230794131279319041",
+            "object": "chat.completion",
+            "created": 1794166779,
+            "model": "google/gemini-2.5-flash-lite",
+            "choices": [
+              {
+                "index": 0,
+                "message": {
+                  "role": "assistant",
+                  "content": "{\n  \"answer\": \"14\",\n  \"explanation\": \"\",\n  \"experts\": []\n}",
+                  "reasoning": "**Analyzing Task Optimization**\n\nOkay, I'm now focusing on figuring out the shortest completion time for these tasks given two workers and the dependencies. Considering each task's duration (A=3, B=5, C=4, D=6, E=4, F) and how they could be distributed is key to finding the most efficient schedule. I have to map out a clear assignment strategy to minimize idle time and dependencies.\n\n\n**Mapping Task Dependencies**\n\nI'm now focusing on mapping out task dependencies and worker availability in detail. I've broken down the state at each time increment to simulate execution. This includes tracking ready tasks, which tasks each worker is busy with, and completed tasks. Currently I am simulating a timeline, from time zero. I've simulated assigning tasks A and B to workers and have worked through the scenario up to the point of when Task A completes at Time=3. I'm focusing on the effect on ready tasks.\n\n\n**Simulating Task Flow**\n\nNow, I'm working through the task execution step-by-step to understand the implications of each assignment. I've updated the task states and worker availability at each time increment. I'm noting the ready tasks and simulating how dependencies affect worker allocation. I'm tracking the current time, ready tasks, current tasks, completed tasks, and worker availability.\n\n\n**Refining Task Scheduling**\n\nI'm now revisiting the task scheduling, aiming for optimal resource utilization given the dependencies. My focus is on refining the Gantt chart simulation, paying close attention to critical paths and resource contention to minimize idle time. I've re-examined task dependencies, and simulated the completion time of 14, and am considering alternative mappings. I'm focusing on the critical path to ensure it is considered in the optimization process.\n\n\n**Optimizing Task Assignment**\n\nI'm now focusing on optimizing the task assignment strategy. I've re-simulated the schedule to determine an exact critical path with two workers. The critical path analysis reveals a minimum completion time of 14, which confirms the initial simulation. I have validated that the schedule is optimal given the dependencies and durations.\n\n\n**Validating Task Completion**\n\nI'm now confirming the optimal schedule by re-simulating task execution. I've re-examined the critical path and resource contention. The validation confirms that the completion time of 14 is the minimum possible, considering task dependencies and worker availability.\n\n```python\n\n```\n\n\n**Validating Task Prioritization**\n\nI'm now focusing on validating my approach for ensuring the shortest possible completion time.  I've thoroughly checked the critical path length, considered resource allocation, and determined that the completion time of 14 is indeed the best possible scenario. I'm satisfied that my simulation effectively captures the optimal schedule.\n\n\n**Confirming Critical Path Analysis**\n\nI've re-examined the task flow simulation, focusing on resource allocation along the critical path to ensure the completion time of 14 is the absolute minimum. This includes validation of task durations and resource constraints. I am checking the dependencies.\n\n\n\n**Validating Task Prioritization**\n\nI'm now satisfied that the critical path analysis and the resulting schedule are accurate and optimized. My simulation confirms a minimum completion time of 14, and the task assignments are validated.\n\n```json\n{\n  \"answer\": 14,\n  \"explanation\": \"\",\n  \"experts\": []\n}\n```\n\n**Validating Task Prioritization**\n\nI'm now satisfied that the critical path analysis and resulting schedule are accurate and optimized. Simulation confirms a minimum completion time of 14, task assignments have been validated.\n\n\n**Validating Task Prioritization**\n\nI'm now satisfied that the critical path analysis and the resulting schedule are accurate and optimized. Simulation confirms a minimum completion time of 14, and the task assignments are validated.\n```json\n{\n  \"answer\": \"14\",\n  \"explanation\": \"\",\n  \"experts\": []\n}\n```\n\n**Validating Task Prioritization**\n\nI'm now satisfied that the critical path analysis and the resulting schedule are accurate and optimized. Simulation confirms a minimum completion time of 14, and the task assignments are validated.\n```json\n{\n  \"answer\": \"14\",\n  \"explanation\": \"\",\n  \"experts\": []\n}\n```\n\n",
+                  "reasoning_details": [
+                    {
+                      "type": "reasoning.text",
+                      "text": "**Analyzing Task Optimization**\n\nOkay, I'm now focusing on figuring out the shortest completion time for these tasks given two workers and the dependencies. Considering each task's duration (A=3, B=5, C=4, D=6, E=4, F) and how they could be distributed is key to finding the most efficient schedule. I have to map out a clear assignment strategy to minimize idle time and dependencies.\n\n\n",
+                      "format": "google-gemini-v1",
+                      "index": 0
+                    },
+                    {
+                      "type": "reasoning.text",
+                      "text": "**Mapping Task Dependencies**\n\nI'm now focusing on mapping out task dependencies and worker availability in detail. I've broken down the state at each time increment to simulate execution. This includes tracking ready tasks, which tasks each worker is busy with, and completed tasks. Currently I am simulating a timeline, from time zero. I've simulated assigning tasks A and B to workers and have worked through the scenario up to the point of when Task A completes at Time=3. I'm focusing on the effect on ready tasks.\n\n\n",
+                      "format": "google-gemini-v1",
+                      "index": 0
+                    },
+                    {
+                      "type": "reasoning.text",
+                      "text": "**Simulating Task Flow**\n\nNow, I'm working through the task execution step-by-step to understand the implications of each assignment. I've updated the task states and worker availability at each time increment. I'm noting the ready tasks and simulating how dependencies affect worker allocation. I'm tracking the current time, ready tasks, current tasks, completed tasks, and worker availability.\n\n\n",
+                      "format": "google-gemini-v1",
+                      "index": 0
+                    },
+                    {
+                      "type": "reasoning.text",
+                      "text": "**Refining Task Scheduling**\n\nI'm now revisiting the task scheduling, aiming for optimal resource utilization given the dependencies. My focus is on refining the Gantt chart simulation, paying close attention to critical paths and resource contention to minimize idle time. I've re-examined task dependencies, and simulated the completion time of 14, and am considering alternative mappings. I'm focusing on the critical path to ensure it is considered in the optimization process.\n\n\n",
+                      "format": "google-gemini-v1",
+                      "index": 0
+                    },
+                    {
+                      "type": "reasoning.text",
+                      "text": "**Optimizing Task Assignment**\n\nI'm now focusing on optimizing the task assignment strategy. I've re-simulated the schedule to determine an exact critical path with two workers. The critical path analysis reveals a minimum completion time of 14, which confirms the initial simulation. I have validated that the schedule is optimal given the dependencies and durations.\n\n\n",
+                      "format": "google-gemini-v1",
+                      "index": 0
+                    },
+                    {
+                      "type": "reasoning.text",
+                      "text": "**Validating Task Completion**\n\nI'm now confirming the optimal schedule by re-simulating task execution. I've re-examined the critical path and resource contention. The validation confirms that the completion time of 14 is the minimum possible, considering task dependencies and worker availability.\n\n```python\n\n```\n\n\n",
+                      "format": "google-gemini-v1",
+                      "index": 0
+                    },
+                    {
+                      "type": "reasoning.text",
+                      "text": "**Validating Task Prioritization**\n\nI'm now focusing on validating my approach for ensuring the shortest possible completion time.  I've thoroughly checked the critical path length, considered resource allocation, and determined that the completion time of 14 is indeed the best possible scenario. I'm satisfied that my simulation effectively captures the optimal schedule.\n\n\n",
+                      "format": "google-gemini-v1",
+                      "index": 0
+                    },
+                    {
+                      "type": "reasoning.text",
+                      "text": "**Confirming Critical Path Analysis**\n\nI've re-examined the task flow simulation, focusing on resource allocation along the critical path to ensure the completion time of 14 is the absolute minimum. This includes validation of task durations and resource constraints. I am checking the dependencies.\n\n\n\n",
+                      "format": "google-gemini-v1",
+                      "index": 0
+                    },
+                    {
+                      "type": "reasoning.text",
+                      "text": "**Validating Task Prioritization**\n\nI'm now satisfied that the critical path analysis and the resulting schedule are accurate and optimized. My simulation confirms a minimum completion time of 14, and the task assignments are validated.\n\n```json\n{\n  \"answer\": 14,\n  \"explanation\": \"\",\n  \"experts\": []\n}\n```\n\n",
+                      "format": "google-gemini-v1",
+                      "index": 0
+                    },
+                    {
+                      "type": "reasoning.text",
+                      "text": "**Validating Task Prioritization**\n\nI'm now satisfied that the critical path analysis and resulting schedule are accurate and optimized. Simulation confirms a minimum completion time of 14, task assignments have been validated.\n\n\n",
+                      "format": "google-gemini-v1",
+                      "index": 0
+                    },
+                    {
+                      "type": "reasoning.text",
+                      "text": "**Validating Task Prioritization**\n\nI'm now satisfied that the critical path analysis and the resulting schedule are accurate and optimized. Simulation confirms a minimum completion time of 14, and the task assignments are validated.\n```json\n{\n  \"answer\": \"14\",\n  \"explanation\": \"\",\n  \"experts\": []\n}\n```\n\n",
+                      "format": "google-gemini-v1",
+                      "index": 0
+                    },
+                    {
+                      "type": "reasoning.text",
+                      "text": "**Validating Task Prioritization**\n\nI'm now satisfied that the critical path analysis and the resulting schedule are accurate and optimized. Simulation confirms a minimum completion time of 14, and the task assignments are validated.\n```json\n{\n  \"answer\": \"14\",\n  \"explanation\": \"\",\n  \"experts\": []\n}\n```\n\n",
+                      "format": "google-gemini-v1",
+                      "index": 0
+                    }
+                  ]
+                },
+                "finish_reason": "stop",
+                "logprobs": null
+              }
+            ],
+            "usage": {
+              "prompt_tokens": 214,
+              "completion_tokens": 3967,
+              "total_tokens": 4181,
+              "completion_tokens_details": {
+                "reasoning_tokens": 3955,
+                "audio_tokens": 0,
+                "image_tokens": 0,
+                "accepted_prediction_tokens": null,
+                "rejected_prediction_tokens": null
+              },
+              "prompt_tokens_details": {
+                "cached_tokens": 0,
+                "cache_write_tokens": 0,
+                "audio_tokens": 0,
+                "video_tokens": 0
+              },
+              "server_tool_use": null,
+              "cost_rub": 0.09447827,
+              "cost": 0.09447827,
+              "plugins": null
+            }
+          },
+          "content": "{\n  \"answer\": \"14\",\n  \"explanation\": \"\",\n  \"experts\": []\n}",
+          "finish_reason": "stop",
+          "complete": true,
+          "actual_model": "google/gemini-2.5-flash-lite",
+          "provider": null,
+          "total_tokens": 4181,
+          "prompt_tokens": 214,
+          "completion_tokens": 3967,
+          "reasoning_tokens": 3955,
+          "cost_rub": 0.09447827,
+          "http_status": 200,
+          "api_error": null,
+          "duration_seconds": 11.229209
+        }
+      ],
+      "parsed": {
+        "answer": "14",
+        "explanation": "",
+        "experts": []
+      },
+      "format_valid": true,
+      "method_valid": true,
+      "answer_correct": true,
+      "correct": true,
+      "failure": null,
+      "metrics": {
+        "calls": 1,
+        "prompt_tokens": 214,
+        "unknown_prompt_tokens": 0,
+        "completion_tokens": 3967,
+        "unknown_completion_tokens": 0,
+        "total_tokens": 4181,
+        "unknown_total_tokens": 0,
+        "reasoning_tokens": 3955,
+        "unknown_reasoning_tokens": 0,
+        "cost_rub": 0.09447827,
+        "unknown_costs": 0,
+        "duration_seconds": 11.229209,
+        "unknown_duration_seconds": 0
+      }
+    }
+  ],
+  "verified": false,
+  "metrics": {
+    "calls": 2,
+    "prompt_tokens": 428,
+    "unknown_prompt_tokens": 0,
+    "completion_tokens": 3993,
+    "unknown_completion_tokens": 0,
+    "total_tokens": 4421,
+    "unknown_total_tokens": 0,
+    "reasoning_tokens": 3957,
+    "unknown_reasoning_tokens": 0,
+    "cost_rub": 0.09634645,
+    "unknown_costs": 0,
+    "duration_seconds": 11.947826,
+    "unknown_duration_seconds": 0
+  },
+  "checks": {
+    "off": [
+      "Для off не подтверждено нулевое число reasoning-токенов."
+    ],
+    "max": []
+  }
+}

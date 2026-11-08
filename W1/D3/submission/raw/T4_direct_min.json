@@ -1,0 +1,185 @@
+{
+  "task_id": "T4",
+  "task_title": "Рюкзак",
+  "method": "direct",
+  "mode": "min",
+  "stages": [
+    {
+      "request": {
+        "model": "google/gemini-2.5-flash-lite",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Выполняй текущий запрос пользователя. Отвечай JSON по схеме API без Markdown. В решении поле answer содержит только ответ в формате условия; explanation — краткое объяснение до 150 слов, если оно запрошено, иначе пустую строку. experts — пустой массив, если роли экспертов не запрошены. Не используй внешние инструменты."
+          },
+          {
+            "role": "user",
+            "content": "Вместимость рюкзака 15. Предметы (вес, ценность): A=(3,4), B=(4,5), C=(5,7), D=(8,12), E=(9,13). Каждый можно взять не более одного раза. Найди максимальную суммарную ценность без превышения вместимости. Ответ — только целое значение максимальной ценности.\nДай прямой ответ. explanation — пустая строка, experts — пустой массив."
+          }
+        ],
+        "stream": false,
+        "provider": {
+          "only": [
+            "google-ai-studio/flex"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true,
+          "max_price": {
+            "prompt": 5.99346625,
+            "completion": 23.973865
+          }
+        },
+        "max_tokens": 32768,
+        "temperature": 0.7,
+        "reasoning": {
+          "enabled": true,
+          "max_tokens": 512
+        },
+        "response_format": {
+          "type": "json_schema",
+          "json_schema": {
+            "name": "solution",
+            "strict": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "answer": {
+                  "type": "string"
+                },
+                "explanation": {
+                  "type": "string"
+                },
+                "experts": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "role": {
+                        "type": "string",
+                        "enum": [
+                          "analyst",
+                          "engineer",
+                          "critic"
+                        ]
+                      },
+                      "answer": {
+                        "type": "string"
+                      },
+                      "explanation": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "role",
+                      "answer",
+                      "explanation"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "required": [
+                "answer",
+                "explanation",
+                "experts"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      "response": {
+        "id": "gen_2230798598102978561",
+        "object": "chat.completion",
+        "created": 1794167835,
+        "model": "google/gemini-2.5-flash-lite",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"answer\": \"20\",\n  \"explanation\": \"\",\n  \"experts\": []\n}",
+              "reasoning": "**Analyzing Knapsack Options**\n\nI'm currently focused on a 0/1 knapsack variant with a capacity of 15. The items under consideration are A (3,4), B (4,5), C (5,7), D (8,12), and E (9,13). My primary objective is to maximize the total value while adhering to the weight constraint, meaning each item can be selected at most once. I'm exploring different combinations to find the optimal solution.\n\n\n**Evaluating Combination Results**\n\nI've been evaluating different item combinations to maximize value within the 15-capacity constraint. I've calculated the weight and value for each combination of one and two items. I've noted that some two-item combinations exceed the capacity and are immediately discarded. I am now refining which options produce the greatest possible value.\n\n\n",
+              "reasoning_details": [
+                {
+                  "type": "reasoning.text",
+                  "text": "**Analyzing Knapsack Options**\n\nI'm currently focused on a 0/1 knapsack variant with a capacity of 15. The items under consideration are A (3,4), B (4,5), C (5,7), D (8,12), and E (9,13). My primary objective is to maximize the total value while adhering to the weight constraint, meaning each item can be selected at most once. I'm exploring different combinations to find the optimal solution.\n\n\n",
+                  "format": "google-gemini-v1",
+                  "index": 0
+                },
+                {
+                  "type": "reasoning.text",
+                  "text": "**Evaluating Combination Results**\n\nI've been evaluating different item combinations to maximize value within the 15-capacity constraint. I've calculated the weight and value for each combination of one and two items. I've noted that some two-item combinations exceed the capacity and are immediately discarded. I am now refining which options produce the greatest possible value.\n\n\n",
+                  "format": "google-gemini-v1",
+                  "index": 0
+                }
+              ]
+            },
+            "finish_reason": "stop",
+            "logprobs": null
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 183,
+          "completion_tokens": 476,
+          "total_tokens": 659,
+          "completion_tokens_details": {
+            "reasoning_tokens": 456,
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "accepted_prediction_tokens": null,
+            "rejected_prediction_tokens": null
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "server_tool_use": null,
+          "cost_rub": 0.01238452,
+          "cost": 0.01238452,
+          "plugins": null
+        }
+      },
+      "content": "{\n  \"answer\": \"20\",\n  \"explanation\": \"\",\n  \"experts\": []\n}",
+      "finish_reason": "stop",
+      "complete": true,
+      "actual_model": "google/gemini-2.5-flash-lite",
+      "provider": null,
+      "total_tokens": 659,
+      "prompt_tokens": 183,
+      "completion_tokens": 476,
+      "reasoning_tokens": 456,
+      "cost_rub": 0.01238452,
+      "http_status": 200,
+      "api_error": null,
+      "duration_seconds": 2.444337
+    }
+  ],
+  "parsed": {
+    "answer": "20",
+    "explanation": "",
+    "experts": []
+  },
+  "format_valid": true,
+  "method_valid": true,
+  "answer_correct": false,
+  "correct": false,
+  "failure": "wrong_answer",
+  "metrics": {
+    "calls": 1,
+    "prompt_tokens": 183,
+    "unknown_prompt_tokens": 0,
+    "completion_tokens": 476,
+    "unknown_completion_tokens": 0,
+    "total_tokens": 659,
+    "unknown_total_tokens": 0,
+    "reasoning_tokens": 456,
+    "unknown_reasoning_tokens": 0,
+    "cost_rub": 0.01238452,
+    "unknown_costs": 0,
+    "duration_seconds": 2.444337,
+    "unknown_duration_seconds": 0
+  }
+}

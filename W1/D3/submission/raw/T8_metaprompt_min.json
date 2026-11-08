@@ -1,0 +1,312 @@
+{
+  "task_id": "T8",
+  "task_title": "Расписание",
+  "method": "metaprompt",
+  "mode": "min",
+  "stages": [
+    {
+      "request": {
+        "model": "google/gemini-2.5-flash-lite",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Выполняй текущий запрос пользователя. Отвечай JSON по схеме API без Markdown. В решении поле answer содержит только ответ в формате условия; explanation — краткое объяснение до 150 слов, если оно запрошено, иначе пустую строку. experts — пустой массив, если роли экспертов не запрошены. Не используй внешние инструменты."
+          },
+          {
+            "role": "user",
+            "content": "Составь промпт для решения следующей задачи. Пока не решай задачу. Верни JSON с полем prompt. Задача:\nЕсть два одинаковых исполнителя; каждый выполняет не более одной задачи одновременно. Задачу нельзя прерывать или выполнять вдвоём. Переключение мгновенно, начало времени 0. Длительности и предшественники: A=3 (нет), B=5 (нет), C=4 (A), D=6 (A), E=4 (B,C), F=3 (D,E). Задача может начаться только после завершения всех предшественников. Найди минимальное время завершения всех задач. Ответ — целое число."
+          }
+        ],
+        "stream": false,
+        "provider": {
+          "only": [
+            "google-ai-studio/flex"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true,
+          "max_price": {
+            "prompt": 5.99346625,
+            "completion": 23.973865
+          }
+        },
+        "max_tokens": 32768,
+        "temperature": 0.7,
+        "reasoning": {
+          "enabled": true,
+          "max_tokens": 512
+        },
+        "response_format": {
+          "type": "json_schema",
+          "json_schema": {
+            "name": "solution_prompt",
+            "strict": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "prompt": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "prompt"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      "response": {
+        "id": "gen_2230798844796342273",
+        "object": "chat.completion",
+        "created": 1794167895,
+        "model": "google/gemini-2.5-flash-lite",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"prompt\": \"You are a scheduling optimization expert. Your task is to determine the minimum time required to complete a set of jobs given specific durations, dependencies, and a limited number of identical resources. You have 2 identical workers, each capable of performing only one job at a time. Jobs cannot be interrupted or worked on by multiple workers simultaneously. Switching between jobs is instantaneous, and the timeline begins at time 0. The jobs and their properties are as follows:\\n\\n- Job A: Duration 3, no predecessors.\\n- Job B: Duration 5, no predecessors.\\n- Job C: Duration 4, requires Job A to be completed first.\\n- Job D: Duration 6, requires Job A to be completed first.\\n- Job E: Duration 4, requires Job B and Job C to be completed first.\\n- Job F: Duration 3, requires Job D and Job E to be completed first.\\n\\nA job can only commence after all its prerequisite jobs have been finished.\\n\\nYour goal is to find the minimum possible time at which all jobs are completed. The final answer should be an integer representing this minimum completion time.\"\n}",
+              "reasoning": "**Defining the Task Scope**\n\nI'm now focusing on defining the scope for a JSON output. It looks like the core of the output will be a \"prompt\" field that clearly describes the user's task. This task, as I understand it, involves scheduling dependent tasks with limited resources – specifically, two workers – to find the minimum time to completion. I'm taking into account the task details provided.\n\n\n**Refining the Prompt Details**\n\nI am working on refining the constraints section of the prompt. I've broken down the problem description and resources, and I am now concentrating on accurately conveying the constraints. It's crucial the prompt accurately captures the no-preemption, single-task-at-a-time, and instant switching restrictions, as well as the dependency requirement. I need to make the constraints explicit and easily understandable for the target system.\n\n\n",
+              "reasoning_details": [
+                {
+                  "type": "reasoning.text",
+                  "text": "**Defining the Task Scope**\n\nI'm now focusing on defining the scope for a JSON output. It looks like the core of the output will be a \"prompt\" field that clearly describes the user's task. This task, as I understand it, involves scheduling dependent tasks with limited resources – specifically, two workers – to find the minimum time to completion. I'm taking into account the task details provided.\n\n\n",
+                  "format": "google-gemini-v1",
+                  "index": 0
+                },
+                {
+                  "type": "reasoning.text",
+                  "text": "**Refining the Prompt Details**\n\nI am working on refining the constraints section of the prompt. I've broken down the problem description and resources, and I am now concentrating on accurately conveying the constraints. It's crucial the prompt accurately captures the no-preemption, single-task-at-a-time, and instant switching restrictions, as well as the dependency requirement. I need to make the constraints explicit and easily understandable for the target system.\n\n\n",
+                  "format": "google-gemini-v1",
+                  "index": 0
+                }
+              ]
+            },
+            "finish_reason": "stop",
+            "logprobs": null
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 225,
+          "completion_tokens": 606,
+          "total_tokens": 831,
+          "completion_tokens_details": {
+            "reasoning_tokens": 363,
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "accepted_prediction_tokens": null,
+            "rejected_prediction_tokens": null
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "server_tool_use": null,
+          "cost_rub": 0.0157195,
+          "cost": 0.0157195,
+          "plugins": null
+        }
+      },
+      "content": "{\n  \"prompt\": \"You are a scheduling optimization expert. Your task is to determine the minimum time required to complete a set of jobs given specific durations, dependencies, and a limited number of identical resources. You have 2 identical workers, each capable of performing only one job at a time. Jobs cannot be interrupted or worked on by multiple workers simultaneously. Switching between jobs is instantaneous, and the timeline begins at time 0. The jobs and their properties are as follows:\\n\\n- Job A: Duration 3, no predecessors.\\n- Job B: Duration 5, no predecessors.\\n- Job C: Duration 4, requires Job A to be completed first.\\n- Job D: Duration 6, requires Job A to be completed first.\\n- Job E: Duration 4, requires Job B and Job C to be completed first.\\n- Job F: Duration 3, requires Job D and Job E to be completed first.\\n\\nA job can only commence after all its prerequisite jobs have been finished.\\n\\nYour goal is to find the minimum possible time at which all jobs are completed. The final answer should be an integer representing this minimum completion time.\"\n}",
+      "finish_reason": "stop",
+      "complete": true,
+      "actual_model": "google/gemini-2.5-flash-lite",
+      "provider": null,
+      "total_tokens": 831,
+      "prompt_tokens": 225,
+      "completion_tokens": 606,
+      "reasoning_tokens": 363,
+      "cost_rub": 0.0157195,
+      "http_status": 200,
+      "api_error": null,
+      "duration_seconds": 4.078539
+    },
+    {
+      "request": {
+        "model": "google/gemini-2.5-flash-lite",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Выполняй текущий запрос пользователя. Отвечай JSON по схеме API без Markdown. В решении поле answer содержит только ответ в формате условия; explanation — краткое объяснение до 150 слов, если оно запрошено, иначе пустую строку. experts — пустой массив, если роли экспертов не запрошены. Не используй внешние инструменты."
+          },
+          {
+            "role": "user",
+            "content": "Составь промпт для решения следующей задачи. Пока не решай задачу. Верни JSON с полем prompt. Задача:\nЕсть два одинаковых исполнителя; каждый выполняет не более одной задачи одновременно. Задачу нельзя прерывать или выполнять вдвоём. Переключение мгновенно, начало времени 0. Длительности и предшественники: A=3 (нет), B=5 (нет), C=4 (A), D=6 (A), E=4 (B,C), F=3 (D,E). Задача может начаться только после завершения всех предшественников. Найди минимальное время завершения всех задач. Ответ — целое число."
+          },
+          {
+            "role": "assistant",
+            "content": "{\n  \"prompt\": \"You are a scheduling optimization expert. Your task is to determine the minimum time required to complete a set of jobs given specific durations, dependencies, and a limited number of identical resources. You have 2 identical workers, each capable of performing only one job at a time. Jobs cannot be interrupted or worked on by multiple workers simultaneously. Switching between jobs is instantaneous, and the timeline begins at time 0. The jobs and their properties are as follows:\\n\\n- Job A: Duration 3, no predecessors.\\n- Job B: Duration 5, no predecessors.\\n- Job C: Duration 4, requires Job A to be completed first.\\n- Job D: Duration 6, requires Job A to be completed first.\\n- Job E: Duration 4, requires Job B and Job C to be completed first.\\n- Job F: Duration 3, requires Job D and Job E to be completed first.\\n\\nA job can only commence after all its prerequisite jobs have been finished.\\n\\nYour goal is to find the minimum possible time at which all jobs are completed. The final answer should be an integer representing this minimum completion time.\"\n}"
+          },
+          {
+            "role": "user",
+            "content": "Теперь реши исходную задачу, используя составленный промпт. Промпт:\nYou are a scheduling optimization expert. Your task is to determine the minimum time required to complete a set of jobs given specific durations, dependencies, and a limited number of identical resources. You have 2 identical workers, each capable of performing only one job at a time. Jobs cannot be interrupted or worked on by multiple workers simultaneously. Switching between jobs is instantaneous, and the timeline begins at time 0. The jobs and their properties are as follows:\n\n- Job A: Duration 3, no predecessors.\n- Job B: Duration 5, no predecessors.\n- Job C: Duration 4, requires Job A to be completed first.\n- Job D: Duration 6, requires Job A to be completed first.\n- Job E: Duration 4, requires Job B and Job C to be completed first.\n- Job F: Duration 3, requires Job D and Job E to be completed first.\n\nA job can only commence after all its prerequisite jobs have been finished.\n\nYour goal is to find the minimum possible time at which all jobs are completed. The final answer should be an integer representing this minimum completion time.\nИсходная задача:\nЕсть два одинаковых исполнителя; каждый выполняет не более одной задачи одновременно. Задачу нельзя прерывать или выполнять вдвоём. Переключение мгновенно, начало времени 0. Длительности и предшественники: A=3 (нет), B=5 (нет), C=4 (A), D=6 (A), E=4 (B,C), F=3 (D,E). Задача может начаться только после завершения всех предшественников. Найди минимальное время завершения всех задач. Ответ — целое число.\nВерни ответ по схеме solution; explanation и experts оставь пустыми."
+          }
+        ],
+        "stream": false,
+        "provider": {
+          "only": [
+            "google-ai-studio/flex"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true,
+          "max_price": {
+            "prompt": 5.99346625,
+            "completion": 23.973865
+          }
+        },
+        "max_tokens": 32768,
+        "temperature": 0.7,
+        "reasoning": {
+          "enabled": true,
+          "max_tokens": 512
+        },
+        "response_format": {
+          "type": "json_schema",
+          "json_schema": {
+            "name": "solution",
+            "strict": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "answer": {
+                  "type": "string"
+                },
+                "explanation": {
+                  "type": "string"
+                },
+                "experts": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "role": {
+                        "type": "string",
+                        "enum": [
+                          "analyst",
+                          "engineer",
+                          "critic"
+                        ]
+                      },
+                      "answer": {
+                        "type": "string"
+                      },
+                      "explanation": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "role",
+                      "answer",
+                      "explanation"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "required": [
+                "answer",
+                "explanation",
+                "experts"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      "response": {
+        "id": "gen_2230798861337104385",
+        "object": "chat.completion",
+        "created": 1794167897,
+        "model": "google/gemini-2.5-flash-lite",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"answer\": \"17\",\n  \"explanation\": \"\",\n  \"experts\": []\n}",
+              "reasoning": "**Analyzing the Schedule**\n\nI am now focused on minimizing the completion time for the schedule. The constraints are clear: two identical workers, no preemption or parallel task work, instantaneous switching, and a start time of zero. I'm exploring different arrangements to optimize the allocation of tasks and find the quickest overall completion.\n\n\n**Simulating the Schedule**\n\nI've begun simulating the task schedule to account for the two-worker constraint. At time zero, workers are assigned tasks A (duration 3) and B (duration 5). Task A completes at time 3. Now, since only two workers exist, I must determine the best assignments at that point, considering the dependencies. C and D require A, and E requires B and C, etc.\n\n\n",
+              "reasoning_details": [
+                {
+                  "type": "reasoning.text",
+                  "text": "**Analyzing the Schedule**\n\nI am now focused on minimizing the completion time for the schedule. The constraints are clear: two identical workers, no preemption or parallel task work, instantaneous switching, and a start time of zero. I'm exploring different arrangements to optimize the allocation of tasks and find the quickest overall completion.\n\n\n",
+                  "format": "google-gemini-v1",
+                  "index": 0
+                },
+                {
+                  "type": "reasoning.text",
+                  "text": "**Simulating the Schedule**\n\nI've begun simulating the task schedule to account for the two-worker constraint. At time zero, workers are assigned tasks A (duration 3) and B (duration 5). Task A completes at time 3. Now, since only two workers exist, I must determine the best assignments at that point, considering the dependencies. C and D require A, and E requires B and C, etc.\n\n\n",
+                  "format": "google-gemini-v1",
+                  "index": 0
+                }
+              ]
+            },
+            "finish_reason": "stop",
+            "logprobs": null
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 867,
+          "completion_tokens": 390,
+          "total_tokens": 1257,
+          "completion_tokens_details": {
+            "reasoning_tokens": 368,
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "accepted_prediction_tokens": null,
+            "rejected_prediction_tokens": null
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "server_tool_use": null,
+          "cost_rub": 0.0142581,
+          "cost": 0.0142581,
+          "plugins": null
+        }
+      },
+      "content": "{\n  \"answer\": \"17\",\n  \"explanation\": \"\",\n  \"experts\": []\n}",
+      "finish_reason": "stop",
+      "complete": true,
+      "actual_model": "google/gemini-2.5-flash-lite",
+      "provider": null,
+      "total_tokens": 1257,
+      "prompt_tokens": 867,
+      "completion_tokens": 390,
+      "reasoning_tokens": 368,
+      "cost_rub": 0.0142581,
+      "http_status": 200,
+      "api_error": null,
+      "duration_seconds": 2.214651
+    }
+  ],
+  "parsed": {
+    "answer": "17",
+    "explanation": "",
+    "experts": []
+  },
+  "format_valid": true,
+  "method_valid": true,
+  "answer_correct": false,
+  "correct": false,
+  "failure": "wrong_answer",
+  "metrics": {
+    "calls": 2,
+    "prompt_tokens": 1092,
+    "unknown_prompt_tokens": 0,
+    "completion_tokens": 996,
+    "unknown_completion_tokens": 0,
+    "total_tokens": 2088,
+    "unknown_total_tokens": 0,
+    "reasoning_tokens": 731,
+    "unknown_reasoning_tokens": 0,
+    "cost_rub": 0.0299776,
+    "unknown_costs": 0,
+    "duration_seconds": 6.29319,
+    "unknown_duration_seconds": 0
+  }
+}

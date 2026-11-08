@@ -1,0 +1,4 @@
+﻿method,common_tasks,excluded_tasks,direct_min,method_min,gain_min,direct_max,method_max,gain_max,gain_change
+stepwise,6,2,3,4,1,6,6,0,-1
+metaprompt,6,2,3,3,0,6,6,0,0
+experts,4,4,3,2,-1,4,4,0,1

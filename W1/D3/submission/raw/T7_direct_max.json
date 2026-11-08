@@ -1,0 +1,191 @@
+{
+  "task_id": "T7",
+  "task_title": "Доли по сегментам",
+  "method": "direct",
+  "mode": "max",
+  "stages": [
+    {
+      "request": {
+        "model": "google/gemini-2.5-flash-lite",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Выполняй текущий запрос пользователя. Отвечай JSON по схеме API без Markdown. В решении поле answer содержит только ответ в формате условия; explanation — краткое объяснение до 150 слов, если оно запрошено, иначе пустую строку. experts — пустой массив, если роли экспертов не запрошены. Не используй внешние инструменты."
+          },
+          {
+            "role": "user",
+            "content": "У алгоритма A в простых случаях 81 успех из 87, у B — 234 из 270. В сложных случаях у A 192 из 263, у B 55 из 80. Кто имеет более высокую долю успеха: в простых, в сложных и суммарно? Суммарно складывай успехи и попытки, не усредняй проценты. Ответ — три латинские буквы через запятую в указанном порядке.\nДай прямой ответ. explanation — пустая строка, experts — пустой массив."
+          }
+        ],
+        "stream": false,
+        "provider": {
+          "only": [
+            "google-ai-studio/flex"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true,
+          "max_price": {
+            "prompt": 5.99346625,
+            "completion": 23.973865
+          }
+        },
+        "max_tokens": 32768,
+        "temperature": 0.7,
+        "reasoning": {
+          "enabled": true,
+          "max_tokens": 24576
+        },
+        "response_format": {
+          "type": "json_schema",
+          "json_schema": {
+            "name": "solution",
+            "strict": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "answer": {
+                  "type": "string"
+                },
+                "explanation": {
+                  "type": "string"
+                },
+                "experts": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "role": {
+                        "type": "string",
+                        "enum": [
+                          "analyst",
+                          "engineer",
+                          "critic"
+                        ]
+                      },
+                      "answer": {
+                        "type": "string"
+                      },
+                      "explanation": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "role",
+                      "answer",
+                      "explanation"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "required": [
+                "answer",
+                "explanation",
+                "experts"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      "response": {
+        "id": "gen_2230798806032191489",
+        "object": "chat.completion",
+        "created": 1794167886,
+        "model": "google/gemini-2.5-flash-lite",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"answer\": \"A,A,B\",\n  \"explanation\": \"\",\n  \"experts\": []\n}",
+              "reasoning": "**Analyzing Algorithm Success**\n\nOkay, I'm now focusing on calculating success rates. I'm breaking down the analysis by scenario: simple, complex, and the overall picture. My next step will be to compare the rates of Algorithm A and Algorithm B. I'm aiming for a concise three-letter output representing the superior algorithm in each category.\n\n\n**Evaluating Algorithm Superiority**\n\nI've crunched the numbers and determined the success rates. For simple scenarios, Algorithm A edges out Algorithm B. In the complex cases, Algorithm A is the clear winner, too. However, when we look at the overall performance, Algorithm B demonstrates a higher success rate. My final output will be A,A,B.\n\n\n**Confirming Algorithm Superiority**\n\nI've completed the calculations. Algorithm A prevails in both simple and complex scenarios. Although, Algorithm B demonstrates a superior success rate overall, after aggregating results across both cases. I have double-checked the calculations for accuracy. The final response will be \"A,A,B\".\n\n\n",
+              "reasoning_details": [
+                {
+                  "type": "reasoning.text",
+                  "text": "**Analyzing Algorithm Success**\n\nOkay, I'm now focusing on calculating success rates. I'm breaking down the analysis by scenario: simple, complex, and the overall picture. My next step will be to compare the rates of Algorithm A and Algorithm B. I'm aiming for a concise three-letter output representing the superior algorithm in each category.\n\n\n",
+                  "format": "google-gemini-v1",
+                  "index": 0
+                },
+                {
+                  "type": "reasoning.text",
+                  "text": "**Evaluating Algorithm Superiority**\n\nI've crunched the numbers and determined the success rates. For simple scenarios, Algorithm A edges out Algorithm B. In the complex cases, Algorithm A is the clear winner, too. However, when we look at the overall performance, Algorithm B demonstrates a higher success rate. My final output will be A,A,B.\n\n\n",
+                  "format": "google-gemini-v1",
+                  "index": 0
+                },
+                {
+                  "type": "reasoning.text",
+                  "text": "**Confirming Algorithm Superiority**\n\nI've completed the calculations. Algorithm A prevails in both simple and complex scenarios. Although, Algorithm B demonstrates a superior success rate overall, after aggregating results across both cases. I have double-checked the calculations for accuracy. The final response will be \"A,A,B\".\n\n\n",
+                  "format": "google-gemini-v1",
+                  "index": 0
+                }
+              ]
+            },
+            "finish_reason": "stop",
+            "logprobs": null
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 203,
+          "completion_tokens": 846,
+          "total_tokens": 1049,
+          "completion_tokens_details": {
+            "reasoning_tokens": 822,
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "accepted_prediction_tokens": null,
+            "rejected_prediction_tokens": null
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "server_tool_use": null,
+          "cost_rub": 0.02107285,
+          "cost": 0.02107285,
+          "plugins": null
+        }
+      },
+      "content": "{\n  \"answer\": \"A,A,B\",\n  \"explanation\": \"\",\n  \"experts\": []\n}",
+      "finish_reason": "stop",
+      "complete": true,
+      "actual_model": "google/gemini-2.5-flash-lite",
+      "provider": null,
+      "total_tokens": 1049,
+      "prompt_tokens": 203,
+      "completion_tokens": 846,
+      "reasoning_tokens": 822,
+      "cost_rub": 0.02107285,
+      "http_status": 200,
+      "api_error": null,
+      "duration_seconds": 3.906933
+    }
+  ],
+  "parsed": {
+    "answer": "A,A,B",
+    "explanation": "",
+    "experts": []
+  },
+  "format_valid": true,
+  "method_valid": true,
+  "answer_correct": true,
+  "correct": true,
+  "failure": null,
+  "metrics": {
+    "calls": 1,
+    "prompt_tokens": 203,
+    "unknown_prompt_tokens": 0,
+    "completion_tokens": 846,
+    "unknown_completion_tokens": 0,
+    "total_tokens": 1049,
+    "unknown_total_tokens": 0,
+    "reasoning_tokens": 822,
+    "unknown_reasoning_tokens": 0,
+    "cost_rub": 0.02107285,
+    "unknown_costs": 0,
+    "duration_seconds": 3.906933,
+    "unknown_duration_seconds": 0
+  }
+}

@@ -1,0 +1,9 @@
+﻿method,mode,tasks,correct,answer_correct,answers_received,wrong_answers,api_errors,format_errors,incomplete,method_errors,calls,prompt_tokens,unknown_prompt_tokens,completion_tokens,unknown_completion_tokens,total_tokens,unknown_total_tokens,reasoning_tokens,unknown_reasoning_tokens,cost_rub,unknown_costs,duration_seconds,unknown_duration_seconds
+direct,min,8,3,3,8,5,0,0,0,0,8,1406,0,3342,0,4748,0,3165,0,0.08704174,0,22.065744,0
+direct,max,8,6,6,6,0,2,0,0,0,8,1035,2,12647,2,13682,2,12532,2,0.3041159,2,65.780201,0
+stepwise,min,8,4,4,8,4,0,0,0,0,8,1478,0,8299,0,9777,0,3345,0,0.20405682,0,26.996051,0
+stepwise,max,8,8,8,8,0,0,0,0,0,8,1478,0,36283,0,37761,0,34089,0,0.8658159,0,94.668916,0
+metaprompt,min,8,3,3,8,5,0,0,0,0,16,6102,0,7403,0,13505,0,6138,0,0.21055244,0,43.099259,0
+metaprompt,max,8,8,8,8,0,0,0,0,0,16,6056,0,41884,0,47940,0,40731,0,1.02124962,0,116.494117,0
+experts,min,8,2,2,6,4,2,0,0,0,8,1288,2,11515,2,12803,2,2450,2,0.27936252,2,95.220037,0
+experts,max,8,7,7,7,0,1,0,0,0,8,1525,1,31107,1,32632,1,27169,1,0.74096772,1,95.540304,0

@@ -1,0 +1,128 @@
+{
+  "task_id": "T3",
+  "task_title": "Ровно один делитель",
+  "method": "experts",
+  "mode": "min",
+  "stages": [
+    {
+      "request": {
+        "model": "google/gemini-2.5-flash-lite",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Выполняй текущий запрос пользователя. Отвечай JSON по схеме API без Markdown. В решении поле answer содержит только ответ в формате условия; explanation — краткое объяснение до 150 слов, если оно запрошено, иначе пустую строку. experts — пустой массив, если роли экспертов не запрошены. Не используй внешние инструменты."
+          },
+          {
+            "role": "user",
+            "content": "Сколько целых чисел от 1 до 1000 включительно делятся ровно на одно из чисел 6, 10, 15? Числа, делящиеся на два или три указанных делителя, не учитывай. Ответ — целое число.\nЭКСПЕРТЫ: аналитик (analyst), инженер (engineer) и критик (critic). В experts дай отдельный ответ и краткое объяснение каждого. В answer дай общий итог, в explanation кратко обоснуй его."
+          }
+        ],
+        "stream": false,
+        "provider": {
+          "only": [
+            "google-ai-studio/flex"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true,
+          "max_price": {
+            "prompt": 5.99346625,
+            "completion": 23.973865
+          }
+        },
+        "max_tokens": 32768,
+        "temperature": 0.7,
+        "reasoning": {
+          "enabled": true,
+          "max_tokens": 512
+        },
+        "response_format": {
+          "type": "json_schema",
+          "json_schema": {
+            "name": "solution",
+            "strict": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "answer": {
+                  "type": "string"
+                },
+                "explanation": {
+                  "type": "string"
+                },
+                "experts": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "role": {
+                        "type": "string",
+                        "enum": [
+                          "analyst",
+                          "engineer",
+                          "critic"
+                        ]
+                      },
+                      "answer": {
+                        "type": "string"
+                      },
+                      "explanation": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "role",
+                      "answer",
+                      "explanation"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "required": [
+                "answer",
+                "explanation",
+                "experts"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      "response": null,
+      "content": "",
+      "finish_reason": null,
+      "complete": false,
+      "actual_model": null,
+      "provider": null,
+      "total_tokens": null,
+      "prompt_tokens": null,
+      "completion_tokens": null,
+      "reasoning_tokens": null,
+      "cost_rub": null,
+      "http_status": null,
+      "api_error": "Ошибка сети (DNS, TLS, соединение или разрыв связи); повторов нет.",
+      "duration_seconds": 30.00394
+    }
+  ],
+  "parsed": null,
+  "format_valid": false,
+  "method_valid": false,
+  "answer_correct": false,
+  "correct": false,
+  "failure": "api_error",
+  "metrics": {
+    "calls": 1,
+    "prompt_tokens": null,
+    "unknown_prompt_tokens": 1,
+    "completion_tokens": null,
+    "unknown_completion_tokens": 1,
+    "total_tokens": null,
+    "unknown_total_tokens": 1,
+    "reasoning_tokens": null,
+    "unknown_reasoning_tokens": 1,
+    "cost_rub": null,
+    "unknown_costs": 1,
+    "duration_seconds": 30.00394,
+    "unknown_duration_seconds": 0
+  }
+}
