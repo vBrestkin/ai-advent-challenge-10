@@ -1,0 +1,526 @@
+{
+  "catalog": {
+    "reasoning": {
+      "mandatory": false
+    },
+    "id": "google/gemini-2.5-flash-lite",
+    "object": "model",
+    "owned_by": "polza-ai",
+    "name": "Google: Gemini 2.5 Flash Lite",
+    "type": "chat",
+    "short_description": "Мультимодальная модель для быстрых классификаций, извлечения данных и других частых запросов, где важны низкая задержка и экономия ресурсов.",
+    "icon_provider_slug": "google",
+    "is_fz152_compliant": false,
+    "stores_data_in_russia": false,
+    "created": 1769617392,
+    "architecture": {
+      "modality": "text+image+file+audio+video->text",
+      "input_modalities": [
+        "text",
+        "image",
+        "file",
+        "audio",
+        "video"
+      ],
+      "output_modalities": [
+        "text"
+      ],
+      "tokenizer": "Gemini",
+      "instruct_type": null
+    },
+    "context_length": 1048576,
+    "max_completion_tokens": 65535,
+    "top_provider": {
+      "reasoning": {
+        "mandatory": false
+      },
+      "name": "google-ai-studio/flex",
+      "icon_provider_slug": "google",
+      "is_fz152_compliant": false,
+      "stores_data_in_russia": false,
+      "is_hosted_on_polza_infrastructure": false,
+      "is_unofficial": false,
+      "is_moderated": false,
+      "context_length": 1048576,
+      "max_completion_tokens": 65535,
+      "pricing": {
+        "prompt_per_million": "5.93412500",
+        "completion_per_million": "23.73650000",
+        "image_input_per_million": "5.93412500",
+        "audio_per_million": "17.80237500",
+        "web_search_per_thousand": "1661.55500000",
+        "internal_reasoning_per_million": "23.73650000",
+        "input_cache_read_per_million": "0.59341250",
+        "input_cache_write_per_million": "4.94510417",
+        "input_audio_cache_per_million": "1.78023750",
+        "currency": "RUB"
+      },
+      "supported_parameters": [
+        "reasoning",
+        "include_reasoning",
+        "structured_outputs",
+        "response_format",
+        "max_tokens",
+        "temperature",
+        "top_p",
+        "seed",
+        "tools",
+        "tool_choice",
+        "stop",
+        "reasoning_effort"
+      ],
+      "capabilities": {
+        "tools": {
+          "status": "supported",
+          "verified_at": null
+        },
+        "tool_choice_required": {
+          "status": "supported",
+          "verified_at": null
+        },
+        "tool_choice_function": {
+          "status": "supported",
+          "verified_at": null
+        },
+        "tool_choice_none": {
+          "status": "supported",
+          "verified_at": null
+        },
+        "json_object": {
+          "status": "supported",
+          "verified_at": null
+        },
+        "json_schema_strict": {
+          "status": "supported",
+          "verified_at": null
+        },
+        "reasoning_toggle": {
+          "status": "supported",
+          "verified_at": null
+        },
+        "reasoning_effort": {
+          "status": "supported",
+          "verified_at": null
+        },
+        "input_image": {
+          "status": "supported",
+          "verified_at": null
+        },
+        "input_pdf": {
+          "status": "supported",
+          "verified_at": null
+        },
+        "prompt_cache_implicit": {
+          "status": "rejected",
+          "verified_at": null
+        },
+        "native_web_search": {
+          "status": "rejected",
+          "verified_at": null
+        }
+      },
+      "default_parameters": {
+        "temperature": null,
+        "top_p": null,
+        "frequency_penalty": null
+      }
+    },
+    "providers": [
+      {
+        "reasoning": {
+          "mandatory": false
+        },
+        "name": "google-ai-studio/priority",
+        "icon_provider_slug": "google",
+        "is_fz152_compliant": false,
+        "stores_data_in_russia": false,
+        "is_hosted_on_polza_infrastructure": false,
+        "is_unofficial": false,
+        "context_length": 1048576,
+        "max_completion_tokens": 65535,
+        "is_moderated": false,
+        "pricing": {
+          "prompt_per_million": "21.36285000",
+          "completion_per_million": "85.45140000",
+          "image_input_per_million": "21.36285000",
+          "audio_per_million": "64.08855000",
+          "web_search_per_thousand": "1661.55500000",
+          "internal_reasoning_per_million": "85.45140000",
+          "input_cache_read_per_million": "2.13628500",
+          "input_cache_write_per_million": "17.80237500",
+          "input_audio_cache_per_million": "6.40885500",
+          "currency": "RUB"
+        },
+        "supported_parameters": [
+          "reasoning",
+          "include_reasoning",
+          "structured_outputs",
+          "response_format",
+          "max_tokens",
+          "temperature",
+          "top_p",
+          "seed",
+          "tools",
+          "tool_choice",
+          "stop",
+          "reasoning_effort"
+        ],
+        "supports_native_web_search": false,
+        "capabilities": {
+          "tools": {
+            "status": "supported",
+            "verified_at": null
+          },
+          "tool_choice_required": {
+            "status": "supported",
+            "verified_at": null
+          },
+          "tool_choice_function": {
+            "status": "supported",
+            "verified_at": null
+          },
+          "tool_choice_none": {
+            "status": "supported",
+            "verified_at": null
+          },
+          "json_object": {
+            "status": "supported",
+            "verified_at": null
+          },
+          "json_schema_strict": {
+            "status": "supported",
+            "verified_at": null
+          },
+          "reasoning_toggle": {
+            "status": "supported",
+            "verified_at": null
+          },
+          "reasoning_effort": {
+            "status": "supported",
+            "verified_at": null
+          },
+          "input_image": {
+            "status": "supported",
+            "verified_at": null
+          },
+          "input_pdf": {
+            "status": "supported",
+            "verified_at": null
+          },
+          "prompt_cache_implicit": {
+            "status": "rejected",
+            "verified_at": null
+          },
+          "native_web_search": {
+            "status": "rejected",
+            "verified_at": null
+          }
+        },
+        "default_parameters": {
+          "temperature": null,
+          "top_p": null,
+          "frequency_penalty": null
+        }
+      },
+      {
+        "reasoning": {
+          "mandatory": false
+        },
+        "name": "google-ai-studio/flex",
+        "icon_provider_slug": "google",
+        "is_fz152_compliant": false,
+        "stores_data_in_russia": false,
+        "is_hosted_on_polza_infrastructure": false,
+        "is_unofficial": false,
+        "context_length": 1048576,
+        "max_completion_tokens": 65535,
+        "is_moderated": false,
+        "pricing": {
+          "prompt_per_million": "5.93412500",
+          "completion_per_million": "23.73650000",
+          "image_input_per_million": "5.93412500",
+          "audio_per_million": "17.80237500",
+          "web_search_per_thousand": "1661.55500000",
+          "internal_reasoning_per_million": "23.73650000",
+          "input_cache_read_per_million": "0.59341250",
+          "input_cache_write_per_million": "4.94510417",
+          "input_audio_cache_per_million": "1.78023750",
+          "currency": "RUB"
+        },
+        "supported_parameters": [
+          "reasoning",
+          "include_reasoning",
+          "structured_outputs",
+          "response_format",
+          "max_tokens",
+          "temperature",
+          "top_p",
+          "seed",
+          "tools",
+          "tool_choice",
+          "stop",
+          "reasoning_effort"
+        ],
+        "supports_native_web_search": false,
+        "capabilities": {
+          "tools": {
+            "status": "supported",
+            "verified_at": null
+          },
+          "tool_choice_required": {
+            "status": "supported",
+            "verified_at": null
+          },
+          "tool_choice_function": {
+            "status": "supported",
+            "verified_at": null
+          },
+          "tool_choice_none": {
+            "status": "supported",
+            "verified_at": null
+          },
+          "json_object": {
+            "status": "supported",
+            "verified_at": null
+          },
+          "json_schema_strict": {
+            "status": "supported",
+            "verified_at": null
+          },
+          "reasoning_toggle": {
+            "status": "supported",
+            "verified_at": null
+          },
+          "reasoning_effort": {
+            "status": "supported",
+            "verified_at": null
+          },
+          "input_image": {
+            "status": "supported",
+            "verified_at": null
+          },
+          "input_pdf": {
+            "status": "supported",
+            "verified_at": null
+          },
+          "prompt_cache_implicit": {
+            "status": "rejected",
+            "verified_at": null
+          },
+          "native_web_search": {
+            "status": "rejected",
+            "verified_at": null
+          }
+        },
+        "default_parameters": {
+          "temperature": null,
+          "top_p": null,
+          "frequency_penalty": null
+        }
+      },
+      {
+        "reasoning": {
+          "mandatory": false
+        },
+        "name": "google-ai-studio",
+        "icon_provider_slug": "google",
+        "is_fz152_compliant": false,
+        "stores_data_in_russia": false,
+        "is_hosted_on_polza_infrastructure": false,
+        "is_unofficial": false,
+        "context_length": 1048576,
+        "max_completion_tokens": 65535,
+        "is_moderated": false,
+        "pricing": {
+          "prompt_per_million": "11.86825000",
+          "completion_per_million": "47.47300000",
+          "image_input_per_million": "11.86825000",
+          "audio_per_million": "35.60475000",
+          "web_search_per_thousand": "1661.55500000",
+          "internal_reasoning_per_million": "47.47300000",
+          "input_cache_read_per_million": "1.18682500",
+          "input_cache_write_per_million": "9.89020833",
+          "input_audio_cache_per_million": "3.56047500",
+          "currency": "RUB"
+        },
+        "supported_parameters": [
+          "reasoning",
+          "include_reasoning",
+          "structured_outputs",
+          "response_format",
+          "max_tokens",
+          "temperature",
+          "top_p",
+          "seed",
+          "tools",
+          "tool_choice",
+          "stop",
+          "reasoning_effort"
+        ],
+        "supports_native_web_search": false,
+        "capabilities": {
+          "tools": {
+            "status": "supported",
+            "verified_at": null
+          },
+          "tool_choice_required": {
+            "status": "supported",
+            "verified_at": null
+          },
+          "tool_choice_function": {
+            "status": "supported",
+            "verified_at": null
+          },
+          "tool_choice_none": {
+            "status": "supported",
+            "verified_at": null
+          },
+          "json_object": {
+            "status": "supported",
+            "verified_at": null
+          },
+          "json_schema_strict": {
+            "status": "supported",
+            "verified_at": null
+          },
+          "reasoning_toggle": {
+            "status": "supported",
+            "verified_at": null
+          },
+          "reasoning_effort": {
+            "status": "supported",
+            "verified_at": null
+          },
+          "input_image": {
+            "status": "supported",
+            "verified_at": null
+          },
+          "input_pdf": {
+            "status": "supported",
+            "verified_at": null
+          },
+          "prompt_cache_implicit": {
+            "status": "rejected",
+            "verified_at": null
+          },
+          "native_web_search": {
+            "status": "rejected",
+            "verified_at": null
+          }
+        },
+        "default_parameters": {
+          "temperature": null,
+          "top_p": null,
+          "frequency_penalty": null
+        }
+      }
+    ],
+    "endpoints": [
+      "/api/v1/chat/completions"
+    ]
+  },
+  "provider": {
+    "reasoning": {
+      "mandatory": false
+    },
+    "name": "google-ai-studio/flex",
+    "icon_provider_slug": "google",
+    "is_fz152_compliant": false,
+    "stores_data_in_russia": false,
+    "is_hosted_on_polza_infrastructure": false,
+    "is_unofficial": false,
+    "context_length": 1048576,
+    "max_completion_tokens": 65535,
+    "is_moderated": false,
+    "pricing": {
+      "prompt_per_million": "5.93412500",
+      "completion_per_million": "23.73650000",
+      "image_input_per_million": "5.93412500",
+      "audio_per_million": "17.80237500",
+      "web_search_per_thousand": "1661.55500000",
+      "internal_reasoning_per_million": "23.73650000",
+      "input_cache_read_per_million": "0.59341250",
+      "input_cache_write_per_million": "4.94510417",
+      "input_audio_cache_per_million": "1.78023750",
+      "currency": "RUB"
+    },
+    "supported_parameters": [
+      "reasoning",
+      "include_reasoning",
+      "structured_outputs",
+      "response_format",
+      "max_tokens",
+      "temperature",
+      "top_p",
+      "seed",
+      "tools",
+      "tool_choice",
+      "stop",
+      "reasoning_effort"
+    ],
+    "supports_native_web_search": false,
+    "capabilities": {
+      "tools": {
+        "status": "supported",
+        "verified_at": null
+      },
+      "tool_choice_required": {
+        "status": "supported",
+        "verified_at": null
+      },
+      "tool_choice_function": {
+        "status": "supported",
+        "verified_at": null
+      },
+      "tool_choice_none": {
+        "status": "supported",
+        "verified_at": null
+      },
+      "json_object": {
+        "status": "supported",
+        "verified_at": null
+      },
+      "json_schema_strict": {
+        "status": "supported",
+        "verified_at": null
+      },
+      "reasoning_toggle": {
+        "status": "supported",
+        "verified_at": null
+      },
+      "reasoning_effort": {
+        "status": "supported",
+        "verified_at": null
+      },
+      "input_image": {
+        "status": "supported",
+        "verified_at": null
+      },
+      "input_pdf": {
+        "status": "supported",
+        "verified_at": null
+      },
+      "prompt_cache_implicit": {
+        "status": "rejected",
+        "verified_at": null
+      },
+      "native_web_search": {
+        "status": "rejected",
+        "verified_at": null
+      }
+    },
+    "default_parameters": {
+      "temperature": null,
+      "top_p": null,
+      "frequency_penalty": null
+    }
+  },
+  "rates": {
+    "prompt_per_million": 5.934125,
+    "completion_per_million": 23.7365
+  },
+  "price_limits": {
+    "prompt": 5.99346625,
+    "completion": 23.973865
+  }
+}

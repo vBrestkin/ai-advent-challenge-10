@@ -1,0 +1,61 @@
+{
+  "request": {
+    "model": "google/gemini-2.5-flash-lite",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Следуй формату пользователя. Верни ответ без Markdown, кодовых блоков и пояснений."
+      },
+      {
+        "role": "user",
+        "content": "Придумай пять разных коротких названий приложения для изучения Python. Ответь только JSON-объектом с единственным полем names: массив из пяти строк-названий. Никаких описаний и других полей. Не заключай JSON в тройные обратные кавычки. Ответ начинается символом { и заканчивается }."
+      }
+    ],
+    "stream": false,
+    "provider": {
+      "only": [
+        "google-ai-studio/flex"
+      ],
+      "allow_fallbacks": false,
+      "require_parameters": true,
+      "max_price": {
+        "prompt": 5.99346625,
+        "completion": 23.973865
+      }
+    },
+    "max_tokens": 4096,
+    "temperature": 0,
+    "reasoning": {
+      "enabled": true,
+      "max_tokens": 512
+    }
+  },
+  "response": "{\"error\":{\"code\":\"TOO_MANY_REQUESTS\",\"message\":\"Превышен лимит запросов к провайдеру. Попробуйте позже или выберите другую модель\",\"trace_id\":\"11a99891-599f-4cbd-8fb2-1e2540f78b09\"},\"trace_id\":\"11a99891-599f-4cbd-8fb2-1e2540f78b09\"}",
+  "content": "",
+  "finish_reason": null,
+  "complete": false,
+  "actual_model": null,
+  "provider": null,
+  "total_tokens": null,
+  "prompt_tokens": null,
+  "completion_tokens": null,
+  "reasoning_tokens": null,
+  "cost_rub": null,
+  "http_status": 429,
+  "api_error": "HTTP 429. Лимит запросов.",
+  "duration_seconds": 0.634605,
+  "task_id": "names",
+  "temperature": 0,
+  "repeat": 5,
+  "received": false,
+  "json_valid": false,
+  "schema_valid": false,
+  "requirements_met": false,
+  "answer_correct": null,
+  "semantic_key": null,
+  "normalized_names": null,
+  "parsed": null,
+  "validation_error": "Исходный текст не разбирается как строгий JSON.",
+  "budget_reserve_rub": 0.115578003165,
+  "failure": "api_error"
+}

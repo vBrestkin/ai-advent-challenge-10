@@ -1,0 +1,127 @@
+{
+  "request": {
+    "model": "google/gemini-2.5-flash-lite",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Следуй формату пользователя. Верни ответ без Markdown, кодовых блоков и пояснений."
+      },
+      {
+        "role": "user",
+        "content": "Придумай пять разных коротких названий приложения для изучения Python. Ответь только JSON-объектом с единственным полем names: массив из пяти строк-названий. Никаких описаний и других полей. Не заключай JSON в тройные обратные кавычки. Ответ начинается символом { и заканчивается }."
+      }
+    ],
+    "stream": false,
+    "provider": {
+      "only": [
+        "google-ai-studio/flex"
+      ],
+      "allow_fallbacks": false,
+      "require_parameters": true,
+      "max_price": {
+        "prompt": 5.99346625,
+        "completion": 23.973865
+      }
+    },
+    "max_tokens": 4096,
+    "temperature": 0,
+    "reasoning": {
+      "enabled": true,
+      "max_tokens": 512
+    }
+  },
+  "response": {
+    "id": "gen_2230817004819451905",
+    "object": "chat.completion",
+    "created": 1794172223,
+    "model": "google/gemini-2.5-flash-lite",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\"names\": [\"PyStart\", \"CodePy\", \"PyPath\", \"LearnPy\", \"PythonGo\"]}",
+          "reasoning": "**Generating App Names**\n\nI'm focusing on crafting five concise names for a Python learning application. My goal is to produce a JSON object containing an array of these short, descriptive names. No extra explanations are needed, just the JSON output. I'm brainstorming names that capture the essence of learning Python in a snappy way.\n\n\n**Finalizing Name Selection**\n\nI've settled on five potential names, all short and relevant: \"PyLearn,\" \"CodePy,\" \"PythonGo,\" \"PyPath,\" and \"LearnPy.\" I've ensured these capture the essence of a Python learning application, as requested. The final step was formatting these into a JSON object which is now ready for use.\n\n\n",
+          "reasoning_details": [
+            {
+              "type": "reasoning.text",
+              "text": "**Generating App Names**\n\nI'm focusing on crafting five concise names for a Python learning application. My goal is to produce a JSON object containing an array of these short, descriptive names. No extra explanations are needed, just the JSON output. I'm brainstorming names that capture the essence of learning Python in a snappy way.\n\n\n",
+              "format": "google-gemini-v1",
+              "index": 0
+            },
+            {
+              "type": "reasoning.text",
+              "text": "**Finalizing Name Selection**\n\nI've settled on five potential names, all short and relevant: \"PyLearn,\" \"CodePy,\" \"PythonGo,\" \"PyPath,\" and \"LearnPy.\" I've ensured these capture the essence of a Python learning application, as requested. The final step was formatting these into a JSON object which is now ready for use.\n\n\n",
+              "format": "google-gemini-v1",
+              "index": 0
+            }
+          ]
+        },
+        "finish_reason": "stop",
+        "logprobs": null
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 94,
+      "completion_tokens": 193,
+      "total_tokens": 287,
+      "completion_tokens_details": {
+        "reasoning_tokens": 172,
+        "audio_tokens": 0,
+        "image_tokens": 0,
+        "accepted_prediction_tokens": null,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "server_tool_use": null,
+      "cost_rub": 0.00508756,
+      "cost": 0.00508756,
+      "plugins": null
+    }
+  },
+  "content": "{\"names\": [\"PyStart\", \"CodePy\", \"PyPath\", \"LearnPy\", \"PythonGo\"]}",
+  "finish_reason": "stop",
+  "complete": true,
+  "actual_model": "google/gemini-2.5-flash-lite",
+  "provider": null,
+  "total_tokens": 287,
+  "prompt_tokens": 94,
+  "completion_tokens": 193,
+  "reasoning_tokens": 172,
+  "cost_rub": 0.00508756,
+  "http_status": 200,
+  "api_error": null,
+  "duration_seconds": 2.093999,
+  "task_id": "names",
+  "temperature": 0,
+  "repeat": 1,
+  "received": true,
+  "json_valid": true,
+  "schema_valid": true,
+  "requirements_met": true,
+  "answer_correct": null,
+  "semantic_key": "[\"codepy\", \"learnpy\", \"pypath\", \"pystart\", \"pythongo\"]",
+  "normalized_names": [
+    "pystart",
+    "codepy",
+    "pypath",
+    "learnpy",
+    "pythongo"
+  ],
+  "parsed": {
+    "names": [
+      "PyStart",
+      "CodePy",
+      "PyPath",
+      "LearnPy",
+      "PythonGo"
+    ]
+  },
+  "validation_error": null,
+  "failure": null
+}

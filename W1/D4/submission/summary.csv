@@ -1,0 +1,7 @@
+﻿task_id,temperature,attempts,answers_received,json_valid,schema_valid,format_errors,wrong_answers,correct_answers,requirements_met,requirements_failures,api_errors,model_mismatches,incomplete,unique_raw,unique_semantic,valid_name_responses,unique_names,total_name_slots,name_uniqueness_ratio,mean_jaccard,mean_jaccard_distance,calls,total_tokens,unknown_total_tokens,prompt_tokens,unknown_prompt_tokens,completion_tokens,unknown_completion_tokens,reasoning_tokens,unknown_reasoning_tokens,cost_rub,unknown_costs,duration_seconds,unknown_duration_seconds
+logic,0,5,4,4,4,0,0,4,4,0,1,0,0,1,1,0,0,0,,,,5,2308,1,412,1,1896,1,1880,1,0.04709339,1,10.460978,0
+logic,0.7,5,5,5,5,0,4,1,1,4,0,0,0,4,3,0,0,0,,,,5,2505,0,515,0,1990,0,1963,0,0.04997952,0,12.178561,0
+logic,1.2,5,4,4,4,0,4,0,0,4,1,0,0,4,3,0,0,0,,,,5,1902,1,412,1,1490,1,1467,1,0.03753162,1,10.029272,0
+names,0,5,4,4,4,0,0,0,4,0,1,0,0,1,1,4,5,20,0.25,1.0,0.0,5,1148,1,376,1,772,1,688,1,0.02040163,1,8.876942,0
+names,0.7,5,5,5,5,0,0,0,5,0,0,0,0,5,5,5,20,25,0.8,0.05555555555555556,0.9444444444444444,5,1984,0,470,0,1514,0,1347,0,0.03833883,0,10.795579,0
+names,1.2,5,5,5,5,0,0,0,5,0,0,0,0,5,5,5,19,25,0.76,0.07777777777777779,0.9222222222222222,5,2146,0,470,0,1676,0,1537,0,0.0421457,0,10.85261,0

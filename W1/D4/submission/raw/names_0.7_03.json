@@ -1,0 +1,127 @@
+{
+  "request": {
+    "model": "google/gemini-2.5-flash-lite",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Следуй формату пользователя. Верни ответ без Markdown, кодовых блоков и пояснений."
+      },
+      {
+        "role": "user",
+        "content": "Придумай пять разных коротких названий приложения для изучения Python. Ответь только JSON-объектом с единственным полем names: массив из пяти строк-названий. Никаких описаний и других полей. Не заключай JSON в тройные обратные кавычки. Ответ начинается символом { и заканчивается }."
+      }
+    ],
+    "stream": false,
+    "provider": {
+      "only": [
+        "google-ai-studio/flex"
+      ],
+      "allow_fallbacks": false,
+      "require_parameters": true,
+      "max_price": {
+        "prompt": 5.99346625,
+        "completion": 23.973865
+      }
+    },
+    "max_tokens": 4096,
+    "temperature": 0.7,
+    "reasoning": {
+      "enabled": true,
+      "max_tokens": 512
+    }
+  },
+  "response": {
+    "id": "gen_2230817162072297473",
+    "object": "chat.completion",
+    "created": 1794172261,
+    "model": "google/gemini-2.5-flash-lite",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\"names\": [\"PyLite\", \"CodeSpark\", \"ByteBuddy\", \"PyPath\", \"PyLearn\"]}",
+          "reasoning": "**Generating App Names**\n\nI'm starting to brainstorm some names for Python learning apps. The focus is on generating five short, distinct names. The goal is a JSON object with a \"names\" array containing these strings, formatted without markdown or explanations.\n\n\n**Refining App Names**\n\nI've been iterating on app names, aiming for brevity and distinctiveness. I've landed on a promising set: \"PyLite,\" \"CodeSpark,\" \"ByteBuddy,\" \"PyPath,\" and \"PyLearn.\" My current task involves formatting this list into a JSON object with a \"names\" array containing these strings, ensuring no extraneous text or markdown.\n\n\n",
+          "reasoning_details": [
+            {
+              "type": "reasoning.text",
+              "text": "**Generating App Names**\n\nI'm starting to brainstorm some names for Python learning apps. The focus is on generating five short, distinct names. The goal is a JSON object with a \"names\" array containing these strings, formatted without markdown or explanations.\n\n\n",
+              "format": "google-gemini-v1",
+              "index": 0
+            },
+            {
+              "type": "reasoning.text",
+              "text": "**Refining App Names**\n\nI've been iterating on app names, aiming for brevity and distinctiveness. I've landed on a promising set: \"PyLite,\" \"CodeSpark,\" \"ByteBuddy,\" \"PyPath,\" and \"PyLearn.\" My current task involves formatting this list into a JSON object with a \"names\" array containing these strings, ensuring no extraneous text or markdown.\n\n\n",
+              "format": "google-gemini-v1",
+              "index": 0
+            }
+          ]
+        },
+        "finish_reason": "stop",
+        "logprobs": null
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 94,
+      "completion_tokens": 351,
+      "total_tokens": 445,
+      "completion_tokens_details": {
+        "reasoning_tokens": 330,
+        "audio_tokens": 0,
+        "image_tokens": 0,
+        "accepted_prediction_tokens": null,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "server_tool_use": null,
+      "cost_rub": 0.00880043,
+      "cost": 0.00880043,
+      "plugins": null
+    }
+  },
+  "content": "{\"names\": [\"PyLite\", \"CodeSpark\", \"ByteBuddy\", \"PyPath\", \"PyLearn\"]}",
+  "finish_reason": "stop",
+  "complete": true,
+  "actual_model": "google/gemini-2.5-flash-lite",
+  "provider": null,
+  "total_tokens": 445,
+  "prompt_tokens": 94,
+  "completion_tokens": 351,
+  "reasoning_tokens": 330,
+  "cost_rub": 0.00880043,
+  "http_status": 200,
+  "api_error": null,
+  "duration_seconds": 2.28316,
+  "task_id": "names",
+  "temperature": 0.7,
+  "repeat": 3,
+  "received": true,
+  "json_valid": true,
+  "schema_valid": true,
+  "requirements_met": true,
+  "answer_correct": null,
+  "semantic_key": "[\"bytebuddy\", \"codespark\", \"pylearn\", \"pylite\", \"pypath\"]",
+  "normalized_names": [
+    "pylite",
+    "codespark",
+    "bytebuddy",
+    "pypath",
+    "pylearn"
+  ],
+  "parsed": {
+    "names": [
+      "PyLite",
+      "CodeSpark",
+      "ByteBuddy",
+      "PyPath",
+      "PyLearn"
+    ]
+  },
+  "validation_error": null,
+  "failure": null
+}

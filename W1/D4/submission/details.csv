@@ -1,0 +1,81 @@
+﻿task_id,temperature,repeat,received,complete,failure,json_valid,schema_valid,answer_correct,requirements_met,api_error,finish_reason,content,total_tokens,prompt_tokens,completion_tokens,reasoning_tokens,cost_rub,duration_seconds
+names,0,1,True,True,,True,True,,True,,stop,"{""names"": [""PyStart"", ""CodePy"", ""PyPath"", ""LearnPy"", ""PythonGo""]}",287,94,193,172,0.00508756,2.093999
+logic,0.7,1,True,True,wrong_answer,True,True,False,False,,stop,"{""answer"": 126}",505,103,402,396,0.01015329,2.347181
+logic,1.2,1,True,True,wrong_answer,True,True,False,False,,stop,"{""answer"": 126}",459,103,356,350,0.00897079,1.956269
+names,0.7,1,True,True,,True,True,,True,,stop,"{
+""names"": [
+""PyLearn"",
+""CodePy"",
+""PyMaster"",
+""Syntaxo"",
+""PythonGo""
+]
+}",377,94,283,250,0.00720248,1.743897
+logic,0,1,True,True,,True,True,True,True,,stop,"{""answer"":56}",577,103,474,470,0.01174369,2.661865
+names,1.2,1,True,True,,True,True,,True,,stop,"{
+""names"": [""PyFlow"", ""CodeSnake"", ""PyLite"", ""ByteWise"", ""ScriptUp""]
+}",511,94,417,392,0.01035137,2.512144
+names,0,2,True,True,,True,True,,True,,stop,"{""names"": [""PyStart"", ""CodePy"", ""PyPath"", ""LearnPy"", ""PythonGo""]}",287,94,193,172,0.00508756,2.162423
+logic,0,2,True,True,,True,True,True,True,,stop,"{""answer"":56}",577,103,474,470,0.01174369,2.329328
+logic,1.2,2,True,True,wrong_answer,True,True,False,False,,stop,"{""answer"": 330}",488,103,385,379,0.00974977,2.717048
+names,0.7,2,True,True,,True,True,,True,,stop,"{
+""names"": [
+""PyGuru"",
+""LearnPy"",
+""CodePal"",
+""PythonQuest"",
+""PyStart""
+]
+}",518,94,424,392,0.01051586,2.559985
+names,1.2,2,True,True,,True,True,,True,,stop,"{
+""names"": [
+""PyGo"",
+""CodePy"",
+""PyQuest"",
+""LearnPy"",
+""PythonMate""
+]
+}",341,94,247,214,0.00635652,2.055259
+logic,0.7,2,True,True,wrong_answer,True,True,False,False,,stop,"{""answer"": 210}",496,103,393,387,0.00984026,2.620774
+names,0,3,True,True,,True,True,,True,,stop,"{""names"": [""PyStart"", ""CodePy"", ""PyPath"", ""LearnPy"", ""PythonGo""]}",287,94,193,172,0.00513895,2.096385
+logic,0.7,3,True,True,,True,True,True,True,,stop,"{""answer"":56}",559,103,456,452,0.01132071,2.453658
+logic,1.2,3,True,True,wrong_answer,True,True,False,False,,stop,"{""answer"": 210}",476,103,373,367,0.00937028,2.461521
+logic,0,3,True,True,,True,True,True,True,,stop,"{""answer"":56}",577,103,474,470,0.01174369,2.560548
+names,0.7,3,True,True,,True,True,,True,,stop,"{""names"": [""PyLite"", ""CodeSpark"", ""ByteBuddy"", ""PyPath"", ""PyLearn""]}",445,94,351,330,0.00880043,2.28316
+names,1.2,3,True,True,,True,True,,True,,stop,"{
+  ""names"": [
+    ""PyStart"",
+    ""CodeSnake"",
+    ""PyTutor"",
+    ""LearnPy"",
+    ""PythonGO""
+  ]
+}",337,94,243,204,0.00626252,1.861822
+logic,0.7,4,True,True,wrong_answer,True,True,False,False,,stop,"{""answer"": 126}",453,103,350,344,0.00891899,2.401948
+logic,1.2,4,True,True,wrong_answer,True,True,False,False,,stop,"{""answer"":126}",479,103,376,371,0.00944078,2.388113
+names,0,4,True,True,,True,True,,True,,stop,"{""names"": [""PyStart"", ""CodePy"", ""PyPath"", ""LearnPy"", ""PythonGo""]}",287,94,193,172,0.00508756,1.88953
+names,0.7,4,True,True,,True,True,,True,,stop,"{
+  ""names"": [
+    ""PyPath"",
+    ""CodeFlow"",
+    ""PyQuest"",
+    ""SyntaxLab"",
+    ""LearnPy""
+  ]
+}",324,94,230,190,0.00595703,2.247881
+names,1.2,4,True,True,,True,True,,True,,stop,"{""names"": [""PyPath"", ""ByteBuddy"", ""ZenPy"", ""CodePy"", ""PyStart""]}",461,94,367,346,0.00917641,2.179544
+logic,0,4,False,False,api_error,False,False,,False,HTTP 429. Лимит запросов.,,,,,,,,0.465734
+logic,0.7,5,True,True,wrong_answer,True,True,False,False,,stop,"{""answer"":210}",492,103,389,384,0.00974627,2.355
+names,0,5,False,False,api_error,False,False,,False,HTTP 429. Лимит запросов.,,,,,,,,0.634605
+logic,1.2,5,False,False,api_error,False,False,,False,HTTP 429. Лимит запросов.,,,,,,,,0.506321
+logic,0,5,True,True,,True,True,True,True,,stop,"{""answer"":56}",577,103,474,470,0.01186232,2.443503
+names,1.2,5,True,True,,True,True,,True,,stop,"{""names"": [""PyPath"", ""CodeSnake"", ""LearnByte"", ""PyPro"", ""Syntaxo""]}",496,94,402,381,0.00999888,2.243841
+names,0.7,5,True,True,,True,True,,True,,stop,"{
+  ""names"": [
+    ""PyFlow"",
+    ""CodeSpark"",
+    ""PyTrek"",
+    ""LearnScript"",
+    ""PythonGo""
+  ]
+}",320,94,226,185,0.00586303,1.960656
