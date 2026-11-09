@@ -1,0 +1,142 @@
+{
+  "request": {
+    "model": "google/gemini-2.5-pro",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Реши задачу. Верни только JSON по схеме API: answer — строка с ответом в формате условия, без объяснения."
+      },
+      {
+        "role": "user",
+        "content": "Есть два одинаковых исполнителя; каждый выполняет не более одной задачи одновременно. Задачу нельзя прерывать или выполнять вдвоём. Переключение мгновенно, начало времени 0. Длительности и предшественники: A=3 (нет), B=5 (нет), C=4 (A), D=6 (A), E=4 (B,C), F=3 (D,E). Задача может начаться только после завершения всех предшественников. Найди минимальное время завершения всех задач. Ответ — целое число."
+      }
+    ],
+    "stream": false,
+    "provider": {
+      "only": [
+        "google-ai-studio/flex"
+      ],
+      "allow_fallbacks": false,
+      "require_parameters": true,
+      "max_price": {
+        "prompt": 74.918328125,
+        "completion": 599.346625
+      }
+    },
+    "max_tokens": 4096,
+    "temperature": 0.7,
+    "reasoning": {
+      "enabled": true,
+      "max_tokens": 1024
+    },
+    "response_format": {
+      "type": "json_schema",
+      "json_schema": {
+        "name": "solution",
+        "strict": true,
+        "schema": {
+          "type": "object",
+          "properties": {
+            "answer": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "answer"
+          ],
+          "additionalProperties": false
+        }
+      }
+    }
+  },
+  "response": {
+    "id": "gen_2230831471834304513",
+    "object": "chat.completion",
+    "created": 1794175679,
+    "model": "google/gemini-2.5-pro",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"answer\": \"16\"\n}",
+          "reasoning": "**Analyzing the Problem**\n\nI'm currently focused on this project scheduling challenge. I have two identical executors and six tasks (A, B, C, D, E, F) with durations to determine. I'm aiming to minimize project completion time while considering resource constraints. My current approach involves exploring task assignments and orderings to find an optimal schedule.\n\n\n**Mapping Task Relationships**\n\nI've been mapping out the task relationships and dependencies more explicitly now. I've created a timeline to visualize the project progress and resource utilization. I'm focusing on assigning tasks to the two executors, considering task durations and precedence constraints. Currently I am assessing the state of the first two time steps. My aim is to determine the critical path, and identify opportunities for parallelism to minimize project completion time by allocating resources.\n\n\n**Optimizing Schedules**\n\nI've now created a step-by-step breakdown of task scheduling, and I have made initial calculations for the project's timeline and resource allocation. I am using a simple algorithm, I'm assigning tasks to the executors, and I've started the assessment of available tasks. I'm focusing on minimizing idle time, by prioritizing the longer tasks. I'm aiming to minimize the overall project completion time, while accounting for dependencies and resource constraints.\n\n\n**Evaluating Task Order**\n\nI've re-evaluated a decision point and recalculated resource allocation, considering an alternative task assignment sequence. I'm building out the project's timeline to understand resource utilization and look for idle time. I'm now exploring alternative schedules and task assignments, trying to decrease the overall project completion time.\n\n\n",
+          "reasoning_details": [
+            {
+              "type": "reasoning.text",
+              "text": "**Analyzing the Problem**\n\nI'm currently focused on this project scheduling challenge. I have two identical executors and six tasks (A, B, C, D, E, F) with durations to determine. I'm aiming to minimize project completion time while considering resource constraints. My current approach involves exploring task assignments and orderings to find an optimal schedule.\n\n\n",
+              "format": "google-gemini-v1",
+              "index": 0
+            },
+            {
+              "type": "reasoning.text",
+              "text": "**Mapping Task Relationships**\n\nI've been mapping out the task relationships and dependencies more explicitly now. I've created a timeline to visualize the project progress and resource utilization. I'm focusing on assigning tasks to the two executors, considering task durations and precedence constraints. Currently I am assessing the state of the first two time steps. My aim is to determine the critical path, and identify opportunities for parallelism to minimize project completion time by allocating resources.\n\n\n",
+              "format": "google-gemini-v1",
+              "index": 0
+            },
+            {
+              "type": "reasoning.text",
+              "text": "**Optimizing Schedules**\n\nI've now created a step-by-step breakdown of task scheduling, and I have made initial calculations for the project's timeline and resource allocation. I am using a simple algorithm, I'm assigning tasks to the executors, and I've started the assessment of available tasks. I'm focusing on minimizing idle time, by prioritizing the longer tasks. I'm aiming to minimize the overall project completion time, while accounting for dependencies and resource constraints.\n\n\n",
+              "format": "google-gemini-v1",
+              "index": 0
+            },
+            {
+              "type": "reasoning.text",
+              "text": "**Evaluating Task Order**\n\nI've re-evaluated a decision point and recalculated resource allocation, considering an alternative task assignment sequence. I'm building out the project's timeline to understand resource utilization and look for idle time. I'm now exploring alternative schedules and task assignments, trying to decrease the overall project completion time.\n\n\n",
+              "format": "google-gemini-v1",
+              "index": 0
+            }
+          ]
+        },
+        "finish_reason": "stop",
+        "logprobs": null
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 147,
+      "completion_tokens": 1010,
+      "total_tokens": 1157,
+      "completion_tokens_details": {
+        "reasoning_tokens": 1002,
+        "audio_tokens": 0,
+        "image_tokens": 0,
+        "accepted_prediction_tokens": null,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "server_tool_use": null,
+      "cost_rub": 0.61025058,
+      "cost": 0.61025058,
+      "plugins": null
+    }
+  },
+  "content": "{\n  \"answer\": \"16\"\n}",
+  "finish_reason": "stop",
+  "complete": true,
+  "actual_model": "google/gemini-2.5-pro",
+  "provider": null,
+  "total_tokens": 1157,
+  "prompt_tokens": 147,
+  "completion_tokens": 1010,
+  "reasoning_tokens": 1002,
+  "cost_rub": 0.61025058,
+  "http_status": 200,
+  "api_error": null,
+  "duration_seconds": 9.25579,
+  "tier": "flagship",
+  "model": "google/gemini-2.5-pro",
+  "task_id": "T8",
+  "repeat": 1,
+  "received": true,
+  "format_valid": true,
+  "answer_correct": false,
+  "parsed": {
+    "answer": "16"
+  },
+  "failure": "wrong_answer"
+}

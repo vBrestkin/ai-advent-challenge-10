@@ -1,0 +1,136 @@
+{
+  "request": {
+    "model": "google/gemini-2.5-pro",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Реши задачу. Верни только JSON по схеме API: answer — строка с ответом в формате условия, без объяснения."
+      },
+      {
+        "role": "user",
+        "content": "Найди длину самой длинной строго возрастающей подпоследовательности массива [3,4,-1,0,6,2,3,7,5,8,9,1]. Элементы не обязаны стоять подряд, исходный порядок сохраняется. Ответ — целая длина."
+      }
+    ],
+    "stream": false,
+    "provider": {
+      "only": [
+        "google-ai-studio/flex"
+      ],
+      "allow_fallbacks": false,
+      "require_parameters": true,
+      "max_price": {
+        "prompt": 74.918328125,
+        "completion": 599.346625
+      }
+    },
+    "max_tokens": 4096,
+    "temperature": 0.7,
+    "reasoning": {
+      "enabled": true,
+      "max_tokens": 1024
+    },
+    "response_format": {
+      "type": "json_schema",
+      "json_schema": {
+        "name": "solution",
+        "strict": true,
+        "schema": {
+          "type": "object",
+          "properties": {
+            "answer": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "answer"
+          ],
+          "additionalProperties": false
+        }
+      }
+    }
+  },
+  "response": {
+    "id": "gen_2230832700492615681",
+    "object": "chat.completion",
+    "created": 1794175970,
+    "model": "google/gemini-2.5-pro",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"answer\": \"7\"\n}",
+          "reasoning": "**Analyzing LIS Length**\n\nI'm now focusing on calculating the Longest Increasing Subsequence (LIS) length for the array [3, 4, -1, 0, 6, 2, 3, 7, 5, 8, 9, 1]. I intend to apply dynamic programming with patience sorting for an O(n log n) solution. Currently, I'm working on maintaining a specific list...\n\n\n**Refining LIS Calculation**\n\nI'm now iterating through the array. Currently, the `tails` list is `[-1, 0]`. I'm replacing elements in `tails` when a smaller tail is found for an increasing subsequence of the same length. This is an application of patience sorting. Next, I need to handle `num = 6`. I'll update you as I continue processing the remaining elements.\n\n\n**Calculating LIS Progress**\n\nI've just finished tracing the patience sorting for the array. My `tails` list has reached `[-1, 0, 2, 3, 5, 8, 9]`. The length of this list, 7, is the length of the longest increasing subsequence. I'm now verifying the steps to ensure the O(n log n) efficiency is maintained and there are no edge cases I've missed.\n\n\n",
+          "reasoning_details": [
+            {
+              "type": "reasoning.text",
+              "text": "**Analyzing LIS Length**\n\nI'm now focusing on calculating the Longest Increasing Subsequence (LIS) length for the array [3, 4, -1, 0, 6, 2, 3, 7, 5, 8, 9, 1]. I intend to apply dynamic programming with patience sorting for an O(n log n) solution. Currently, I'm working on maintaining a specific list...\n\n\n",
+              "format": "google-gemini-v1",
+              "index": 0
+            },
+            {
+              "type": "reasoning.text",
+              "text": "**Refining LIS Calculation**\n\nI'm now iterating through the array. Currently, the `tails` list is `[-1, 0]`. I'm replacing elements in `tails` when a smaller tail is found for an increasing subsequence of the same length. This is an application of patience sorting. Next, I need to handle `num = 6`. I'll update you as I continue processing the remaining elements.\n\n\n",
+              "format": "google-gemini-v1",
+              "index": 0
+            },
+            {
+              "type": "reasoning.text",
+              "text": "**Calculating LIS Progress**\n\nI've just finished tracing the patience sorting for the array. My `tails` list has reached `[-1, 0, 2, 3, 5, 8, 9]`. The length of this list, 7, is the length of the longest increasing subsequence. I'm now verifying the steps to ensure the O(n log n) efficiency is maintained and there are no edge cases I've missed.\n\n\n",
+              "format": "google-gemini-v1",
+              "index": 0
+            }
+          ]
+        },
+        "finish_reason": "stop",
+        "logprobs": null
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 90,
+      "completion_tokens": 828,
+      "total_tokens": 918,
+      "completion_tokens_details": {
+        "reasoning_tokens": 820,
+        "audio_tokens": 0,
+        "image_tokens": 0,
+        "accepted_prediction_tokens": null,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "server_tool_use": null,
+      "cost_rub": 0.49304123,
+      "cost": 0.49304123,
+      "plugins": null
+    }
+  },
+  "content": "{\n  \"answer\": \"7\"\n}",
+  "finish_reason": "stop",
+  "complete": true,
+  "actual_model": "google/gemini-2.5-pro",
+  "provider": null,
+  "total_tokens": 918,
+  "prompt_tokens": 90,
+  "completion_tokens": 828,
+  "reasoning_tokens": 820,
+  "cost_rub": 0.49304123,
+  "http_status": 200,
+  "api_error": null,
+  "duration_seconds": 6.78761,
+  "tier": "flagship",
+  "model": "google/gemini-2.5-pro",
+  "task_id": "T6",
+  "repeat": 3,
+  "received": true,
+  "format_valid": true,
+  "answer_correct": true,
+  "parsed": {
+    "answer": "7"
+  },
+  "failure": null
+}

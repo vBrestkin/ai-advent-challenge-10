@@ -1,0 +1,163 @@
+﻿tier,model,task_id,repeat,received,format_valid,answer_correct,failure,api_error,finish_reason,content,budget_reserve_rub,prompt_tokens,completion_tokens,total_tokens,reasoning_tokens,cost_rub,duration_seconds
+medium,google/gemini-2.5-flash,T8,1,True,True,True,,,stop,"{""answer"": ""14""}",,147,696,843,692,0.10481202,4.057976
+small,google/gemini-2.5-flash-lite,T6,1,True,True,False,wrong_answer,,stop,"{
+  ""answer"": ""6""
+}",,90,850,940,842,0.020503,3.076114
+flagship,google/gemini-2.5-pro,T3,1,True,True,True,,,stop,"{
+  ""answer"": ""233""
+}",,90,1130,1220,1121,0.67723202,10.910091
+flagship,google/gemini-2.5-pro,T8,1,True,True,False,wrong_answer,,stop,"{
+  ""answer"": ""16""
+}",,147,1010,1157,1002,0.61025058,9.25579
+medium,google/gemini-2.5-flash,T6,1,True,True,False,wrong_answer,,stop,"{""answer"": ""Длина самой длинной строго возрастающей подпоследовательности: 7""}",,90,1038,1128,1020,0.15403683,5.305698
+medium,google/gemini-2.5-flash,T3,1,True,True,False,wrong_answer,,stop,"{""answer"": ""133""}",,90,828,918,823,0.12319422,4.461305
+flagship,google/gemini-2.5-pro,T2,1,True,True,True,,,stop,"{""answer"": ""56""}",,73,886,959,882,0.53117836,7.784518
+medium,google/gemini-2.5-flash,T4,1,True,True,False,wrong_answer,,stop,"{""answer"": ""20""}",,116,866,982,862,0.12923349,5.013593
+medium,google/gemini-2.5-flash,T7,1,True,True,True,,,stop,"{""answer"": ""A,A,B""}",,136,616,752,609,0.09286858,3.541911
+flagship,google/gemini-2.5-pro,T1,1,True,True,True,,,stop,"{
+  ""answer"": ""A,D""
+}",,122,836,958,829,0.50009097,7.047522
+small,google/gemini-2.5-flash-lite,T2,1,True,True,True,,,stop,"{
+  ""answer"": ""56""
+}",,73,770,843,763,0.01852319,2.864438
+medium,google/gemini-2.5-flash,T5,1,True,True,True,,,stop,"{""answer"": ""2/13""}",,96,507,603,500,0.07615482,3.178378
+flagship,google/gemini-2.5-pro,T6,1,True,True,True,,,stop,"{
+  ""answer"": ""7""
+}",,90,1518,1608,1511,0.8984013,10.594917
+small,google/gemini-2.5-flash-lite,T7,1,True,True,True,,,stop,"{
+  ""answer"": ""A,A,B""
+}",,136,806,942,794,0.01973927,3.109567
+medium,google/gemini-2.5-flash,T2,1,True,True,False,wrong_answer,,stop,"{""answer"": ""792""}",,73,729,802,724,0.109449,4.509071
+small,google/gemini-2.5-flash-lite,T3,1,True,True,False,wrong_answer,,stop,"{
+  ""answer"": ""200""
+}",,90,809,899,799,0.01953953,3.118812
+flagship,google/gemini-2.5-pro,T7,1,True,True,True,,,stop,"{
+  ""answer"": ""A,A,B""
+}",,136,622,758,612,0.37539868,7.36438
+small,google/gemini-2.5-flash-lite,T5,1,True,True,True,,,stop,"{
+  ""answer"": ""2/13""
+}",,96,701,797,690,0.01720896,2.709702
+flagship,google/gemini-2.5-pro,T4,1,True,True,False,wrong_answer,,stop,"{
+  ""answer"": ""24""
+}",,116,1338,1454,1330,0.7945645,12.459198
+small,google/gemini-2.5-flash-lite,T8,1,True,True,True,,,stop,"{
+""answer"": ""14""
+}",,147,687,834,679,0.01717929,2.978377
+medium,google/gemini-2.5-flash,T1,1,True,True,True,,,stop,"{""answer"": ""A, D""}",,122,709,831,704,0.10628071,3.903734
+small,google/gemini-2.5-flash-lite,T1,1,True,True,True,,,stop,"{
+  ""answer"": ""A,D""
+}",,122,705,827,695,0.01728361,2.841922
+small,google/gemini-2.5-flash-lite,T4,1,True,True,True,,,stop,"{
+  ""answer"": ""21""
+}",,116,838,954,829,0.02037375,3.315828
+flagship,google/gemini-2.5-pro,T5,1,True,True,True,,,stop,"{
+  ""answer"": ""2/13""
+}",,96,934,1030,926,0.56136823,10.695102
+medium,google/gemini-2.5-flash,T2,2,True,True,False,wrong_answer,,stop,"{""answer"": ""252""}",,73,785,858,780,0.11775678,4.46751
+flagship,google/gemini-2.5-pro,T8,2,True,True,False,wrong_answer,,stop,"{
+  ""answer"": ""16""
+}",,147,872,1019,864,0.52307606,9.492003
+small,google/gemini-2.5-flash-lite,T8,2,True,True,False,wrong_answer,,stop,"{
+  ""answer"": ""20""
+}",,147,668,815,659,0.01656102,3.671597
+small,google/gemini-2.5-flash-lite,T4,2,True,True,True,,,stop,"{
+  ""answer"": ""21""
+}",,116,918,1034,909,0.02247847,3.092377
+flagship,google/gemini-2.5-pro,T6,2,True,True,True,,,stop,"{
+  ""answer"": ""7""
+}",,90,1401,1491,1394,0.8380468,10.513172
+small,google/gemini-2.5-flash-lite,T3,2,True,True,False,wrong_answer,,stop,"{
+  ""answer"": ""167""
+}",,90,677,767,667,0.01643764,2.907699
+flagship,google/gemini-2.5-pro,T1,2,True,True,True,,,stop,"{
+  ""answer"": ""A,D""
+}",,122,874,996,865,0.52241514,7.596523
+flagship,google/gemini-2.5-pro,T2,2,True,True,True,,,stop,"{
+  ""answer"": ""56""
+}",,73,1168,1241,1160,0.69153548,8.76604
+flagship,google/gemini-2.5-pro,T4,2,True,True,True,,,stop,"{
+  ""answer"": ""21""
+}",,116,1241,1357,1233,0.74502939,9.451169
+medium,google/gemini-2.5-flash,T4,2,True,True,False,wrong_answer,,stop,"{""answer"": ""20""}",,116,921,1037,917,0.1386983,5.215066
+medium,google/gemini-2.5-flash,T8,2,True,True,True,,,stop,"{""answer"": ""14""}",,147,749,896,745,0.11259611,4.550245
+medium,google/gemini-2.5-flash,T7,2,True,True,True,,,stop,"{""answer"": ""A,A,B""}",,136,672,808,665,0.10211442,4.140525
+small,google/gemini-2.5-flash-lite,T2,2,True,True,False,wrong_answer,,stop,"{
+  ""answer"": ""210""
+}",,73,724,797,714,0.01761842,3.047276
+flagship,google/gemini-2.5-pro,T5,2,True,True,True,,,stop,"{
+  ""answer"": ""6/39""
+}",,96,972,1068,962,0.57807872,9.607853
+medium,google/gemini-2.5-flash,T5,2,True,True,True,,,stop,"{""answer"": ""2/13""}",,96,792,888,786,0.11801266,4.600381
+small,google/gemini-2.5-flash-lite,T7,2,True,True,False,wrong_answer,,stop,"{
+  ""answer"": ""AAB""
+}",,136,783,919,774,0.01919879,2.805503
+small,google/gemini-2.5-flash-lite,T5,2,True,True,True,,,stop,"{
+  ""answer"": ""2/13""
+}",,96,708,804,697,0.01720137,3.180545
+flagship,google/gemini-2.5-pro,T7,2,True,True,True,,,stop,"{
+  ""answer"": ""A,A,B""
+}",,136,766,902,754,0.45999557,8.51369
+medium,google/gemini-2.5-flash,T3,2,True,True,True,,,stop,"{""answer"": ""233""}",,90,897,987,892,0.13467497,5.089484
+medium,google/gemini-2.5-flash,T6,2,True,True,False,wrong_answer,,stop,"{""answer"": ""Длина самой длинной строго возрастающей подпоследовательности: 7""}",,90,971,1061,955,0.14419657,6.123744
+small,google/gemini-2.5-flash-lite,T6,2,True,True,True,,,stop,"{
+  ""answer"": ""7""
+}",,90,765,855,759,0.01850557,2.886786
+small,google/gemini-2.5-flash-lite,T1,2,True,True,True,,,stop,"{
+  ""answer"": ""A,D""
+}",,122,715,837,705,0.01769556,3.239981
+medium,google/gemini-2.5-flash,T1,2,True,True,True,,,stop,"{""answer"": ""A,D""}",,122,747,869,742,0.11186176,4.737159
+flagship,google/gemini-2.5-pro,T3,2,True,True,True,,,stop,"{
+  ""answer"": ""233""
+}",,90,1087,1177,1077,0.64519813,10.904908
+small,google/gemini-2.5-flash-lite,T1,3,True,True,True,,,stop,"{
+  ""answer"": ""A, D""
+}",,122,663,785,653,0.01629665,2.741439
+flagship,google/gemini-2.5-pro,T3,3,True,True,True,,,stop,"{
+  ""answer"": ""233""
+}",,90,922,1012,912,0.55380222,8.060551
+small,google/gemini-2.5-flash-lite,T6,3,True,True,False,wrong_answer,,stop,"{""answer"": ""6""}",,90,847,937,844,0.0204325,3.361949
+medium,google/gemini-2.5-flash,T1,3,True,True,True,,,stop,"{""answer"": ""A,D""}",,122,779,901,774,0.11656158,4.598872
+small,google/gemini-2.5-flash-lite,T8,3,True,True,True,,,stop,"{
+  ""answer"": ""14""
+}",,147,689,836,680,0.0170545,2.974191
+flagship,google/gemini-2.5-pro,T5,3,True,True,True,,,stop,"{
+  ""answer"": ""18/117""
+}",,96,820,916,807,0.4937192,7.323888
+flagship,google/gemini-2.5-pro,T1,3,True,True,True,,,stop,"{
+  ""answer"": ""A,D""
+}",,122,988,1110,979,0.58938768,7.80923
+flagship,google/gemini-2.5-pro,T6,3,True,True,True,,,stop,"{
+  ""answer"": ""7""
+}",,90,828,918,820,0.49304123,6.78761
+medium,google/gemini-2.5-flash,T7,3,True,True,True,,,stop,"{""answer"": ""A,A,B""}",,136,752,888,745,0.11398267,4.517617
+medium,google/gemini-2.5-flash,T6,3,True,True,False,wrong_answer,,stop,"{""answer"": ""Длина самой длинной строго возрастающей подпоследовательности: 8""}",,90,1039,1129,1022,0.1541837,5.21486
+medium,google/gemini-2.5-flash,T8,3,True,True,True,,,stop,"{""answer"": ""14""}",,147,781,928,777,0.11729593,4.66949
+small,google/gemini-2.5-flash-lite,T5,3,True,True,True,,,stop,"{""answer"":""2/13""}",,96,792,888,787,0.01917529,3.584964
+flagship,google/gemini-2.5-pro,T8,3,True,True,False,wrong_answer,,stop,"{
+  ""answer"": ""16""
+}",,147,981,1128,973,0.5871112,9.636255
+small,google/gemini-2.5-flash-lite,T4,3,True,True,True,,,stop,"{
+  ""answer"": ""21""
+}",,116,852,968,843,0.02070274,3.152125
+medium,google/gemini-2.5-flash,T3,3,True,True,False,wrong_answer,,stop,"{""answer"": ""166""}",,90,750,840,745,0.11286706,4.45227
+small,google/gemini-2.5-flash-lite,T2,3,True,True,True,,,stop,"{
+  ""answer"": ""56""
+}",,73,648,721,639,0.01581444,2.840408
+flagship,google/gemini-2.5-pro,T7,3,True,True,True,,,stop,"{
+  ""answer"": ""A,A,B""
+}",,136,781,917,769,0.46880774,8.363198
+small,google/gemini-2.5-flash-lite,T7,3,True,True,True,,,stop,"{
+  ""answer"": ""A,A,B""
+}",,136,759,895,747,0.01882304,2.894434
+medium,google/gemini-2.5-flash,T4,3,True,True,False,wrong_answer,,stop,"{""answer"": ""20""}",,116,1026,1142,1022,0.15427538,5.430044
+flagship,google/gemini-2.5-pro,T4,3,True,True,False,wrong_answer,,stop,"{
+  ""answer"": ""24""
+}",,116,1104,1220,1097,0.65709456,11.411746
+medium,google/gemini-2.5-flash,T2,3,True,True,False,wrong_answer,,stop,"{""answer"": ""792""}",,73,690,763,685,0.1026266,4.490749
+flagship,google/gemini-2.5-pro,T2,3,True,True,True,,,stop,"{
+  ""answer"": ""56""
+}",,73,963,1036,955,0.57110242,10.461552
+small,google/gemini-2.5-flash-lite,T3,3,True,True,False,wrong_answer,,stop,"{
+  ""answer"": ""100""
+}",,90,787,877,777,0.01902255,2.761854
+medium,google/gemini-2.5-flash,T5,3,True,True,True,,,stop,"{""answer"": ""2/13""}",,96,1029,1125,1023,0.15282075,5.009138

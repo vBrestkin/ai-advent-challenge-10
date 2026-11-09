@@ -1,0 +1,3 @@
+﻿tier,cost_ratio,matched_cost_pairs,matched_cost_ratio,accuracy_delta_pp,equal_attempts,median_time_ratio
+medium,6.542076529230777,24,6.542076529230778,-12.5,True,1.5183610805335124
+flagship,32.401727048442595,24,32.401727048442595,12.5,True,3.1045529837181127

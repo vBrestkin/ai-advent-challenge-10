@@ -1,0 +1,142 @@
+{
+  "request": {
+    "model": "google/gemini-2.5-pro",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Реши задачу. Верни только JSON по схеме API: answer — строка с ответом в формате условия, без объяснения."
+      },
+      {
+        "role": "user",
+        "content": "Есть два одинаковых исполнителя; каждый выполняет не более одной задачи одновременно. Задачу нельзя прерывать или выполнять вдвоём. Переключение мгновенно, начало времени 0. Длительности и предшественники: A=3 (нет), B=5 (нет), C=4 (A), D=6 (A), E=4 (B,C), F=3 (D,E). Задача может начаться только после завершения всех предшественников. Найди минимальное время завершения всех задач. Ответ — целое число."
+      }
+    ],
+    "stream": false,
+    "provider": {
+      "only": [
+        "google-ai-studio/flex"
+      ],
+      "allow_fallbacks": false,
+      "require_parameters": true,
+      "max_price": {
+        "prompt": 74.918328125,
+        "completion": 599.346625
+      }
+    },
+    "max_tokens": 4096,
+    "temperature": 0.7,
+    "reasoning": {
+      "enabled": true,
+      "max_tokens": 1024
+    },
+    "response_format": {
+      "type": "json_schema",
+      "json_schema": {
+        "name": "solution",
+        "strict": true,
+        "schema": {
+          "type": "object",
+          "properties": {
+            "answer": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "answer"
+          ],
+          "additionalProperties": false
+        }
+      }
+    }
+  },
+  "response": {
+    "id": "gen_2230832805368696833",
+    "object": "chat.completion",
+    "created": 1794175998,
+    "model": "google/gemini-2.5-pro",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"answer\": \"16\"\n}",
+          "reasoning": "**Defining the Problem**\n\nI'm focusing on the core scheduling problem. I've defined the key resources: two identical performers, P1 and P2. The primary constraint is that each performer can only handle one task concurrently. This helps structure the approach to the overall solution.\n\n\n**Analyzing the Data**\n\nI've got the scheduling problem's components now. There are two performers, P1 and P2, and a set of tasks with dependencies and durations. My goal is to find the quickest time to finish all tasks, while following the constraints, so I'm thinking about how to visualize it in a Gantt chart. I am currently evaluating the critical path method, so I can ensure the shortest overall time.\n\n\n**Developing the Solution**\n\nI'm now deep into mapping out the task assignments over time. The Gantt chart approach seems promising. I'm carefully tracking performer availability and task dependencies at each time step, and thinking through when it makes sense to assign tasks to performers. So far, the assignments I've made seem reasonable, and I will continue this way, one step at a time.\n\n\n**Refining the Logic**\n\nI've broken down the scheduling problem's core elements: the two performers, the constraints, and the tasks with their dependencies and durations. My Gantt chart approach continues to evolve; I'm mapping tasks to time and tracking performer availability step-by-step. The critical path method helps me to determine the optimum schedule. I'm focusing on making decisions at each time step about which task to assign to which performer, based on task dependencies and duration. I am now working through the assignment of the final tasks.\n\n\n",
+          "reasoning_details": [
+            {
+              "type": "reasoning.text",
+              "text": "**Defining the Problem**\n\nI'm focusing on the core scheduling problem. I've defined the key resources: two identical performers, P1 and P2. The primary constraint is that each performer can only handle one task concurrently. This helps structure the approach to the overall solution.\n\n\n",
+              "format": "google-gemini-v1",
+              "index": 0
+            },
+            {
+              "type": "reasoning.text",
+              "text": "**Analyzing the Data**\n\nI've got the scheduling problem's components now. There are two performers, P1 and P2, and a set of tasks with dependencies and durations. My goal is to find the quickest time to finish all tasks, while following the constraints, so I'm thinking about how to visualize it in a Gantt chart. I am currently evaluating the critical path method, so I can ensure the shortest overall time.\n\n\n",
+              "format": "google-gemini-v1",
+              "index": 0
+            },
+            {
+              "type": "reasoning.text",
+              "text": "**Developing the Solution**\n\nI'm now deep into mapping out the task assignments over time. The Gantt chart approach seems promising. I'm carefully tracking performer availability and task dependencies at each time step, and thinking through when it makes sense to assign tasks to performers. So far, the assignments I've made seem reasonable, and I will continue this way, one step at a time.\n\n\n",
+              "format": "google-gemini-v1",
+              "index": 0
+            },
+            {
+              "type": "reasoning.text",
+              "text": "**Refining the Logic**\n\nI've broken down the scheduling problem's core elements: the two performers, the constraints, and the tasks with their dependencies and durations. My Gantt chart approach continues to evolve; I'm mapping tasks to time and tracking performer availability step-by-step. The critical path method helps me to determine the optimum schedule. I'm focusing on making decisions at each time step about which task to assign to which performer, based on task dependencies and duration. I am now working through the assignment of the final tasks.\n\n\n",
+              "format": "google-gemini-v1",
+              "index": 0
+            }
+          ]
+        },
+        "finish_reason": "stop",
+        "logprobs": null
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 147,
+      "completion_tokens": 981,
+      "total_tokens": 1128,
+      "completion_tokens_details": {
+        "reasoning_tokens": 973,
+        "audio_tokens": 0,
+        "image_tokens": 0,
+        "accepted_prediction_tokens": null,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "server_tool_use": null,
+      "cost_rub": 0.5871112,
+      "cost": 0.5871112,
+      "plugins": null
+    }
+  },
+  "content": "{\n  \"answer\": \"16\"\n}",
+  "finish_reason": "stop",
+  "complete": true,
+  "actual_model": "google/gemini-2.5-pro",
+  "provider": null,
+  "total_tokens": 1128,
+  "prompt_tokens": 147,
+  "completion_tokens": 981,
+  "reasoning_tokens": 973,
+  "cost_rub": 0.5871112,
+  "http_status": 200,
+  "api_error": null,
+  "duration_seconds": 9.636255,
+  "tier": "flagship",
+  "model": "google/gemini-2.5-pro",
+  "task_id": "T8",
+  "repeat": 3,
+  "received": true,
+  "format_valid": true,
+  "answer_correct": false,
+  "parsed": {
+    "answer": "16"
+  },
+  "failure": "wrong_answer"
+}

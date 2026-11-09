@@ -1,0 +1,4 @@
+﻿tier,model,attempts,received,correct,accuracy_attempts,accuracy_received,wrong_answers,format_errors,api_errors,incomplete,model_mismatches,duration_median_seconds,cost_per_correct_rub,prompt_tokens,unknown_prompt_tokens,completion_tokens,unknown_completion_tokens,total_tokens,unknown_total_tokens,reasoning_tokens,unknown_reasoning_tokens,cost_rub,unknown_costs,duration_seconds,unknown_duration_seconds
+small,google/gemini-2.5-flash-lite,24,24,16,0.6666666666666666,0.6666666666666666,8,0,0,0,0,3.0128265,0.027710571875,2610,0,18161,0,20771,0,17945,0,0.44336915,0,73.157888,0
+medium,google/gemini-2.5-flash,24,24,13,0.5416666666666666,0.5416666666666666,11,0,0,0,0,4.5745585,0.22311960846153844,2610,0,19369,0,21979,0,19209,0,2.90055491,0,111.27882,0
+flagship,google/gemini-2.5-pro,24,24,19,0.7916666666666666,0.7916666666666666,5,0,0,0,0,9.353479499999999,0.7561013778947369,2610,0,24042,0,26652,0,23834,0,14.36592618,0,220.810906,0

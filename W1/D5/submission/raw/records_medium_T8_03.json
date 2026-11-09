@@ -1,0 +1,136 @@
+{
+  "request": {
+    "model": "google/gemini-2.5-flash",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Реши задачу. Верни только JSON по схеме API: answer — строка с ответом в формате условия, без объяснения."
+      },
+      {
+        "role": "user",
+        "content": "Есть два одинаковых исполнителя; каждый выполняет не более одной задачи одновременно. Задачу нельзя прерывать или выполнять вдвоём. Переключение мгновенно, начало времени 0. Длительности и предшественники: A=3 (нет), B=5 (нет), C=4 (A), D=6 (A), E=4 (B,C), F=3 (D,E). Задача может начаться только после завершения всех предшественников. Найди минимальное время завершения всех задач. Ответ — целое число."
+      }
+    ],
+    "stream": false,
+    "provider": {
+      "only": [
+        "google-ai-studio/flex"
+      ],
+      "allow_fallbacks": false,
+      "require_parameters": true,
+      "max_price": {
+        "prompt": 17.980398750000003,
+        "completion": 149.83665625
+      }
+    },
+    "max_tokens": 4096,
+    "temperature": 0.7,
+    "reasoning": {
+      "enabled": true,
+      "max_tokens": 1024
+    },
+    "response_format": {
+      "type": "json_schema",
+      "json_schema": {
+        "name": "solution",
+        "strict": true,
+        "schema": {
+          "type": "object",
+          "properties": {
+            "answer": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "answer"
+          ],
+          "additionalProperties": false
+        }
+      }
+    }
+  },
+  "response": {
+    "id": "gen_2230832770159611905",
+    "object": "chat.completion",
+    "created": 1794175984,
+    "model": "google/gemini-2.5-flash",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\"answer\": \"14\"}",
+          "reasoning": "**Analyzing Task Scheduling**\n\nI'm currently focused on determining the minimum time to complete a series of tasks with two identical executors. I have to create a schedule that factors in task durations and dependencies.  I've defined the tasks: A=3, B=5, C=4 (depends on A), D=6 (depends on A), and E=4. The scheduling is the priority now.\n\n\n**Optimizing Task Allocation**\n\nI'm now diving into scheduling tasks A-F with their dependencies, seeking the shortest completion time with two executors. I've sketched a tentative plan. Tasks A and B start concurrently. Now, I'm at the scheduling fork where processor 1 can take C or D. I'm building out scenarios now, focusing on the interactions between tasks as they complete and release successors.\n\n\n**Evaluating Task Sequences**\n\nI've sketched a possible schedule, now I'm calculating the completion time. It involves assigning tasks A-F with their durations and dependencies to two executors. I'm building out the timeline to confirm the minimum finish time using that heuristic. I've now scheduled all tasks, and I'm calculating the makespan.\n\n\n\n",
+          "reasoning_details": [
+            {
+              "type": "reasoning.text",
+              "text": "**Analyzing Task Scheduling**\n\nI'm currently focused on determining the minimum time to complete a series of tasks with two identical executors. I have to create a schedule that factors in task durations and dependencies.  I've defined the tasks: A=3, B=5, C=4 (depends on A), D=6 (depends on A), and E=4. The scheduling is the priority now.\n\n\n",
+              "format": "google-gemini-v1",
+              "index": 0
+            },
+            {
+              "type": "reasoning.text",
+              "text": "**Optimizing Task Allocation**\n\nI'm now diving into scheduling tasks A-F with their dependencies, seeking the shortest completion time with two executors. I've sketched a tentative plan. Tasks A and B start concurrently. Now, I'm at the scheduling fork where processor 1 can take C or D. I'm building out scenarios now, focusing on the interactions between tasks as they complete and release successors.\n\n\n",
+              "format": "google-gemini-v1",
+              "index": 0
+            },
+            {
+              "type": "reasoning.text",
+              "text": "**Evaluating Task Sequences**\n\nI've sketched a possible schedule, now I'm calculating the completion time. It involves assigning tasks A-F with their durations and dependencies to two executors. I'm building out the timeline to confirm the minimum finish time using that heuristic. I've now scheduled all tasks, and I'm calculating the makespan.\n\n\n\n",
+              "format": "google-gemini-v1",
+              "index": 0
+            }
+          ]
+        },
+        "finish_reason": "stop",
+        "logprobs": null
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 147,
+      "completion_tokens": 781,
+      "total_tokens": 928,
+      "completion_tokens_details": {
+        "reasoning_tokens": 777,
+        "audio_tokens": 0,
+        "image_tokens": 0,
+        "accepted_prediction_tokens": null,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "server_tool_use": null,
+      "cost_rub": 0.11729593,
+      "cost": 0.11729593,
+      "plugins": null
+    }
+  },
+  "content": "{\"answer\": \"14\"}",
+  "finish_reason": "stop",
+  "complete": true,
+  "actual_model": "google/gemini-2.5-flash",
+  "provider": null,
+  "total_tokens": 928,
+  "prompt_tokens": 147,
+  "completion_tokens": 781,
+  "reasoning_tokens": 777,
+  "cost_rub": 0.11729593,
+  "http_status": 200,
+  "api_error": null,
+  "duration_seconds": 4.66949,
+  "tier": "medium",
+  "model": "google/gemini-2.5-flash",
+  "task_id": "T8",
+  "repeat": 3,
+  "received": true,
+  "format_valid": true,
+  "answer_correct": true,
+  "parsed": {
+    "answer": "14"
+  },
+  "failure": null
+}

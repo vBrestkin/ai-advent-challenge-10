@@ -1,0 +1,136 @@
+{
+  "request": {
+    "model": "google/gemini-2.5-flash-lite",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Реши задачу. Верни только JSON по схеме API: answer — строка с ответом в формате условия, без объяснения."
+      },
+      {
+        "role": "user",
+        "content": "Есть два одинаковых исполнителя; каждый выполняет не более одной задачи одновременно. Задачу нельзя прерывать или выполнять вдвоём. Переключение мгновенно, начало времени 0. Длительности и предшественники: A=3 (нет), B=5 (нет), C=4 (A), D=6 (A), E=4 (B,C), F=3 (D,E). Задача может начаться только после завершения всех предшественников. Найди минимальное время завершения всех задач. Ответ — целое число."
+      }
+    ],
+    "stream": false,
+    "provider": {
+      "only": [
+        "google-ai-studio/flex"
+      ],
+      "allow_fallbacks": false,
+      "require_parameters": true,
+      "max_price": {
+        "prompt": 5.99346625,
+        "completion": 23.973865
+      }
+    },
+    "max_tokens": 4096,
+    "temperature": 0.7,
+    "reasoning": {
+      "enabled": true,
+      "max_tokens": 1024
+    },
+    "response_format": {
+      "type": "json_schema",
+      "json_schema": {
+        "name": "solution",
+        "strict": true,
+        "schema": {
+          "type": "object",
+          "properties": {
+            "answer": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "answer"
+          ],
+          "additionalProperties": false
+        }
+      }
+    }
+  },
+  "response": {
+    "id": "gen_2230832624007909377",
+    "object": "chat.completion",
+    "created": 1794175948,
+    "model": "google/gemini-2.5-flash-lite",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"answer\": \"14\"\n}",
+          "reasoning": "**Defining Task Scheduling**\n\nI'm currently focused on defining the initial setup. I've listed the tasks, their durations, and their dependencies, which right now are quite simple: two tasks, A and B, both with no predecessors, and their durations. My core task is to figure out the minimal completion time.\n\n\n**Optimizing Task Assignment**\n\nI'm now diving into the scheduling logic, and have the first steps laid out. I have considered a concrete set of tasks: A, B, C, D, E, and F, with dependencies and durations. My goal is to minimize the total completion time with two workers. I am starting to track worker timelines and task completion times, step-by-step. At the first step, I assigned A to Worker 1 and B to Worker 2. After Worker 1 finishes A, C and D are now ready.\n\n\n**Analyzing Task Execution**\n\nI've continued tracing the task execution, now at time 11 with Worker 2 newly available. I've assigned tasks up to this point: A to Worker 1, B to Worker 2 at time 0; C to Worker 1, and D to Worker 2 at time 3 and 5, and E to Worker 1 at time 7. Worker 1 is now busy with E.  My attention is on Worker 2's options at time 11 and how to minimize the remaining overall time.\n\n\n",
+          "reasoning_details": [
+            {
+              "type": "reasoning.text",
+              "text": "**Defining Task Scheduling**\n\nI'm currently focused on defining the initial setup. I've listed the tasks, their durations, and their dependencies, which right now are quite simple: two tasks, A and B, both with no predecessors, and their durations. My core task is to figure out the minimal completion time.\n\n\n",
+              "format": "google-gemini-v1",
+              "index": 0
+            },
+            {
+              "type": "reasoning.text",
+              "text": "**Optimizing Task Assignment**\n\nI'm now diving into the scheduling logic, and have the first steps laid out. I have considered a concrete set of tasks: A, B, C, D, E, and F, with dependencies and durations. My goal is to minimize the total completion time with two workers. I am starting to track worker timelines and task completion times, step-by-step. At the first step, I assigned A to Worker 1 and B to Worker 2. After Worker 1 finishes A, C and D are now ready.\n\n\n",
+              "format": "google-gemini-v1",
+              "index": 0
+            },
+            {
+              "type": "reasoning.text",
+              "text": "**Analyzing Task Execution**\n\nI've continued tracing the task execution, now at time 11 with Worker 2 newly available. I've assigned tasks up to this point: A to Worker 1, B to Worker 2 at time 0; C to Worker 1, and D to Worker 2 at time 3 and 5, and E to Worker 1 at time 7. Worker 1 is now busy with E.  My attention is on Worker 2's options at time 11 and how to minimize the remaining overall time.\n\n\n",
+              "format": "google-gemini-v1",
+              "index": 0
+            }
+          ]
+        },
+        "finish_reason": "stop",
+        "logprobs": null
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 147,
+      "completion_tokens": 689,
+      "total_tokens": 836,
+      "completion_tokens_details": {
+        "reasoning_tokens": 680,
+        "audio_tokens": 0,
+        "image_tokens": 0,
+        "accepted_prediction_tokens": null,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "server_tool_use": null,
+      "cost_rub": 0.0170545,
+      "cost": 0.0170545,
+      "plugins": null
+    }
+  },
+  "content": "{\n  \"answer\": \"14\"\n}",
+  "finish_reason": "stop",
+  "complete": true,
+  "actual_model": "google/gemini-2.5-flash-lite",
+  "provider": null,
+  "total_tokens": 836,
+  "prompt_tokens": 147,
+  "completion_tokens": 689,
+  "reasoning_tokens": 680,
+  "cost_rub": 0.0170545,
+  "http_status": 200,
+  "api_error": null,
+  "duration_seconds": 2.974191,
+  "tier": "small",
+  "model": "google/gemini-2.5-flash-lite",
+  "task_id": "T8",
+  "repeat": 3,
+  "received": true,
+  "format_valid": true,
+  "answer_correct": true,
+  "parsed": {
+    "answer": "14"
+  },
+  "failure": null
+}
