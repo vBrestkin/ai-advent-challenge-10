@@ -1,0 +1,5 @@
+{
+  "url": "https://modelscope.cn/models/Qwen/Qwen3-14B/resolve/master/tokenizer.json",
+  "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+  "method": "qwen3-json-estimate"
+}

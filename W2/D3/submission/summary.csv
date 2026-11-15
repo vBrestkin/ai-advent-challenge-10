@@ -1,0 +1,6 @@
+﻿scenario,turns,successful_turns,calls,attempts,prompt_tokens,unknown_prompt_tokens,completion_tokens,unknown_completion_tokens,total_tokens,unknown_total_tokens,reasoning_tokens,unknown_reasoning_tokens,cost_rub,unknown_costs,duration_seconds,unknown_reserve_rub
+pilot_tools,1,1,3,3,2735,0,105,0,2840,0,0,0,0.04170011,0,6.599685,0
+short,1,1,1,1,844,0,33,0,877,0,0,0,0.01288526,0,1.376386,0
+long,8,8,8,8,69592,0,48,0,69640,0,0,0,0.98675627,0,8.508025,0
+overflow,1,0,1,1,,1,,1,,1,,1,,1,0.242932,5.7407720321
+local_guard,1,0,0,1,,0,,0,,0,,0,,0,0,0

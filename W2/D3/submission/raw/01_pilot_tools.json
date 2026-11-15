@@ -1,0 +1,295 @@
+{
+  "scenario": "pilot_tools",
+  "session_id": "5bd2d6a97ba44e0786f5fab4b68e6562",
+  "prompt": "Найди сумму заказа A-104 и рассчитай цену со скидкой 15%.",
+  "http_status": 200,
+  "response": {
+    "session_id": "5bd2d6a97ba44e0786f5fab4b68e6562",
+    "answer": "Сумма заказа A-104 составляет 2390 RUB. Цена со скидкой 15% равна 2031.50 RUB.",
+    "steps": [
+      {
+        "id": "call_f505",
+        "tool": "find_order",
+        "arguments": {
+          "order_id": "A-104"
+        },
+        "result": {
+          "amount": "2390",
+          "currency": "RUB"
+        }
+      },
+      {
+        "id": "call_867b",
+        "tool": "calculate",
+        "arguments": {
+          "operation": "multiply",
+          "a": "2390",
+          "b": "0.85"
+        },
+        "result": {
+          "result": "2031.50"
+        }
+      }
+    ],
+    "llm_calls": 3,
+    "metrics": {
+      "calls": 3,
+      "attempts": 3,
+      "prompt_tokens": 2735,
+      "unknown_prompt_tokens": 0,
+      "completion_tokens": 105,
+      "unknown_completion_tokens": 0,
+      "total_tokens": 2840,
+      "unknown_total_tokens": 0,
+      "reasoning_tokens": 0,
+      "unknown_reasoning_tokens": 0,
+      "cost_rub": 0.04170011,
+      "unknown_costs": 0,
+      "duration_seconds": 6.599685,
+      "unknown_reserve_rub": 0
+    },
+    "history_tokens_estimate": 262,
+    "counter_method": "qwen3-json-estimate"
+  },
+  "prompt_tokens_local": 26,
+  "request_tokens_estimate": 278,
+  "history_before": [],
+  "history_after": [
+    {
+      "role": "user",
+      "content": "Найди сумму заказа A-104 и рассчитай цену со скидкой 15%."
+    },
+    {
+      "role": "assistant",
+      "content": null,
+      "tool_calls": [
+        {
+          "id": "call_f505",
+          "type": "function",
+          "function": {
+            "name": "find_order",
+            "arguments": "{\"order_id\": \"A-104\"}"
+          }
+        }
+      ]
+    },
+    {
+      "role": "tool",
+      "tool_call_id": "call_f505",
+      "content": "{\"amount\": \"2390\", \"currency\": \"RUB\"}"
+    },
+    {
+      "role": "assistant",
+      "content": null,
+      "tool_calls": [
+        {
+          "id": "call_867b",
+          "type": "function",
+          "function": {
+            "name": "calculate",
+            "arguments": "{\"operation\": \"multiply\", \"a\": \"2390\", \"b\": \"0.85\"}"
+          }
+        }
+      ]
+    },
+    {
+      "role": "tool",
+      "tool_call_id": "call_867b",
+      "content": "{\"result\": \"2031.50\"}"
+    },
+    {
+      "role": "assistant",
+      "content": "Сумма заказа A-104 составляет 2390 RUB. Цена со скидкой 15% равна 2031.50 RUB."
+    }
+  ],
+  "calls": [
+    {
+      "prompt_tokens": 856,
+      "completion_tokens": 25,
+      "total_tokens": 881,
+      "cost_rub": 0.01282862,
+      "reasoning_tokens": 0,
+      "usage_warning": null,
+      "status": "complete",
+      "sent": true,
+      "request_tokens_estimate": 278,
+      "counter_method": "qwen3-json-estimate",
+      "context_limit": 40960,
+      "http_status": 200,
+      "response": {
+        "id": "gen_2233192199768379393",
+        "object": "chat.completion",
+        "created": 1794738514,
+        "model": "qwen/qwen3-14b",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": null,
+              "tool_calls": [
+                {
+                  "id": "call_f505",
+                  "type": "function",
+                  "function": {
+                    "name": "find_order",
+                    "arguments": "{\"order_id\": \"A-104\"}"
+                  }
+                }
+              ]
+            },
+            "finish_reason": "tool_calls",
+            "logprobs": null
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 856,
+          "completion_tokens": 25,
+          "total_tokens": 881,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "accepted_prediction_tokens": null,
+            "rejected_prediction_tokens": null
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "server_tool_use": null,
+          "cost_rub": 0.01282862,
+          "cost": 0.01282862,
+          "plugins": null
+        }
+      },
+      "request_sha256": "4f22edb4aee37ba63433a979aca23268ee648df01bca3f39a29e09f96848f382",
+      "budget_reserve_rub": 0.0,
+      "duration_seconds": 2.451505
+    },
+    {
+      "prompt_tokens": 909,
+      "completion_tokens": 37,
+      "total_tokens": 946,
+      "cost_rub": 0.01391892,
+      "reasoning_tokens": 0,
+      "usage_warning": null,
+      "status": "complete",
+      "sent": true,
+      "request_tokens_estimate": 359,
+      "counter_method": "qwen3-json-estimate",
+      "context_limit": 40960,
+      "http_status": 200,
+      "response": {
+        "id": "gen_2233192210238410753",
+        "object": "chat.completion",
+        "created": 1794738515,
+        "model": "qwen/qwen3-14b",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": null,
+              "tool_calls": [
+                {
+                  "id": "call_867b",
+                  "type": "function",
+                  "function": {
+                    "name": "calculate",
+                    "arguments": "{\"operation\": \"multiply\", \"a\": \"2390\", \"b\": \"0.85\"}"
+                  }
+                }
+              ]
+            },
+            "finish_reason": "tool_calls",
+            "logprobs": null
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 909,
+          "completion_tokens": 37,
+          "total_tokens": 946,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "accepted_prediction_tokens": null,
+            "rejected_prediction_tokens": null
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "server_tool_use": null,
+          "cost_rub": 0.01391892,
+          "cost": 0.01391892,
+          "plugins": null
+        }
+      },
+      "request_sha256": "c1e41d36dc00756ce2e1953e2a16e17c23f4adbe44ae27ae9063cdd058ff2abb",
+      "budget_reserve_rub": 0.0,
+      "duration_seconds": 1.340003
+    },
+    {
+      "prompt_tokens": 970,
+      "completion_tokens": 43,
+      "total_tokens": 1013,
+      "cost_rub": 0.01495257,
+      "reasoning_tokens": 0,
+      "usage_warning": null,
+      "status": "complete",
+      "sent": true,
+      "request_tokens_estimate": 450,
+      "counter_method": "qwen3-json-estimate",
+      "context_limit": 40960,
+      "http_status": 200,
+      "response": {
+        "id": "gen_2233192215804383233",
+        "object": "chat.completion",
+        "created": 1794738518,
+        "model": "qwen/qwen3-14b",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "Сумма заказа A-104 составляет 2390 RUB. Цена со скидкой 15% равна 2031.50 RUB."
+            },
+            "finish_reason": "stop",
+            "logprobs": null
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 970,
+          "completion_tokens": 43,
+          "total_tokens": 1013,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "audio_tokens": 0,
+            "image_tokens": 0,
+            "accepted_prediction_tokens": null,
+            "rejected_prediction_tokens": null
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "server_tool_use": null,
+          "cost_rub": 0.01495257,
+          "cost": 0.01495257,
+          "plugins": null
+        }
+      },
+      "request_sha256": "41c805c9761e3a95f7cc35fa0a7a6972ad64167d96591f7b4433bd8444d410ed",
+      "budget_reserve_rub": 0.0,
+      "duration_seconds": 2.808177
+    }
+  ]
+}
