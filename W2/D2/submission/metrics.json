@@ -1,0 +1,9 @@
+{
+  "calls": 3,
+  "cost_rub_known": 0.01334412,
+  "unknown_costs": 0,
+  "total_tokens": 1185,
+  "prompt_tokens": 844,
+  "completion_tokens": 341,
+  "reasoning_tokens": 281
+}

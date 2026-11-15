@@ -1,0 +1,42 @@
+<!doctype html><html lang="ru"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Контекст агента · День 7</title>
+<style>body{margin:0;background:#f5f4ef;color:#202c2a;font:16px system-ui}header{padding:24px 5%;border-bottom:1px solid #ccd2cc}header h1{margin:0;font-size:26px}small{color:#58685f}main{display:grid;grid-template-columns:200px 1fr 330px;gap:24px;margin:30px 5%}button{cursor:pointer;border:0;background:#245a48;color:white;padding:12px;border-radius:8px}textarea{box-sizing:border-box;width:100%;font:inherit;padding:12px;border:1px solid #b8c2b9;border-radius:8px}article,details{padding:16px;background:white;border-radius:10px;margin-bottom:12px;overflow-wrap:anywhere}pre{white-space:pre-wrap;font-size:13px}#sessions button{display:block;margin-top:10px;width:100%;background:#dce5dc;color:#203e30}#status{min-height:28px;color:#864332}#chat{min-height:180px}form button{margin-top:10px}button:disabled{opacity:.5;cursor:wait}@media(max-width:900px){main{grid-template-columns:1fr}aside{order:3}}</style>
+<header><small>AI ADVENT · W2 / D2</small><h1>Агент помнит разговор</h1><p>Диалоги и результаты инструментов сохраняются в SQLite</p></header>
+<main><nav><button id="new">＋ Новый разговор</button><div id="sessions"></div><p><small>Разговоры восстанавливаются после перезапуска сервера.</small></p></nav><section><div id="chat"></div><p id="status" role="status"></p><form><textarea id="input" rows="3" placeholder="Найди сумму заказа A-104 и рассчитай цену со скидкой 15%" required maxlength="20000"></textarea><button id="send">Отправить</button></form></section><aside><h3>Шаги агента</h3><small>find_order · calculate</small><div id="steps"></div><details><summary>Сохранённый контекст</summary><pre id="context">Выберите разговор</pre></details></aside></main>
+<script>
+let sid=localStorage.getItem('agent7.session')||'',busy=false; const $=s=>document.querySelector(s);
+function node(tag,text){let n=document.createElement(tag);n.textContent=text;return n}
+async function api(path,options){const r=await fetch(path,options);const d=await r.json();if(!r.ok)throw Error(typeof d.detail==='string'?d.detail:'Проверьте введённые данные.');return d}
+function render(turn){let a=node('article','');a.append(node('small','Вы'),node('p',turn.user),node('small','Агент'),node('p',turn.answer));$('#chat').append(a);$('#steps').replaceChildren();for(let s of turn.steps){let d=document.createElement('details');d.open=true;d.append(node('summary',s.tool),node('pre',JSON.stringify({arguments:s.arguments,result:s.result},null,2)));$('#steps').append(d)}if(!turn.steps.length)$('#steps').append(node('p','Ответ сформирован без инструментов.'))}
+async function loadSession(id){
+    if(busy)return;
+    busy=true;
+    $('#send').disabled=true;
+    try{
+        const data=await api('/api/sessions/'+id);
+        sid=id;
+        localStorage.setItem('agent7.session',sid);
+        $('#chat').replaceChildren();
+        $('#steps').replaceChildren();
+        data.turns.forEach(render);
+        $('#context').textContent=JSON.stringify(data.messages,null,2);
+        const failed=data.attempts.filter(a=>a.status!=='complete');
+        $('#status').textContent=failed.length
+            ? 'Есть незавершённые попытки ('+failed.length+'). Успешная история восстановлена.'
+            : 'Разговор восстановлен из SQLite';
+    }catch(error){$('#status').textContent=error.message}
+    finally{busy=false;$('#send').disabled=false}
+}
+async function sessions(){
+    const list=await api('/api/sessions');
+    $('#sessions').replaceChildren();
+    for(const session of list){
+        const button=node('button',session.title);
+        button.onclick=()=>loadSession(session.id);
+        $('#sessions').append(button);
+    }
+    return list;
+}
+$('#new').onclick=()=>{if(busy)return;sid='';localStorage.removeItem('agent7.session');$('#context').textContent='Новый разговор';$('#chat').replaceChildren();$('#steps').replaceChildren();$('#status').textContent='';$('#input').focus()};
+$('form').onsubmit=async e=>{e.preventDefault();if(busy)return;let message=$('#input').value.trim();if(!message)return;busy=true;$('#send').disabled=true;$('#status').textContent='Агент выполняет запрос…';try{let d=await api('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message,session_id:sid})});sid=d.session_id;localStorage.setItem('agent7.session',sid);render({user:message,...d});$('#input').value='';$('#status').textContent='Готово';await sessions();const state=await api('/api/sessions/'+sid);$('#context').textContent=JSON.stringify(state.messages,null,2)}catch(e){$('#status').textContent=e.message}finally{busy=false;$('#send').disabled=false}};
+sessions().then(list=>{if(sid&&list.some(s=>s.id===sid))return loadSession(sid);sid='';localStorage.removeItem('agent7.session')}).catch(e=>$('#status').textContent=e.message);
+</script></html>
