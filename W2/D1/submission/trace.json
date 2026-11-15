@@ -1,0 +1,1113 @@
+[
+  {
+    "timestamp": "2026-11-12T15:51:28+03:00",
+    "event": "START",
+    "data": "Запуск agent6"
+  },
+  {
+    "timestamp": "2026-11-12T15:51:28+03:00",
+    "event": "HTTP",
+    "data": {
+      "method": "POST",
+      "path": "/api/chat"
+    }
+  },
+  {
+    "timestamp": "2026-11-12T15:51:28+03:00",
+    "event": "INPUT",
+    "data": {
+      "session_id": "68468a41556f43a2b41ccfcb3c67017f",
+      "message": "Объясни, что такое JSON, в одном предложении."
+    }
+  },
+  {
+    "timestamp": "2026-11-12T15:51:28+03:00",
+    "event": "REQUEST",
+    "data": {
+      "model": "google/gemini-2.5-flash-lite",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Ты помощник с учебными заказами. Для сумм заказов обращайся к find_order, для вычислений к calculate. Используй реальные результаты инструментов. Если данных недостаточно, уточни вопрос. Отвечай по-русски."
+        },
+        {
+          "role": "user",
+          "content": "Объясни, что такое JSON, в одном предложении."
+        }
+      ],
+      "tools": [
+        {
+          "type": "function",
+          "function": {
+            "name": "find_order",
+            "description": "Найти сумму учебного заказа по ID. Валюта RUB.",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "order_id": {
+                  "type": "string",
+                  "maxLength": 50
+                }
+              },
+              "required": [
+                "order_id"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        {
+          "type": "function",
+          "function": {
+            "name": "calculate",
+            "description": "Точная арифметика. Передавай числа строками. Используй для всех вычислений.",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "operation": {
+                  "type": "string",
+                  "enum": [
+                    "add",
+                    "subtract",
+                    "multiply",
+                    "divide"
+                  ]
+                },
+                "a": {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                "b": {
+                  "type": "string",
+                  "maxLength": 40
+                }
+              },
+              "required": [
+                "operation",
+                "a",
+                "b"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      ],
+      "tool_choice": "auto",
+      "stream": false,
+      "temperature": 0.2,
+      "max_tokens": 4096,
+      "reasoning": {
+        "enabled": true,
+        "max_tokens": 1024
+      },
+      "provider": {
+        "only": [
+          "google-ai-studio/flex"
+        ],
+        "allow_fallbacks": false,
+        "require_parameters": true
+      }
+    }
+  },
+  {
+    "timestamp": "2026-11-12T15:51:30+03:00",
+    "event": "RESPONSE",
+    "data": {
+      "status": 200,
+      "body": "{\"id\":\"gen_2232141009711796225\",\"object\":\"chat.completion\",\"created\":1794487890,\"model\":\"google/gemini-2.5-flash-lite\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"JSON (JavaScript Object Notation) — это легковесный формат обмена данными, который легко читается и пишется людьми и легко парсится и генерируется машинами.\",\"reasoning\":\"**Define JSON Quickly**\\n\\nI am defining JSON for the user in a single sentence, as requested. The task is straightforward: provide a succinct, knowledge-based definition. This approach requires no tools; it's a direct explanation, and I'm aiming for clarity and conciseness in my response.\\n\\n\\n\",\"reasoning_details\":[{\"type\":\"reasoning.text\",\"text\":\"**Define JSON Quickly**\\n\\nI am defining JSON for the user in a single sentence, as requested. The task is straightforward: provide a succinct, knowledge-based definition. This approach requires no tools; it's a direct explanation, and I'm aiming for clarity and conciseness in my response.\\n\\n\\n\",\"format\":\"google-gemini-v1\",\"index\":0},{\"type\":\"reasoning.encrypted\",\"data\":\"CiwBaRR9E5wkuQRVe20FkOnH+Zl6LpEBI1Tz4CwuLBvVlFfPepoArxOI5P+q/Ap5AWkUfRPCJz1nIx0ePbkpb+V+xMu46iP79WyWpQOgLEXt24HeeFfim8mytzrcxM3urjIlt4CQmXIVNyPnFbHlYtCcS5QlUYmxk10oj6r4xBxVo8EFx6/9uKPQW+ilC+sgmlO39Ra9A5ia+bGMUc5QTEFAD/aYzUWysQpvAWkUfRN0vLSA/13mkT41eq/jlRgFm4hZqpI7o6flU7XRlt77hdF8bs3wRSUhK269B5lNSFnBATfT0ZqtOWYzDoHyfIJbrlN1vD9bF7Zaf8ZWzAOJgDNnNX3STuqqaeBoOCceEVcl+QsedGCZ/wDq\",\"format\":\"google-gemini-v1\",\"index\":0}]},\"finish_reason\":\"stop\",\"logprobs\":null}],\"usage\":{\"prompt_tokens\":202,\"completion_tokens\":73,\"total_tokens\":275,\"completion_tokens_details\":{\"reasoning_tokens\":37,\"audio_tokens\":0,\"image_tokens\":0,\"accepted_prediction_tokens\":null,\"rejected_prediction_tokens\":null},\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"server_tool_use\":null,\"cost_rub\":0.00297237,\"cost\":0.00297237,\"plugins\":null}}"
+    }
+  },
+  {
+    "timestamp": "2026-11-12T15:51:30+03:00",
+    "event": "USAGE",
+    "data": {
+      "prompt_tokens": 202,
+      "completion_tokens": 73,
+      "total_tokens": 275,
+      "completion_tokens_details": {
+        "reasoning_tokens": 37,
+        "audio_tokens": 0,
+        "image_tokens": 0,
+        "accepted_prediction_tokens": null,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "server_tool_use": null,
+      "cost_rub": 0.00297237,
+      "cost": 0.00297237,
+      "plugins": null
+    }
+  },
+  {
+    "timestamp": "2026-11-12T15:51:30+03:00",
+    "event": "DURATION",
+    "data": 1.936805
+  },
+  {
+    "timestamp": "2026-11-12T15:51:30+03:00",
+    "event": "OUTPUT",
+    "data": {
+      "user": "Объясни, что такое JSON, в одном предложении.",
+      "answer": "JSON (JavaScript Object Notation) — это легковесный формат обмена данными, который легко читается и пишется людьми и легко парсится и генерируется машинами.",
+      "steps": []
+    }
+  },
+  {
+    "timestamp": "2026-11-12T15:51:30+03:00",
+    "event": "HTTP_STATUS",
+    "data": 200
+  },
+  {
+    "timestamp": "2026-11-12T15:51:30+03:00",
+    "event": "HTTP",
+    "data": {
+      "method": "POST",
+      "path": "/api/chat"
+    }
+  },
+  {
+    "timestamp": "2026-11-12T15:51:30+03:00",
+    "event": "INPUT",
+    "data": {
+      "session_id": "5b65fa45b16344ab97a3b6c1c3eb94ac",
+      "message": "Посчитай 347 умножить на 29. Используй калькулятор."
+    }
+  },
+  {
+    "timestamp": "2026-11-12T15:51:30+03:00",
+    "event": "REQUEST",
+    "data": {
+      "model": "google/gemini-2.5-flash-lite",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Ты помощник с учебными заказами. Для сумм заказов обращайся к find_order, для вычислений к calculate. Используй реальные результаты инструментов. Если данных недостаточно, уточни вопрос. Отвечай по-русски."
+        },
+        {
+          "role": "user",
+          "content": "Посчитай 347 умножить на 29. Используй калькулятор."
+        }
+      ],
+      "tools": [
+        {
+          "type": "function",
+          "function": {
+            "name": "find_order",
+            "description": "Найти сумму учебного заказа по ID. Валюта RUB.",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "order_id": {
+                  "type": "string",
+                  "maxLength": 50
+                }
+              },
+              "required": [
+                "order_id"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        {
+          "type": "function",
+          "function": {
+            "name": "calculate",
+            "description": "Точная арифметика. Передавай числа строками. Используй для всех вычислений.",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "operation": {
+                  "type": "string",
+                  "enum": [
+                    "add",
+                    "subtract",
+                    "multiply",
+                    "divide"
+                  ]
+                },
+                "a": {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                "b": {
+                  "type": "string",
+                  "maxLength": 40
+                }
+              },
+              "required": [
+                "operation",
+                "a",
+                "b"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      ],
+      "tool_choice": "auto",
+      "stream": false,
+      "temperature": 0.2,
+      "max_tokens": 4096,
+      "reasoning": {
+        "enabled": true,
+        "max_tokens": 1024
+      },
+      "provider": {
+        "only": [
+          "google-ai-studio/flex"
+        ],
+        "allow_fallbacks": false,
+        "require_parameters": true
+      }
+    }
+  },
+  {
+    "timestamp": "2026-11-12T15:51:32+03:00",
+    "event": "RESPONSE",
+    "data": {
+      "status": 200,
+      "body": "{\"id\":\"gen_2232141016547069953\",\"object\":\"chat.completion\",\"created\":1794487892,\"model\":\"google/gemini-2.5-flash-lite\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":null,\"tool_calls\":[{\"id\":\"tool_calculate_ItDtatKoKJu52oij3wEF\",\"type\":\"function\",\"function\":{\"name\":\"calculate\",\"arguments\":\"{\\\"operation\\\":\\\"multiply\\\",\\\"a\\\":\\\"347\\\",\\\"b\\\":\\\"29\\\"}\"}}],\"reasoning\":\"**Initiating Calculation Process**\\n\\nI'm setting up the multiplication operation now. I'm going to feed the numbers 347 and 29 into the calculator tool, setting the operation to multiply. I will use the calculator to generate the exact answer. I will communicate the results back to the user when I'm done.\\n\\n\\n**Confirming Multiplication Parameters**\\n\\nI've confirmed the parameters for the calculation. I'm going to set `operation` to \\\"multiply,\\\" and numbers `a` and `b` to strings \\\"347\\\" and \\\"29,\\\" respectively. The tool requires string inputs. The calculation is set to begin imminently.\\n\\n\\n\",\"reasoning_details\":[{\"type\":\"reasoning.text\",\"text\":\"**Initiating Calculation Process**\\n\\nI'm setting up the multiplication operation now. I'm going to feed the numbers 347 and 29 into the calculator tool, setting the operation to multiply. I will use the calculator to generate the exact answer. I will communicate the results back to the user when I'm done.\\n\\n\\n\",\"format\":\"google-gemini-v1\",\"index\":0},{\"type\":\"reasoning.text\",\"text\":\"**Confirming Multiplication Parameters**\\n\\nI've confirmed the parameters for the calculation. I'm going to set `operation` to \\\"multiply,\\\" and numbers `a` and `b` to strings \\\"347\\\" and \\\"29,\\\" respectively. The tool requires string inputs. The calculation is set to begin imminently.\\n\\n\\n\",\"format\":\"google-gemini-v1\",\"index\":0},{\"type\":\"reasoning.encrypted\",\"data\":\"Ci8BaRR9Ew4MEgOFE7z1eo01vYUN0+m0a3OMOjuYbhJ1eDHQYopfPi96DXeGo+AJ3gpfAWkUfRMRKnleuleUO879Rpj1Pke56w1+uGmV9f6mVmyoOcIY8PBr41nr8cVsRIwAn5+LHK2YDHnd87rtiCngJtdYMJgOLdD85gEM79/WyAKqlNq7lmLkcANpHmg9Z0gK9wEBaRR9E/vDNp8urRce1DxGi4eQo5724caelFcrAawxbkYNBNaflDbugOssSODJKJLjC+05gzvsEtsmYWY+sG/4gVbEpln+RqgBufb09SC7FzD8XXqdrj1fQ8jyCHabRyZ4UiZPrm1lPHkZQaZboHI+XpbscL1wFCnsOqtxeza2Bbzo24OBNX14uN5ZJGsgzXbTDHPlXQghtqP2BeiKoe3ffATiGPQiD8wPxk4jfGVFFJl0ufiaBgZb+nSlBBEB2llgIJ1Zdghq9cy8WNzuYBs11dug7Upx6gE3IzxLlUy9xEmUc0rZwZdcJ9Tfg0DIOU49SA73b5mlClABaRR9E2BwudWmnkiOA+HI9xGEYRNfaQmLkvTBy5AM8w9gO/HrES7O1ZICgH9sR5pegPeb/qIHaUyiiZ0hZw02iT5M/3qcWxjqO84zK27EdQ==\",\"format\":\"google-gemini-v1\",\"id\":\"tool_calculate_ItDtatKoKJu52oij3wEF\",\"index\":0}]},\"finish_reason\":\"tool_calls\",\"logprobs\":null}],\"usage\":{\"prompt_tokens\":209,\"completion_tokens\":107,\"total_tokens\":316,\"completion_tokens_details\":{\"reasoning_tokens\":83,\"audio_tokens\":0,\"image_tokens\":0,\"accepted_prediction_tokens\":null,\"rejected_prediction_tokens\":null},\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"server_tool_use\":null,\"cost_rub\":0.00383279,\"cost\":0.00383279,\"plugins\":null}}"
+    }
+  },
+  {
+    "timestamp": "2026-11-12T15:51:32+03:00",
+    "event": "USAGE",
+    "data": {
+      "prompt_tokens": 209,
+      "completion_tokens": 107,
+      "total_tokens": 316,
+      "completion_tokens_details": {
+        "reasoning_tokens": 83,
+        "audio_tokens": 0,
+        "image_tokens": 0,
+        "accepted_prediction_tokens": null,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "server_tool_use": null,
+      "cost_rub": 0.00383279,
+      "cost": 0.00383279,
+      "plugins": null
+    }
+  },
+  {
+    "timestamp": "2026-11-12T15:51:32+03:00",
+    "event": "DURATION",
+    "data": 1.763172
+  },
+  {
+    "timestamp": "2026-11-12T15:51:32+03:00",
+    "event": "TOOL",
+    "data": {
+      "id": "tool_calculate_ItDtatKoKJu52oij3wEF",
+      "tool": "calculate",
+      "arguments": {
+        "operation": "multiply",
+        "a": "347",
+        "b": "29"
+      },
+      "result": {
+        "result": "10063"
+      }
+    }
+  },
+  {
+    "timestamp": "2026-11-12T15:51:32+03:00",
+    "event": "REQUEST",
+    "data": {
+      "model": "google/gemini-2.5-flash-lite",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Ты помощник с учебными заказами. Для сумм заказов обращайся к find_order, для вычислений к calculate. Используй реальные результаты инструментов. Если данных недостаточно, уточни вопрос. Отвечай по-русски."
+        },
+        {
+          "role": "user",
+          "content": "Посчитай 347 умножить на 29. Используй калькулятор."
+        },
+        {
+          "role": "assistant",
+          "content": null,
+          "tool_calls": [
+            {
+              "id": "tool_calculate_ItDtatKoKJu52oij3wEF",
+              "type": "function",
+              "function": {
+                "name": "calculate",
+                "arguments": "{\"operation\":\"multiply\",\"a\":\"347\",\"b\":\"29\"}"
+              }
+            }
+          ],
+          "reasoning": "**Initiating Calculation Process**\n\nI'm setting up the multiplication operation now. I'm going to feed the numbers 347 and 29 into the calculator tool, setting the operation to multiply. I will use the calculator to generate the exact answer. I will communicate the results back to the user when I'm done.\n\n\n**Confirming Multiplication Parameters**\n\nI've confirmed the parameters for the calculation. I'm going to set `operation` to \"multiply,\" and numbers `a` and `b` to strings \"347\" and \"29,\" respectively. The tool requires string inputs. The calculation is set to begin imminently.\n\n\n",
+          "reasoning_details": [
+            {
+              "type": "reasoning.text",
+              "text": "**Initiating Calculation Process**\n\nI'm setting up the multiplication operation now. I'm going to feed the numbers 347 and 29 into the calculator tool, setting the operation to multiply. I will use the calculator to generate the exact answer. I will communicate the results back to the user when I'm done.\n\n\n",
+              "format": "google-gemini-v1",
+              "index": 0
+            },
+            {
+              "type": "reasoning.text",
+              "text": "**Confirming Multiplication Parameters**\n\nI've confirmed the parameters for the calculation. I'm going to set `operation` to \"multiply,\" and numbers `a` and `b` to strings \"347\" and \"29,\" respectively. The tool requires string inputs. The calculation is set to begin imminently.\n\n\n",
+              "format": "google-gemini-v1",
+              "index": 0
+            },
+            {
+              "type": "reasoning.encrypted",
+              "data": "Ci8BaRR9Ew4MEgOFE7z1eo01vYUN0+m0a3OMOjuYbhJ1eDHQYopfPi96DXeGo+AJ3gpfAWkUfRMRKnleuleUO879Rpj1Pke56w1+uGmV9f6mVmyoOcIY8PBr41nr8cVsRIwAn5+LHK2YDHnd87rtiCngJtdYMJgOLdD85gEM79/WyAKqlNq7lmLkcANpHmg9Z0gK9wEBaRR9E/vDNp8urRce1DxGi4eQo5724caelFcrAawxbkYNBNaflDbugOssSODJKJLjC+05gzvsEtsmYWY+sG/4gVbEpln+RqgBufb09SC7FzD8XXqdrj1fQ8jyCHabRyZ4UiZPrm1lPHkZQaZboHI+XpbscL1wFCnsOqtxeza2Bbzo24OBNX14uN5ZJGsgzXbTDHPlXQghtqP2BeiKoe3ffATiGPQiD8wPxk4jfGVFFJl0ufiaBgZb+nSlBBEB2llgIJ1Zdghq9cy8WNzuYBs11dug7Upx6gE3IzxLlUy9xEmUc0rZwZdcJ9Tfg0DIOU49SA73b5mlClABaRR9E2BwudWmnkiOA+HI9xGEYRNfaQmLkvTBy5AM8w9gO/HrES7O1ZICgH9sR5pegPeb/qIHaUyiiZ0hZw02iT5M/3qcWxjqO84zK27EdQ==",
+              "format": "google-gemini-v1",
+              "id": "tool_calculate_ItDtatKoKJu52oij3wEF",
+              "index": 0
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "tool_call_id": "tool_calculate_ItDtatKoKJu52oij3wEF",
+          "content": "{\"result\": \"10063\"}"
+        }
+      ],
+      "tools": [
+        {
+          "type": "function",
+          "function": {
+            "name": "find_order",
+            "description": "Найти сумму учебного заказа по ID. Валюта RUB.",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "order_id": {
+                  "type": "string",
+                  "maxLength": 50
+                }
+              },
+              "required": [
+                "order_id"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        {
+          "type": "function",
+          "function": {
+            "name": "calculate",
+            "description": "Точная арифметика. Передавай числа строками. Используй для всех вычислений.",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "operation": {
+                  "type": "string",
+                  "enum": [
+                    "add",
+                    "subtract",
+                    "multiply",
+                    "divide"
+                  ]
+                },
+                "a": {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                "b": {
+                  "type": "string",
+                  "maxLength": 40
+                }
+              },
+              "required": [
+                "operation",
+                "a",
+                "b"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      ],
+      "tool_choice": "auto",
+      "stream": false,
+      "temperature": 0.2,
+      "max_tokens": 4096,
+      "reasoning": {
+        "enabled": true,
+        "max_tokens": 1024
+      },
+      "provider": {
+        "only": [
+          "google-ai-studio/flex"
+        ],
+        "allow_fallbacks": false,
+        "require_parameters": true
+      }
+    }
+  },
+  {
+    "timestamp": "2026-11-12T15:51:34+03:00",
+    "event": "RESPONSE",
+    "data": {
+      "status": 200,
+      "body": "{\"id\":\"gen_2232141023984881665\",\"object\":\"chat.completion\",\"created\":1794487894,\"model\":\"google/gemini-2.5-flash-lite\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"347 умножить на 29 равно 10063.\",\"reasoning\":\"**Calculating the Result**\\n\\nI've just finished using the calculator tool. It seems that when I multiplied 347 by 29, the calculator gave me an answer of 10063. Looks like the process completed as expected, and I have my answer!\\n\\n\\n**Presenting the Answer**\\n\\nI now have the result from the calculator: 10063. My next task is to translate this value, the final output, into Russian and present it, which is the final step. I'm focusing on ensuring accuracy in the presentation to meet user needs.\\n\\n\\n\",\"reasoning_details\":[{\"type\":\"reasoning.text\",\"text\":\"**Calculating the Result**\\n\\nI've just finished using the calculator tool. It seems that when I multiplied 347 by 29, the calculator gave me an answer of 10063. Looks like the process completed as expected, and I have my answer!\\n\\n\\n\",\"format\":\"google-gemini-v1\",\"index\":0},{\"type\":\"reasoning.text\",\"text\":\"**Presenting the Answer**\\n\\nI now have the result from the calculator: 10063. My next task is to translate this value, the final output, into Russian and present it, which is the final step. I'm focusing on ensuring accuracy in the presentation to meet user needs.\\n\\n\\n\",\"format\":\"google-gemini-v1\",\"index\":0},{\"type\":\"reasoning.encrypted\",\"data\":\"Ci8BaRR9E4kw5MqVcqFi3B04QgR4HNBCzM6Fw4IpsvrunsSy89jUu1a2j5EBrAE2vwpfAWkUfRNxBMveq+WGJwfDiRnw1bt8gQt5A2hrhnXRGzsB9AzJB3zBE+WL2raZy70qFmGse1WMdiCRn1y8kAb4VjNKxKrPcMn4VtAlztZhxiVvNDCulowvz2w3K6mxhSQKwAEBaRR9E0kTUPqUfJwrTM9revChIcQTMeEIXgHBpM1U/R2HI1u6KGn19mJIuJgLeA4cVKhG9AAITzLCCfLbx9S50/Pk3wvTLKsQbEaUFjPcCu2ILeREDy6sy7V8n3aLBQpes0JAveQ8qH6/v+dihuSInXS1uiEHAOsMHv1siVc/D8wbJ1KKlwQZMpcN/l1c/l0pRj8frVWdAfh9exraeqRARGgVa9K+LExi1aevDTB0hQ5X/6If7BDmmIVi5BEmPZEKdgFpFH0TGFQA0ivILWQEC0FYY8xr0cC0KbW2InCyEBcGbbGCLuSWLo8YKoOdeYir2Pe2UpeE4b6aLUgRPNeyvqMzBtqfzXHxgy6BzXjpOcqKTTwsoqIYOGb48qjm9hFc6RLXLw4dM4eSxuSWh5kLBEWXlsIbJWI=\",\"format\":\"google-gemini-v1\",\"index\":0}]},\"finish_reason\":\"stop\",\"logprobs\":null}],\"usage\":{\"prompt_tokens\":335,\"completion_tokens\":105,\"total_tokens\":440,\"completion_tokens_details\":{\"reasoning_tokens\":90,\"audio_tokens\":0,\"image_tokens\":0,\"accepted_prediction_tokens\":null,\"rejected_prediction_tokens\":null},\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"server_tool_use\":null,\"cost_rub\":0.00454279,\"cost\":0.00454279,\"plugins\":null}}"
+    }
+  },
+  {
+    "timestamp": "2026-11-12T15:51:34+03:00",
+    "event": "USAGE",
+    "data": {
+      "prompt_tokens": 335,
+      "completion_tokens": 105,
+      "total_tokens": 440,
+      "completion_tokens_details": {
+        "reasoning_tokens": 90,
+        "audio_tokens": 0,
+        "image_tokens": 0,
+        "accepted_prediction_tokens": null,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "server_tool_use": null,
+      "cost_rub": 0.00454279,
+      "cost": 0.00454279,
+      "plugins": null
+    }
+  },
+  {
+    "timestamp": "2026-11-12T15:51:34+03:00",
+    "event": "DURATION",
+    "data": 1.88097
+  },
+  {
+    "timestamp": "2026-11-12T15:51:34+03:00",
+    "event": "OUTPUT",
+    "data": {
+      "user": "Посчитай 347 умножить на 29. Используй калькулятор.",
+      "answer": "347 умножить на 29 равно 10063.",
+      "steps": [
+        {
+          "id": "tool_calculate_ItDtatKoKJu52oij3wEF",
+          "tool": "calculate",
+          "arguments": {
+            "operation": "multiply",
+            "a": "347",
+            "b": "29"
+          },
+          "result": {
+            "result": "10063"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-11-12T15:51:34+03:00",
+    "event": "HTTP_STATUS",
+    "data": 200
+  },
+  {
+    "timestamp": "2026-11-12T15:51:34+03:00",
+    "event": "HTTP",
+    "data": {
+      "method": "POST",
+      "path": "/api/chat"
+    }
+  },
+  {
+    "timestamp": "2026-11-12T15:51:34+03:00",
+    "event": "INPUT",
+    "data": {
+      "session_id": "fa2e25a9cb1e4806a68f1446e874b1bc",
+      "message": "Найди сумму заказа A-104 и рассчитай цену со скидкой 15%."
+    }
+  },
+  {
+    "timestamp": "2026-11-12T15:51:34+03:00",
+    "event": "REQUEST",
+    "data": {
+      "model": "google/gemini-2.5-flash-lite",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Ты помощник с учебными заказами. Для сумм заказов обращайся к find_order, для вычислений к calculate. Используй реальные результаты инструментов. Если данных недостаточно, уточни вопрос. Отвечай по-русски."
+        },
+        {
+          "role": "user",
+          "content": "Найди сумму заказа A-104 и рассчитай цену со скидкой 15%."
+        }
+      ],
+      "tools": [
+        {
+          "type": "function",
+          "function": {
+            "name": "find_order",
+            "description": "Найти сумму учебного заказа по ID. Валюта RUB.",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "order_id": {
+                  "type": "string",
+                  "maxLength": 50
+                }
+              },
+              "required": [
+                "order_id"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        {
+          "type": "function",
+          "function": {
+            "name": "calculate",
+            "description": "Точная арифметика. Передавай числа строками. Используй для всех вычислений.",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "operation": {
+                  "type": "string",
+                  "enum": [
+                    "add",
+                    "subtract",
+                    "multiply",
+                    "divide"
+                  ]
+                },
+                "a": {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                "b": {
+                  "type": "string",
+                  "maxLength": 40
+                }
+              },
+              "required": [
+                "operation",
+                "a",
+                "b"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      ],
+      "tool_choice": "auto",
+      "stream": false,
+      "temperature": 0.2,
+      "max_tokens": 4096,
+      "reasoning": {
+        "enabled": true,
+        "max_tokens": 1024
+      },
+      "provider": {
+        "only": [
+          "google-ai-studio/flex"
+        ],
+        "allow_fallbacks": false,
+        "require_parameters": true
+      }
+    }
+  },
+  {
+    "timestamp": "2026-11-12T15:51:36+03:00",
+    "event": "RESPONSE",
+    "data": {
+      "status": 200,
+      "body": "{\"id\":\"gen_2232141032286457857\",\"object\":\"chat.completion\",\"created\":1794487896,\"model\":\"google/gemini-2.5-flash-lite\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":null,\"tool_calls\":[{\"id\":\"tool_find_order_g8xjqm4DFR4MOvj6hdkJ\",\"type\":\"function\",\"function\":{\"name\":\"find_order\",\"arguments\":\"{\\\"order_id\\\":\\\"A-104\\\"}\"}}],\"reasoning\":\"**Initiating Order Calculations**\\n\\nI'm starting by using the `find_order` tool to retrieve the total sum for order A-104. Once I have that value, I'll then move to the `calculate` tool to apply the discount. I am ready to move to the next step.\\n\\n\\n**Defining Tool Usage**\\n\\nI've determined I need two tools: `find_order` and `calculate`. I'll first use `find_order` with `order_id='A-104'` to get the total sum. Then, I will use the `calculate` tool to apply a 15% discount, which means multiplying the original price by 0.85. The `calculate` tool is appropriate for multiplication. I'm ready to proceed with finding the order.\\n\\n\\n\",\"reasoning_details\":[{\"type\":\"reasoning.text\",\"text\":\"**Initiating Order Calculations**\\n\\nI'm starting by using the `find_order` tool to retrieve the total sum for order A-104. Once I have that value, I'll then move to the `calculate` tool to apply the discount. I am ready to move to the next step.\\n\\n\\n\",\"format\":\"google-gemini-v1\",\"index\":0},{\"type\":\"reasoning.text\",\"text\":\"**Defining Tool Usage**\\n\\nI've determined I need two tools: `find_order` and `calculate`. I'll first use `find_order` with `order_id='A-104'` to get the total sum. Then, I will use the `calculate` tool to apply a 15% discount, which means multiplying the original price by 0.85. The `calculate` tool is appropriate for multiplication. I'm ready to proceed with finding the order.\\n\\n\\n\",\"format\":\"google-gemini-v1\",\"index\":0},{\"type\":\"reasoning.encrypted\",\"data\":\"Ci8BaRR9E4JQGQgAebfRMWcBpq9qHOyuu/LZqCQ5AWw7wfb27GS3P14cDqazrlKTlgpgAWkUfROcMR0YBu+/bcsiYIyUW7QuFF5oomiKNSwLJlEBOY6Ct6hF4EXZbOiEtMWB9z8reHrBW+d7cItXPihELrjQtvZ9tyRHj7jDJ932K9a3w4nkfM0qV0GELft9gGm7CrEBAWkUfRNIN9nzoU3EaPO5O12RxiOmjABwLxbeLE7H1qvcAg0YVPMHNpxgIKgap3/oeZDJY0oyqyi0QBBTgIXpAO0MWpqgcvqhlBaOEZoficyJI1o5VTsA9yK5XR1XXZpU8jv3x4ACiaOTMkKveFcPY0UlOkw+15bQbBNQVjI7qtwhEim3C7t1KV9Hzo/qOxuHVaF0BroV62CVOFmCgJumx9iNyhyhD08qndrUeyMi5En8CskBAWkUfROHzmQpdw8z+IJAzBpqwPojT58phE5gqzuhhXYyTZLtWR1Exs/+zmDW/0nUZ09lYL4J+kAAJooOOeU0/WcWCRChb4kYxCem1gvGuRVKMg305iifOA7FZevX492zXktyIGpV+ET8whLWATG5xpdnE/C3yBwamYBlCpxZcRFfvTRpxAbWhuBv/rSiU47ceUyfrCHYRZ+AhOBlwrLKY4hFylsN5UtXmWVD306lkRi/7BUGwOVjGa500gkH1WxVRcCUav2PTZNDCtcBAWkUfROZhN7I4kY9i7y6plILgDHhEsss2weU1wEsvzzesGEm598YKYaRGanPPLznZp3VATBKO55V1ZzVTl29Hjo5NFxZEd8ZJuM/g7zAvd0C+6WMleW3if7gkCVAsSLAascb6JAZrkHj6ciEOBtCVKS5kn31yFDK6UtTNv9uvHlgAKKEex8sa8kV3LGwjoTPAUxXjnIDbf78RCqKhnWxwC8B++mVHaQ7ZDaYUD5pxk0Dw0B3GvFkgzJ/PE2Sfzfgq1duPfsumhOYGyuhu9Zt0hSKmSReuT4KcgFpFH0Tq9ht1O3hC+B0CkSulR0oMiDg3XGL17dZewr5tPpkeBY5izEOedpIaRKtpg90YyCAcmJwUReLSxUhS4hNS3DCosZmed28U0eCQudy9nWp/BqD1j4X7V5aWXqckdk5zc4FB7MVl4RennEfKuMAGw==\",\"format\":\"google-gemini-v1\",\"id\":\"tool_find_order_g8xjqm4DFR4MOvj6hdkJ\",\"index\":0}]},\"finish_reason\":\"tool_calls\",\"logprobs\":null}],\"usage\":{\"prompt_tokens\":209,\"completion_tokens\":212,\"total_tokens\":421,\"completion_tokens_details\":{\"reasoning_tokens\":193,\"audio_tokens\":0,\"image_tokens\":0,\"accepted_prediction_tokens\":null,\"rejected_prediction_tokens\":null},\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"server_tool_use\":null,\"cost_rub\":0.0063599,\"cost\":0.0063599,\"plugins\":null}}"
+    }
+  },
+  {
+    "timestamp": "2026-11-12T15:51:36+03:00",
+    "event": "USAGE",
+    "data": {
+      "prompt_tokens": 209,
+      "completion_tokens": 212,
+      "total_tokens": 421,
+      "completion_tokens_details": {
+        "reasoning_tokens": 193,
+        "audio_tokens": 0,
+        "image_tokens": 0,
+        "accepted_prediction_tokens": null,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "server_tool_use": null,
+      "cost_rub": 0.0063599,
+      "cost": 0.0063599,
+      "plugins": null
+    }
+  },
+  {
+    "timestamp": "2026-11-12T15:51:36+03:00",
+    "event": "DURATION",
+    "data": 2.159415
+  },
+  {
+    "timestamp": "2026-11-12T15:51:36+03:00",
+    "event": "TOOL",
+    "data": {
+      "id": "tool_find_order_g8xjqm4DFR4MOvj6hdkJ",
+      "tool": "find_order",
+      "arguments": {
+        "order_id": "A-104"
+      },
+      "result": {
+        "amount": "2390",
+        "currency": "RUB"
+      }
+    }
+  },
+  {
+    "timestamp": "2026-11-12T15:51:36+03:00",
+    "event": "REQUEST",
+    "data": {
+      "model": "google/gemini-2.5-flash-lite",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Ты помощник с учебными заказами. Для сумм заказов обращайся к find_order, для вычислений к calculate. Используй реальные результаты инструментов. Если данных недостаточно, уточни вопрос. Отвечай по-русски."
+        },
+        {
+          "role": "user",
+          "content": "Найди сумму заказа A-104 и рассчитай цену со скидкой 15%."
+        },
+        {
+          "role": "assistant",
+          "content": null,
+          "tool_calls": [
+            {
+              "id": "tool_find_order_g8xjqm4DFR4MOvj6hdkJ",
+              "type": "function",
+              "function": {
+                "name": "find_order",
+                "arguments": "{\"order_id\":\"A-104\"}"
+              }
+            }
+          ],
+          "reasoning": "**Initiating Order Calculations**\n\nI'm starting by using the `find_order` tool to retrieve the total sum for order A-104. Once I have that value, I'll then move to the `calculate` tool to apply the discount. I am ready to move to the next step.\n\n\n**Defining Tool Usage**\n\nI've determined I need two tools: `find_order` and `calculate`. I'll first use `find_order` with `order_id='A-104'` to get the total sum. Then, I will use the `calculate` tool to apply a 15% discount, which means multiplying the original price by 0.85. The `calculate` tool is appropriate for multiplication. I'm ready to proceed with finding the order.\n\n\n",
+          "reasoning_details": [
+            {
+              "type": "reasoning.text",
+              "text": "**Initiating Order Calculations**\n\nI'm starting by using the `find_order` tool to retrieve the total sum for order A-104. Once I have that value, I'll then move to the `calculate` tool to apply the discount. I am ready to move to the next step.\n\n\n",
+              "format": "google-gemini-v1",
+              "index": 0
+            },
+            {
+              "type": "reasoning.text",
+              "text": "**Defining Tool Usage**\n\nI've determined I need two tools: `find_order` and `calculate`. I'll first use `find_order` with `order_id='A-104'` to get the total sum. Then, I will use the `calculate` tool to apply a 15% discount, which means multiplying the original price by 0.85. The `calculate` tool is appropriate for multiplication. I'm ready to proceed with finding the order.\n\n\n",
+              "format": "google-gemini-v1",
+              "index": 0
+            },
+            {
+              "type": "reasoning.encrypted",
+              "data": "Ci8BaRR9E4JQGQgAebfRMWcBpq9qHOyuu/LZqCQ5AWw7wfb27GS3P14cDqazrlKTlgpgAWkUfROcMR0YBu+/bcsiYIyUW7QuFF5oomiKNSwLJlEBOY6Ct6hF4EXZbOiEtMWB9z8reHrBW+d7cItXPihELrjQtvZ9tyRHj7jDJ932K9a3w4nkfM0qV0GELft9gGm7CrEBAWkUfRNIN9nzoU3EaPO5O12RxiOmjABwLxbeLE7H1qvcAg0YVPMHNpxgIKgap3/oeZDJY0oyqyi0QBBTgIXpAO0MWpqgcvqhlBaOEZoficyJI1o5VTsA9yK5XR1XXZpU8jv3x4ACiaOTMkKveFcPY0UlOkw+15bQbBNQVjI7qtwhEim3C7t1KV9Hzo/qOxuHVaF0BroV62CVOFmCgJumx9iNyhyhD08qndrUeyMi5En8CskBAWkUfROHzmQpdw8z+IJAzBpqwPojT58phE5gqzuhhXYyTZLtWR1Exs/+zmDW/0nUZ09lYL4J+kAAJooOOeU0/WcWCRChb4kYxCem1gvGuRVKMg305iifOA7FZevX492zXktyIGpV+ET8whLWATG5xpdnE/C3yBwamYBlCpxZcRFfvTRpxAbWhuBv/rSiU47ceUyfrCHYRZ+AhOBlwrLKY4hFylsN5UtXmWVD306lkRi/7BUGwOVjGa500gkH1WxVRcCUav2PTZNDCtcBAWkUfROZhN7I4kY9i7y6plILgDHhEsss2weU1wEsvzzesGEm598YKYaRGanPPLznZp3VATBKO55V1ZzVTl29Hjo5NFxZEd8ZJuM/g7zAvd0C+6WMleW3if7gkCVAsSLAascb6JAZrkHj6ciEOBtCVKS5kn31yFDK6UtTNv9uvHlgAKKEex8sa8kV3LGwjoTPAUxXjnIDbf78RCqKhnWxwC8B++mVHaQ7ZDaYUD5pxk0Dw0B3GvFkgzJ/PE2Sfzfgq1duPfsumhOYGyuhu9Zt0hSKmSReuT4KcgFpFH0Tq9ht1O3hC+B0CkSulR0oMiDg3XGL17dZewr5tPpkeBY5izEOedpIaRKtpg90YyCAcmJwUReLSxUhS4hNS3DCosZmed28U0eCQudy9nWp/BqD1j4X7V5aWXqckdk5zc4FB7MVl4RennEfKuMAGw==",
+              "format": "google-gemini-v1",
+              "id": "tool_find_order_g8xjqm4DFR4MOvj6hdkJ",
+              "index": 0
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "tool_call_id": "tool_find_order_g8xjqm4DFR4MOvj6hdkJ",
+          "content": "{\"amount\": \"2390\", \"currency\": \"RUB\"}"
+        }
+      ],
+      "tools": [
+        {
+          "type": "function",
+          "function": {
+            "name": "find_order",
+            "description": "Найти сумму учебного заказа по ID. Валюта RUB.",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "order_id": {
+                  "type": "string",
+                  "maxLength": 50
+                }
+              },
+              "required": [
+                "order_id"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        {
+          "type": "function",
+          "function": {
+            "name": "calculate",
+            "description": "Точная арифметика. Передавай числа строками. Используй для всех вычислений.",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "operation": {
+                  "type": "string",
+                  "enum": [
+                    "add",
+                    "subtract",
+                    "multiply",
+                    "divide"
+                  ]
+                },
+                "a": {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                "b": {
+                  "type": "string",
+                  "maxLength": 40
+                }
+              },
+              "required": [
+                "operation",
+                "a",
+                "b"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      ],
+      "tool_choice": "auto",
+      "stream": false,
+      "temperature": 0.2,
+      "max_tokens": 4096,
+      "reasoning": {
+        "enabled": true,
+        "max_tokens": 1024
+      },
+      "provider": {
+        "only": [
+          "google-ai-studio/flex"
+        ],
+        "allow_fallbacks": false,
+        "require_parameters": true
+      }
+    }
+  },
+  {
+    "timestamp": "2026-11-12T15:51:38+03:00",
+    "event": "RESPONSE",
+    "data": {
+      "status": 200,
+      "body": "{\"id\":\"gen_2232141040890810369\",\"object\":\"chat.completion\",\"created\":1794487898,\"model\":\"google/gemini-2.5-flash-lite\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":null,\"tool_calls\":[{\"id\":\"tool_calculate_7eCRq3Uj3qlpTmWyKz4N\",\"type\":\"function\",\"function\":{\"name\":\"calculate\",\"arguments\":\"{\\\"operation\\\":\\\"multiply\\\",\\\"a\\\":\\\"2390\\\",\\\"b\\\":\\\"0.85\\\"}\"}}],\"reasoning\":\"**Calculating Discounted Price**\\n\\nOkay, I've got the order total for A-104 – it's 2390 RUB. Now, I need to apply the 15% discount to arrive at the final discounted price. I'm focusing on the mathematical steps to correctly compute that reduction.\\n\\n\\n**Determining Discount Logic**\\n\\nI've determined the approach for calculating the discounted price. My current focus is implementing the calculation: I recognize that a 15% discount means I need to find 85% of the original amount. Thus, I'll multiply the order total (2390 RUB) by 0.85. I plan to use the `calculate` tool to execute this multiplication, ensuring the numbers are passed as strings.\\n\\n\\n\",\"reasoning_details\":[{\"type\":\"reasoning.text\",\"text\":\"**Calculating Discounted Price**\\n\\nOkay, I've got the order total for A-104 – it's 2390 RUB. Now, I need to apply the 15% discount to arrive at the final discounted price. I'm focusing on the mathematical steps to correctly compute that reduction.\\n\\n\\n\",\"format\":\"google-gemini-v1\",\"index\":0},{\"type\":\"reasoning.text\",\"text\":\"**Determining Discount Logic**\\n\\nI've determined the approach for calculating the discounted price. My current focus is implementing the calculation: I recognize that a 15% discount means I need to find 85% of the original amount. Thus, I'll multiply the order total (2390 RUB) by 0.85. I plan to use the `calculate` tool to execute this multiplication, ensuring the numbers are passed as strings.\\n\\n\\n\",\"format\":\"google-gemini-v1\",\"index\":0},{\"type\":\"reasoning.encrypted\",\"data\":\"Ci8BaRR9E0UeFubzqvSpa360n7O+dAZzBi8HGNpneTwUuPlmbZZh9Dhrki9KN2jhHwpnAWkUfRP4n5m3e/TXd2hzcmImQVoeX4xwjzSrppMbbtTfJAgpy9rprna6O/300s6sr5SzJ/5AblI9sn1gJ7GsWYPqE350j+VOVWoz+7Sl6nNx5fFDUeHPv8Q0/qIHhyOK6EwWd/VkIgq3AQFpFH0T1l3lm3af3tMh3MRXJVcYLfhyRh7cv9A9yLSvECItP16oV54aHdCZWc5KJIrAnmej0qMh7Dy6tmHQSafsYVw8BiHBbyUNbePPsZCHDQWBn/hh69uiMjnn8SR3lFkkWkPlzKBD41qlfFFM9aaQUuG4TJqxm4v0+ca2d3gRx74iSGP9qGKKJQo7vZUvRjJVJ9o5BqRYCmifPNmc58hBa5Ggdda0WQ+52lH09u02l3XFnCLZRwqJAQFpFH0TKlOVHc+rQkURgT8L1LZWjMwDUSC++qDOBq/vkWwy0z0RQ5KZlESAXcn2GB1Pl+FP39LfMMkc9zU4l19+rUtJsH3PL6SqOybHOE2w2PPgvmqEqWaHwTnz0DKe1/+QMf6UoTlLnA4YHifURl0TzlkVzvADQbyaD8ysCPbZSTJNisnRZ3WNCnwBaRR9EzUvGzkTOxp72Nsr2tVt0LLIup5M2vVHpP9xz9l3JQYBiKPpAeFW81Hxr572fwYkgN73Rkh+P/xXhENU77rkLl6Z6+Lux1TigSTWRfsLpr6PE2u1rc2Ea5NaXjUcgv6kJPU6LZGJwx8ufz7Ze+u1pR7vUKvS4TuB\",\"format\":\"google-gemini-v1\",\"id\":\"tool_calculate_7eCRq3Uj3qlpTmWyKz4N\",\"index\":0}]},\"finish_reason\":\"tool_calls\",\"logprobs\":null}],\"usage\":{\"prompt_tokens\":447,\"completion_tokens\":164,\"total_tokens\":611,\"completion_tokens_details\":{\"reasoning_tokens\":137,\"audio_tokens\":0,\"image_tokens\":0,\"accepted_prediction_tokens\":null,\"rejected_prediction_tokens\":null},\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"server_tool_use\":null,\"cost_rub\":0.00663668,\"cost\":0.00663668,\"plugins\":null}}"
+    }
+  },
+  {
+    "timestamp": "2026-11-12T15:51:38+03:00",
+    "event": "USAGE",
+    "data": {
+      "prompt_tokens": 447,
+      "completion_tokens": 164,
+      "total_tokens": 611,
+      "completion_tokens_details": {
+        "reasoning_tokens": 137,
+        "audio_tokens": 0,
+        "image_tokens": 0,
+        "accepted_prediction_tokens": null,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "server_tool_use": null,
+      "cost_rub": 0.00663668,
+      "cost": 0.00663668,
+      "plugins": null
+    }
+  },
+  {
+    "timestamp": "2026-11-12T15:51:38+03:00",
+    "event": "DURATION",
+    "data": 1.969565
+  },
+  {
+    "timestamp": "2026-11-12T15:51:38+03:00",
+    "event": "TOOL",
+    "data": {
+      "id": "tool_calculate_7eCRq3Uj3qlpTmWyKz4N",
+      "tool": "calculate",
+      "arguments": {
+        "operation": "multiply",
+        "a": "2390",
+        "b": "0.85"
+      },
+      "result": {
+        "result": "2031.50"
+      }
+    }
+  },
+  {
+    "timestamp": "2026-11-12T15:51:38+03:00",
+    "event": "REQUEST",
+    "data": {
+      "model": "google/gemini-2.5-flash-lite",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Ты помощник с учебными заказами. Для сумм заказов обращайся к find_order, для вычислений к calculate. Используй реальные результаты инструментов. Если данных недостаточно, уточни вопрос. Отвечай по-русски."
+        },
+        {
+          "role": "user",
+          "content": "Найди сумму заказа A-104 и рассчитай цену со скидкой 15%."
+        },
+        {
+          "role": "assistant",
+          "content": null,
+          "tool_calls": [
+            {
+              "id": "tool_find_order_g8xjqm4DFR4MOvj6hdkJ",
+              "type": "function",
+              "function": {
+                "name": "find_order",
+                "arguments": "{\"order_id\":\"A-104\"}"
+              }
+            }
+          ],
+          "reasoning": "**Initiating Order Calculations**\n\nI'm starting by using the `find_order` tool to retrieve the total sum for order A-104. Once I have that value, I'll then move to the `calculate` tool to apply the discount. I am ready to move to the next step.\n\n\n**Defining Tool Usage**\n\nI've determined I need two tools: `find_order` and `calculate`. I'll first use `find_order` with `order_id='A-104'` to get the total sum. Then, I will use the `calculate` tool to apply a 15% discount, which means multiplying the original price by 0.85. The `calculate` tool is appropriate for multiplication. I'm ready to proceed with finding the order.\n\n\n",
+          "reasoning_details": [
+            {
+              "type": "reasoning.text",
+              "text": "**Initiating Order Calculations**\n\nI'm starting by using the `find_order` tool to retrieve the total sum for order A-104. Once I have that value, I'll then move to the `calculate` tool to apply the discount. I am ready to move to the next step.\n\n\n",
+              "format": "google-gemini-v1",
+              "index": 0
+            },
+            {
+              "type": "reasoning.text",
+              "text": "**Defining Tool Usage**\n\nI've determined I need two tools: `find_order` and `calculate`. I'll first use `find_order` with `order_id='A-104'` to get the total sum. Then, I will use the `calculate` tool to apply a 15% discount, which means multiplying the original price by 0.85. The `calculate` tool is appropriate for multiplication. I'm ready to proceed with finding the order.\n\n\n",
+              "format": "google-gemini-v1",
+              "index": 0
+            },
+            {
+              "type": "reasoning.encrypted",
+              "data": "Ci8BaRR9E4JQGQgAebfRMWcBpq9qHOyuu/LZqCQ5AWw7wfb27GS3P14cDqazrlKTlgpgAWkUfROcMR0YBu+/bcsiYIyUW7QuFF5oomiKNSwLJlEBOY6Ct6hF4EXZbOiEtMWB9z8reHrBW+d7cItXPihELrjQtvZ9tyRHj7jDJ932K9a3w4nkfM0qV0GELft9gGm7CrEBAWkUfRNIN9nzoU3EaPO5O12RxiOmjABwLxbeLE7H1qvcAg0YVPMHNpxgIKgap3/oeZDJY0oyqyi0QBBTgIXpAO0MWpqgcvqhlBaOEZoficyJI1o5VTsA9yK5XR1XXZpU8jv3x4ACiaOTMkKveFcPY0UlOkw+15bQbBNQVjI7qtwhEim3C7t1KV9Hzo/qOxuHVaF0BroV62CVOFmCgJumx9iNyhyhD08qndrUeyMi5En8CskBAWkUfROHzmQpdw8z+IJAzBpqwPojT58phE5gqzuhhXYyTZLtWR1Exs/+zmDW/0nUZ09lYL4J+kAAJooOOeU0/WcWCRChb4kYxCem1gvGuRVKMg305iifOA7FZevX492zXktyIGpV+ET8whLWATG5xpdnE/C3yBwamYBlCpxZcRFfvTRpxAbWhuBv/rSiU47ceUyfrCHYRZ+AhOBlwrLKY4hFylsN5UtXmWVD306lkRi/7BUGwOVjGa500gkH1WxVRcCUav2PTZNDCtcBAWkUfROZhN7I4kY9i7y6plILgDHhEsss2weU1wEsvzzesGEm598YKYaRGanPPLznZp3VATBKO55V1ZzVTl29Hjo5NFxZEd8ZJuM/g7zAvd0C+6WMleW3if7gkCVAsSLAascb6JAZrkHj6ciEOBtCVKS5kn31yFDK6UtTNv9uvHlgAKKEex8sa8kV3LGwjoTPAUxXjnIDbf78RCqKhnWxwC8B++mVHaQ7ZDaYUD5pxk0Dw0B3GvFkgzJ/PE2Sfzfgq1duPfsumhOYGyuhu9Zt0hSKmSReuT4KcgFpFH0Tq9ht1O3hC+B0CkSulR0oMiDg3XGL17dZewr5tPpkeBY5izEOedpIaRKtpg90YyCAcmJwUReLSxUhS4hNS3DCosZmed28U0eCQudy9nWp/BqD1j4X7V5aWXqckdk5zc4FB7MVl4RennEfKuMAGw==",
+              "format": "google-gemini-v1",
+              "id": "tool_find_order_g8xjqm4DFR4MOvj6hdkJ",
+              "index": 0
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "tool_call_id": "tool_find_order_g8xjqm4DFR4MOvj6hdkJ",
+          "content": "{\"amount\": \"2390\", \"currency\": \"RUB\"}"
+        },
+        {
+          "role": "assistant",
+          "content": null,
+          "tool_calls": [
+            {
+              "id": "tool_calculate_7eCRq3Uj3qlpTmWyKz4N",
+              "type": "function",
+              "function": {
+                "name": "calculate",
+                "arguments": "{\"operation\":\"multiply\",\"a\":\"2390\",\"b\":\"0.85\"}"
+              }
+            }
+          ],
+          "reasoning": "**Calculating Discounted Price**\n\nOkay, I've got the order total for A-104 – it's 2390 RUB. Now, I need to apply the 15% discount to arrive at the final discounted price. I'm focusing on the mathematical steps to correctly compute that reduction.\n\n\n**Determining Discount Logic**\n\nI've determined the approach for calculating the discounted price. My current focus is implementing the calculation: I recognize that a 15% discount means I need to find 85% of the original amount. Thus, I'll multiply the order total (2390 RUB) by 0.85. I plan to use the `calculate` tool to execute this multiplication, ensuring the numbers are passed as strings.\n\n\n",
+          "reasoning_details": [
+            {
+              "type": "reasoning.text",
+              "text": "**Calculating Discounted Price**\n\nOkay, I've got the order total for A-104 – it's 2390 RUB. Now, I need to apply the 15% discount to arrive at the final discounted price. I'm focusing on the mathematical steps to correctly compute that reduction.\n\n\n",
+              "format": "google-gemini-v1",
+              "index": 0
+            },
+            {
+              "type": "reasoning.text",
+              "text": "**Determining Discount Logic**\n\nI've determined the approach for calculating the discounted price. My current focus is implementing the calculation: I recognize that a 15% discount means I need to find 85% of the original amount. Thus, I'll multiply the order total (2390 RUB) by 0.85. I plan to use the `calculate` tool to execute this multiplication, ensuring the numbers are passed as strings.\n\n\n",
+              "format": "google-gemini-v1",
+              "index": 0
+            },
+            {
+              "type": "reasoning.encrypted",
+              "data": "Ci8BaRR9E0UeFubzqvSpa360n7O+dAZzBi8HGNpneTwUuPlmbZZh9Dhrki9KN2jhHwpnAWkUfRP4n5m3e/TXd2hzcmImQVoeX4xwjzSrppMbbtTfJAgpy9rprna6O/300s6sr5SzJ/5AblI9sn1gJ7GsWYPqE350j+VOVWoz+7Sl6nNx5fFDUeHPv8Q0/qIHhyOK6EwWd/VkIgq3AQFpFH0T1l3lm3af3tMh3MRXJVcYLfhyRh7cv9A9yLSvECItP16oV54aHdCZWc5KJIrAnmej0qMh7Dy6tmHQSafsYVw8BiHBbyUNbePPsZCHDQWBn/hh69uiMjnn8SR3lFkkWkPlzKBD41qlfFFM9aaQUuG4TJqxm4v0+ca2d3gRx74iSGP9qGKKJQo7vZUvRjJVJ9o5BqRYCmifPNmc58hBa5Ggdda0WQ+52lH09u02l3XFnCLZRwqJAQFpFH0TKlOVHc+rQkURgT8L1LZWjMwDUSC++qDOBq/vkWwy0z0RQ5KZlESAXcn2GB1Pl+FP39LfMMkc9zU4l19+rUtJsH3PL6SqOybHOE2w2PPgvmqEqWaHwTnz0DKe1/+QMf6UoTlLnA4YHifURl0TzlkVzvADQbyaD8ysCPbZSTJNisnRZ3WNCnwBaRR9EzUvGzkTOxp72Nsr2tVt0LLIup5M2vVHpP9xz9l3JQYBiKPpAeFW81Hxr572fwYkgN73Rkh+P/xXhENU77rkLl6Z6+Lux1TigSTWRfsLpr6PE2u1rc2Ea5NaXjUcgv6kJPU6LZGJwx8ufz7Ze+u1pR7vUKvS4TuB",
+              "format": "google-gemini-v1",
+              "id": "tool_calculate_7eCRq3Uj3qlpTmWyKz4N",
+              "index": 0
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "tool_call_id": "tool_calculate_7eCRq3Uj3qlpTmWyKz4N",
+          "content": "{\"result\": \"2031.50\"}"
+        }
+      ],
+      "tools": [
+        {
+          "type": "function",
+          "function": {
+            "name": "find_order",
+            "description": "Найти сумму учебного заказа по ID. Валюта RUB.",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "order_id": {
+                  "type": "string",
+                  "maxLength": 50
+                }
+              },
+              "required": [
+                "order_id"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        {
+          "type": "function",
+          "function": {
+            "name": "calculate",
+            "description": "Точная арифметика. Передавай числа строками. Используй для всех вычислений.",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "operation": {
+                  "type": "string",
+                  "enum": [
+                    "add",
+                    "subtract",
+                    "multiply",
+                    "divide"
+                  ]
+                },
+                "a": {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                "b": {
+                  "type": "string",
+                  "maxLength": 40
+                }
+              },
+              "required": [
+                "operation",
+                "a",
+                "b"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      ],
+      "tool_choice": "auto",
+      "stream": false,
+      "temperature": 0.2,
+      "max_tokens": 4096,
+      "reasoning": {
+        "enabled": true,
+        "max_tokens": 1024
+      },
+      "provider": {
+        "only": [
+          "google-ai-studio/flex"
+        ],
+        "allow_fallbacks": false,
+        "require_parameters": true
+      }
+    }
+  },
+  {
+    "timestamp": "2026-11-12T15:51:40+03:00",
+    "event": "RESPONSE",
+    "data": {
+      "status": 200,
+      "body": "{\"id\":\"gen_2232141049225678849\",\"object\":\"chat.completion\",\"created\":1794487900,\"model\":\"google/gemini-2.5-flash-lite\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"Сумма заказа A-104 составляет 2390 RUB.\\nЦена со скидкой 15% составит 2031.50 RUB.\",\"reasoning\":\"**Calculating Order Price**\\n\\nI've successfully retrieved the order sum for A-104 using `find_order`, which is 2390 RUB. Now, I'm working on calculating the discounted price by applying a 15% discount. Next, I will need to multiply this by 0.85 to find the final price.\\n\\n\\n**Presenting Final Answer**\\n\\nI've got the discounted price – it's 2031.50 RUB after applying the 15% discount, calculated using the `calculate` function. My next step is to prepare the final answer for the user by presenting both the original order sum, and the discounted price, in Russian. The original order sum for A-104 was 2390 RUB. I am confident I'm on track to deliver the information as requested.\\n\\n\\n\",\"reasoning_details\":[{\"type\":\"reasoning.text\",\"text\":\"**Calculating Order Price**\\n\\nI've successfully retrieved the order sum for A-104 using `find_order`, which is 2390 RUB. Now, I'm working on calculating the discounted price by applying a 15% discount. Next, I will need to multiply this by 0.85 to find the final price.\\n\\n\\n\",\"format\":\"google-gemini-v1\",\"index\":0},{\"type\":\"reasoning.text\",\"text\":\"**Presenting Final Answer**\\n\\nI've got the discounted price – it's 2031.50 RUB after applying the 15% discount, calculated using the `calculate` function. My next step is to prepare the final answer for the user by presenting both the original order sum, and the discounted price, in Russian. The original order sum for A-104 was 2390 RUB. I am confident I'm on track to deliver the information as requested.\\n\\n\\n\",\"format\":\"google-gemini-v1\",\"index\":0},{\"type\":\"reasoning.encrypted\",\"data\":\"Ci8BaRR9Ey2TF2BsCG+XykJ1e0ubBhvy8qWKE8stSNsSn4ajR8izEr17FMz6vgtEFQphAWkUfROrvzUL4dycPQ3oy09TTn5RdLMT3p6SN8hMdHA5GcTTUdrtdBJ273LW9ZxAiYdC4YU/XyVFfnuA4345JmvcYHS03ETTlzwCqPYDOXv42W/Yp/EuhtTDrAm46uclygrJAQFpFH0TWKo7NHvnFXNA2q03oOMsowVRdcpSKbBP0HkBB2WhK5fw7Gvg71BRLR+e7rCdO2RG31Tgklo25hR3jt3B9/D4elBJCukQjPZVi2zSY10pIjJ5rKEPdKrAyTHisaQ1c+ccAte1Eg729tTKSNiAoHkQZ64gj5M5ZBeE/ZP8FQHEGHJsQHsU3iH6FsWXqelnoZT+IbMDvV5W+kJA9K+YMdVzZ6kpCT8tiIb4QkmKyQXvquhxGgZDcCso1L8kiWgHg8CZGEhprwrFAQFpFH0Ta7vN0NPRcn6lgW6MnfR5KO6hn2GAbG4+AaZCgwa0RA2qiJRPbB1F6lUdJ5+nELG1vaa3B6GmBrt6fspS2MOBpUqKPOUqtuHsSl9dytUr+Z/uVggoIOQrYDQg2FdB1YM06gbCCjv1WM+cYbHpaXjSOLJ1gjGZzjA1x5s8fU5PdKgKfrmgz+fiLoC8MoW8sEXetRuzA8hNz7sdOs0+M+LeFfN8DEyixzLbI2bYRTfA6uLib4EEdeGeEwmxnSTVVFkgCmYBaRR9E3n6FdsoQhXdJ5cgiROEy40f3u9QUiBmBdoVfzYQoHkcgxPP9DXW1RZyiTHmmYnOD0gG1c8KRY+bhwXH5XOMY1bvHhVWwREXCugfdDt0Mf8DpRki6pDkoc+ib/abt515nCc=\",\"format\":\"google-gemini-v1\",\"index\":0}]},\"finish_reason\":\"stop\",\"logprobs\":null}],\"usage\":{\"prompt_tokens\":632,\"completion_tokens\":191,\"total_tokens\":823,\"completion_tokens_details\":{\"reasoning_tokens\":155,\"audio_tokens\":0,\"image_tokens\":0,\"accepted_prediction_tokens\":null,\"rejected_prediction_tokens\":null},\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"server_tool_use\":null,\"cost_rub\":0.00839965,\"cost\":0.00839965,\"plugins\":null}}"
+    }
+  },
+  {
+    "timestamp": "2026-11-12T15:51:40+03:00",
+    "event": "USAGE",
+    "data": {
+      "prompt_tokens": 632,
+      "completion_tokens": 191,
+      "total_tokens": 823,
+      "completion_tokens_details": {
+        "reasoning_tokens": 155,
+        "audio_tokens": 0,
+        "image_tokens": 0,
+        "accepted_prediction_tokens": null,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "server_tool_use": null,
+      "cost_rub": 0.00839965,
+      "cost": 0.00839965,
+      "plugins": null
+    }
+  },
+  {
+    "timestamp": "2026-11-12T15:51:40+03:00",
+    "event": "DURATION",
+    "data": 2.521305
+  },
+  {
+    "timestamp": "2026-11-12T15:51:40+03:00",
+    "event": "OUTPUT",
+    "data": {
+      "user": "Найди сумму заказа A-104 и рассчитай цену со скидкой 15%.",
+      "answer": "Сумма заказа A-104 составляет 2390 RUB.\nЦена со скидкой 15% составит 2031.50 RUB.",
+      "steps": [
+        {
+          "id": "tool_find_order_g8xjqm4DFR4MOvj6hdkJ",
+          "tool": "find_order",
+          "arguments": {
+            "order_id": "A-104"
+          },
+          "result": {
+            "amount": "2390",
+            "currency": "RUB"
+          }
+        },
+        {
+          "id": "tool_calculate_7eCRq3Uj3qlpTmWyKz4N",
+          "tool": "calculate",
+          "arguments": {
+            "operation": "multiply",
+            "a": "2390",
+            "b": "0.85"
+          },
+          "result": {
+            "result": "2031.50"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2026-11-12T15:51:40+03:00",
+    "event": "HTTP_STATUS",
+    "data": 200
+  }
+]

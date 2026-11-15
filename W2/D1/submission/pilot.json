@@ -1,0 +1,211 @@
+{
+  "verified": true,
+  "cases": [
+    {
+      "case": "Без инструментов",
+      "prompt": "Объясни, что такое JSON, в одном предложении.",
+      "http_status": 200,
+      "passed": true,
+      "response": {
+        "session_id": "68468a41556f43a2b41ccfcb3c67017f",
+        "answer": "JSON (JavaScript Object Notation) — это легковесный формат обмена данными, который легко читается и пишется людьми и легко парсится и генерируется машинами.",
+        "steps": []
+      }
+    },
+    {
+      "case": "Один инструмент",
+      "prompt": "Посчитай 347 умножить на 29. Используй калькулятор.",
+      "http_status": 200,
+      "passed": true,
+      "response": {
+        "session_id": "5b65fa45b16344ab97a3b6c1c3eb94ac",
+        "answer": "347 умножить на 29 равно 10063.",
+        "steps": [
+          {
+            "id": "tool_calculate_ItDtatKoKJu52oij3wEF",
+            "tool": "calculate",
+            "arguments": {
+              "operation": "multiply",
+              "a": "347",
+              "b": "29"
+            },
+            "result": {
+              "result": "10063"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "case": "Два инструмента подряд",
+      "prompt": "Найди сумму заказа A-104 и рассчитай цену со скидкой 15%.",
+      "http_status": 200,
+      "passed": true,
+      "response": {
+        "session_id": "fa2e25a9cb1e4806a68f1446e874b1bc",
+        "answer": "Сумма заказа A-104 составляет 2390 RUB.\nЦена со скидкой 15% составит 2031.50 RUB.",
+        "steps": [
+          {
+            "id": "tool_find_order_g8xjqm4DFR4MOvj6hdkJ",
+            "tool": "find_order",
+            "arguments": {
+              "order_id": "A-104"
+            },
+            "result": {
+              "amount": "2390",
+              "currency": "RUB"
+            }
+          },
+          {
+            "id": "tool_calculate_7eCRq3Uj3qlpTmWyKz4N",
+            "tool": "calculate",
+            "arguments": {
+              "operation": "multiply",
+              "a": "2390",
+              "b": "0.85"
+            },
+            "result": {
+              "result": "2031.50"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "usage": [
+    {
+      "prompt_tokens": 202,
+      "completion_tokens": 73,
+      "total_tokens": 275,
+      "completion_tokens_details": {
+        "reasoning_tokens": 37,
+        "audio_tokens": 0,
+        "image_tokens": 0,
+        "accepted_prediction_tokens": null,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "server_tool_use": null,
+      "cost_rub": 0.00297237,
+      "cost": 0.00297237,
+      "plugins": null
+    },
+    {
+      "prompt_tokens": 209,
+      "completion_tokens": 107,
+      "total_tokens": 316,
+      "completion_tokens_details": {
+        "reasoning_tokens": 83,
+        "audio_tokens": 0,
+        "image_tokens": 0,
+        "accepted_prediction_tokens": null,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "server_tool_use": null,
+      "cost_rub": 0.00383279,
+      "cost": 0.00383279,
+      "plugins": null
+    },
+    {
+      "prompt_tokens": 335,
+      "completion_tokens": 105,
+      "total_tokens": 440,
+      "completion_tokens_details": {
+        "reasoning_tokens": 90,
+        "audio_tokens": 0,
+        "image_tokens": 0,
+        "accepted_prediction_tokens": null,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "server_tool_use": null,
+      "cost_rub": 0.00454279,
+      "cost": 0.00454279,
+      "plugins": null
+    },
+    {
+      "prompt_tokens": 209,
+      "completion_tokens": 212,
+      "total_tokens": 421,
+      "completion_tokens_details": {
+        "reasoning_tokens": 193,
+        "audio_tokens": 0,
+        "image_tokens": 0,
+        "accepted_prediction_tokens": null,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "server_tool_use": null,
+      "cost_rub": 0.0063599,
+      "cost": 0.0063599,
+      "plugins": null
+    },
+    {
+      "prompt_tokens": 447,
+      "completion_tokens": 164,
+      "total_tokens": 611,
+      "completion_tokens_details": {
+        "reasoning_tokens": 137,
+        "audio_tokens": 0,
+        "image_tokens": 0,
+        "accepted_prediction_tokens": null,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "server_tool_use": null,
+      "cost_rub": 0.00663668,
+      "cost": 0.00663668,
+      "plugins": null
+    },
+    {
+      "prompt_tokens": 632,
+      "completion_tokens": 191,
+      "total_tokens": 823,
+      "completion_tokens_details": {
+        "reasoning_tokens": 155,
+        "audio_tokens": 0,
+        "image_tokens": 0,
+        "accepted_prediction_tokens": null,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0,
+        "video_tokens": 0
+      },
+      "server_tool_use": null,
+      "cost_rub": 0.00839965,
+      "cost": 0.00839965,
+      "plugins": null
+    }
+  ],
+  "cost_rub_known": 0.03274418,
+  "unknown_costs": 0
+}
