@@ -1,0 +1,4 @@
+﻿mode,correct,tested,correct_without_tools,correct_with_tools,answer_input_tokens,answer_output_tokens,maintenance_calls,maintenance_input_tokens,maintenance_output_tokens,maintenance_cost_rub_known,all_calls,all_tokens_known,all_cost_rub_known,unknown_costs,unknown_total_tokens,nonblank_lines,file,complexity
+window,0,4,0,0,4198,36,0,,,,4,4234,0.0606372,0,0,4,strategies.py,низкая
+facts,3,4,3,0,3820,31,16,8138,2499,0.18630295,19,14488,0.24129055,0,0,43,strategies.py,высокая
+summary,3,3,3,0,4138,31,5,2513,942,0.06236959,8,7624,0.12226364,0,0,41,memory.py,средняя

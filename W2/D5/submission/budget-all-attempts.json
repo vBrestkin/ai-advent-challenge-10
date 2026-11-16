@@ -1,0 +1,25 @@
+{
+  "agreed_total_limit_rub": 20,
+  "preliminary": {
+    "run": "2026-11-16_00-56-01_39771008b92d",
+    "status": "stopped",
+    "calls": 31,
+    "limit_rub": 20.0,
+    "known_cost_rub": 0.42419139,
+    "unknown_reserve_rub": 0.0,
+    "accounted_rub": 0.42419139
+  },
+  "completed": {
+    "run": "2026-11-16_00-59-46_a0c592bf3821",
+    "status": "complete",
+    "calls": 65,
+    "limit_rub": 19.575,
+    "known_cost_rub": 1.05742065,
+    "unknown_reserve_rub": 0.0,
+    "accounted_rub": 1.05742065
+  },
+  "all_calls": 96,
+  "known_cost_rub": 1.48161204,
+  "unknown_reserve_rub": 0.0,
+  "accounted_rub": 1.48161204
+}
