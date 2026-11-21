@@ -1,0 +1,13 @@
+﻿mode,question_id,expected,answer,passed,unchanged,prompt_tokens,local_estimate
+all,short,Зажигаем маяк,"{""value"": ""Зажигаем маяк""}",True,True,1010,462
+short,short,неизвестно,"{""value"": ""неизвестно""}",True,True,977,424
+working,short,Зажигаем маяк,"{""value"": ""Зажигаем маяк""}",True,True,988,431
+long,short,Зажигаем маяк,"{""value"": ""Зажигаем маяк""}",True,True,990,433
+all,working,проверить микрофон,"{""value"": ""проверить микрофон""}",True,True,1004,456
+short,working,проверить микрофон,"{""value"": ""проверить микрофон""}",True,True,971,418
+working,working,неизвестно,"{""value"": ""неизвестно""}",True,True,982,425
+long,working,проверить микрофон,"{""value"": ""проверить микрофон""}",True,True,984,427
+all,long,Ирина,"{""value"": ""неизвестно""}",False,True,1007,459
+short,long,Ирина,"{""value"": ""Ирина""}",True,True,974,421
+working,long,Ирина,"{""value"": ""неизвестно""}",False,True,985,428
+long,long,неизвестно,"{""value"": ""неизвестно""}",True,True,987,430

@@ -1,0 +1,69 @@
+<!doctype html><html lang="ru"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Три слоя памяти · День 11</title>
+<style>
+body{background:#f4f6f3;color:#23332d;font:16px system-ui;margin:24px auto;padding:0 20px;max-width:1100px}h1{margin-bottom:6px}header p,label{color:#41554d}.bar,.cards,.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.cards{align-items:stretch;margin-top:16px}article,section{background:white;border:1px solid #d8e0da;border-radius:12px;padding:16px}article{flex:1 1 225px;min-width:0}article h2{font-size:19px;margin-top:0}pre{max-height:240px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere}button,select,input,textarea{font:inherit;padding:9px;border:1px solid #a3b4ab;border-radius:6px}button{cursor:pointer;background:#285e4b;color:white}button.clear{background:white;color:#854b3f}button:disabled{opacity:.5}section{margin-top:16px}label{display:block;margin-bottom:5px}textarea{width:95%;margin-bottom:10px}#status{min-height:24px;color:#674832}#answer{white-space:pre-wrap}
+</style>
+<header><h1>Три слоя памяти</h1><p>День 11 · текущий разговор, задача и знания проекта</p></header>
+<div class="bar"><label for="workspace">Разговор</label><select id="workspace"></select><button id="copy">Создать копию</button><button id="new">Новый разговор</button></div>
+<p id="status" role="status"></p>
+<div class="cards">
+<article><h2>Краткосрочная</h2><p>Последние ходы разговора</p><pre id="short"></pre><button class="clear" data-layer="short">Очистить диалог</button></article>
+<article><h2>Рабочая</h2><p>Данные текущей задачи</p><pre id="working"></pre><button class="clear" data-layer="working">Очистить рабочую память</button></article>
+<article><h2>Долговременная</h2><p>Устойчивые знания проекта</p><pre id="long"></pre><button class="clear" data-layer="long">Очистить знания проекта</button></article>
+</div>
+<section><form id="fact"><div class="tools"><select id="target" aria-label="Слой для записи"><option value="working">Рабочая память</option><option value="long">Долговременная память</option></select><input id="key" aria-label="Ключ" placeholder="current_step" required pattern="[a-z][a-z0-9_]{0,63}"><input id="value" aria-label="Значение" placeholder="Значение" required maxlength="600"><button>Сохранить факт</button></div></form></section>
+<section><form id="chat"><label for="question">Вопрос агенту</label><textarea id="question" required rows="2"></textarea><label><input type="checkbox" id="save" checked> Сохранить вопрос и ответ в диалоге</label><button id="send">Отправить</button></form><p id="answer" aria-live="polite"></p></section>
+<script>
+const byId=id=>document.getElementById(id);
+const names={short:'краткосрочная память',working:'рабочая память',long:'долговременная память'};
+let sid='';
+async function api(path,data){
+  const options=data===undefined?{}:{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)};
+  const res=await fetch('/api/layers'+path,options);
+  const value=await res.json();
+  if(!res.ok)throw Error(typeof value.detail==='string'?value.detail:'Проверьте введённые данные.');
+  return value;
+}
+function draw(row){
+  for(const [name,value] of Object.entries(row.memory)){
+    const present=Object.keys(value).length;
+    byId(name).textContent=present?JSON.stringify(value,null,2):'Пусто';
+  }
+}
+async function load(){
+  const rows=await api('');
+  byId('workspace').replaceChildren(...rows.map(row=>new Option(row.title,row.id)));
+  if(!rows.some(row=>row.id===sid))sid=rows[0]?.id||'';
+  byId('workspace').value=sid;
+  if(sid){draw(await api('/'+sid));localStorage.setItem('agent11.workspace',sid);}
+}
+async function act(action){
+  const controls=[...document.querySelectorAll('button,input,select,textarea')];
+  controls.forEach(el=>el.disabled=true);
+  try{await action();}
+  catch(err){byId('status').textContent=err.message;}
+  finally{
+    controls.forEach(el=>el.disabled=false);
+    document.querySelectorAll('.clear,#copy,#send,#fact button').forEach(el=>el.disabled=!sid);
+  }
+}
+byId('workspace').onchange=()=>act(async()=>{sid=byId('workspace').value;byId('answer').textContent='';byId('status').textContent='';await load();});
+byId('new').onclick=()=>act(async()=>{sid=(await api('',{title:'Новый разговор'})).id;await load();byId('answer').textContent='';byId('status').textContent='Создан новый разговор.';});
+byId('copy').onclick=()=>act(async()=>{sid=(await api('/'+sid+'/copy',{})).id;await load();byId('answer').textContent='';byId('status').textContent='Создана независимая копия.';});
+document.querySelectorAll('.clear').forEach(button=>button.onclick=()=>{
+  const layer=button.dataset.layer;
+  if(confirm('Очистить выбранный слой в этом разговоре?'))act(async()=>{
+    draw(await api('/'+sid+'/clear/'+layer,{}));
+    byId('answer').textContent='';byId('status').textContent='Очищена '+names[layer]+'.';
+  });
+});
+byId('fact').onsubmit=e=>{e.preventDefault();act(async()=>{
+  draw(await api('/'+sid+'/write/'+byId('target').value,{key:byId('key').value,value:byId('value').value}));
+  byId('status').textContent='Факт сохранён.';
+});};
+byId('chat').onsubmit=e=>{e.preventDefault();act(async()=>{
+  byId('status').textContent='Ждём ответ…';byId('answer').textContent='';
+  const result=await api('/'+sid+'/chat?save='+byId('save').checked,{message:byId('question').value});
+  byId('answer').textContent=result.answer;byId('status').textContent=byId('save').checked?'Ответ сохранён в диалоге.':'Ответ получен. Слои памяти сохранены как были.';await load();
+});};
+sid=localStorage.getItem('agent11.workspace')||'';act(load);
+</script></html>
