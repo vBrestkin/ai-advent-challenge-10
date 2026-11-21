@@ -1,0 +1,111 @@
+<!doctype html><html lang="ru"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Стратегии контекста · День 10</title>
+<style>body{margin:0;background:#f5f4ef;color:#202c2a;font:16px system-ui}header{padding:24px 5%;border-bottom:1px solid #ccd2cc}header h1{margin:0;font-size:26px}small{color:#58685f}main{display:grid;grid-template-columns:210px minmax(260px,1fr) minmax(270px,330px);gap:24px;margin:30px 5%}button{cursor:pointer;border:0;background:#245a48;color:white;padding:12px;border-radius:8px}textarea{box-sizing:border-box;width:100%;font:inherit;padding:12px;border:1px solid #b8c2b9;border-radius:8px}article,details{padding:16px;background:white;border-radius:10px;margin-bottom:12px;overflow-wrap:anywhere}pre{white-space:pre-wrap;font-size:13px}#sessions button{display:block;margin-top:10px;width:100%;background:#dce5dc;color:#203e30}#sessions button.active{background:#245a48;color:white}#conversation-title{font-size:20px}#status{min-height:28px;color:#864332}#chat{min-height:180px;max-height:65vh;overflow-y:auto}aside{max-height:85vh;overflow-y:auto}select{font:inherit;padding:8px;border-radius:6px;margin:8px 0}form button{margin-top:10px}button:disabled{opacity:.5;cursor:wait}nav input,nav select{box-sizing:border-box;width:100%;margin:8px 0;padding:8px}nav label{font-size:13px}#sessions{max-height:35vh;overflow:auto}nav button{margin:6px 0} @media(max-width:900px){main{grid-template-columns:1fr}aside{order:3;max-height:none}}</style>
+<header><small>AI ADVENT · W2 / D5</small><h1>Стратегии контекста и ветки</h1><p>Qwen3 14B · deepinfra/fp8 · полная история в SQLite</p></header>
+<main><nav><button id="new">＋ Новый разговор</button><div id="sessions"></div><h3>Ветвление</h3><button id="checkpoint" type="button">Сохранить checkpoint</button><label for="checkpoints">Точка ветвления</label><select id="checkpoints"></select><label for="branch-title">Имя новой ветки</label><input id="branch-title" maxlength="120" value="Новая ветка"><button id="fork" type="button">Создать ветку</button><p><small>Разговоры восстанавливаются после перезапуска сервера.</small></p></nav><section><h2 id="conversation-title">Новый разговор</h2><div id="chat"></div><p id="status" role="status"></p><label>Контекст: <select id="mode"><option value="summary">Сжатие истории</option><option value="window">Sliding Window</option><option value="facts">Sticky Facts</option></select></label><form><textarea id="input" rows="3" placeholder="Найди сумму заказа A-104 и рассчитай цену со скидкой 15%" required maxlength="500000"></textarea><button id="send">Отправить</button></form></section><aside><h3>Память и контекст</h3><div id="memory"></div><details><summary>Контекст для модели</summary><pre id="sent"></pre></details><h3>Токены и стоимость</h3><div id="metrics"><small>Выберите разговор</small></div><h3>Перед отправкой</h3><div id="estimate"><small>Введите сообщение для локальной оценки</small></div><h3>Шаги агента</h3><small>find_order · calculate</small><div id="steps"></div><details><summary>Сохранённый контекст</summary><pre id="context">Выберите разговор</pre></details></aside></main>
+<script>
+let sid=localStorage.getItem('agent12.session')||'',busy=false; const $=s=>document.querySelector(s);
+const savedMode=localStorage.getItem('agent12.mode');if(['summary','facts','window'].includes(savedMode))$('#mode').value=savedMode;
+function node(tag,text){let n=document.createElement(tag);n.textContent=text;return n}
+async function api(path,options){const r=await fetch(path,options);const d=await r.json();if(!r.ok){const error=Error(typeof d.detail==='string'?d.detail:'Проверьте введённые данные.');error.session_id=r.headers.get('X-Session-ID');throw error}return d}
+function render(turn){let a=node('article','');a.append(node('small','Вы'),node('p',turn.user),node('small','Агент'),node('p',turn.answer));if(turn.metrics){a.append(node('small','Ход: вход '+fmt(turn.metrics.prompt_tokens)+' · выход '+fmt(turn.metrics.completion_tokens)+' · HTTP '+turn.metrics.calls+' · известно '+fmt(turn.metrics.cost_rub)+' ₽'))}$('#chat').append(a);$('#steps').replaceChildren();for(let s of turn.steps){let d=document.createElement('details');d.open=true;d.append(node('summary',s.tool),node('pre',JSON.stringify({arguments:s.arguments,result:s.result},null,2)));$('#steps').append(d)}if(!turn.steps.length)$('#steps').append(node('p','Ответ сформирован без инструментов.'))}
+async function loadSession(id){
+    if(busy)return;
+    busy=true;
+    $('#send').disabled=true;$('#mode').disabled=true;
+    try{
+        const data=await api('/api/sessions/'+id+'?mode='+$('#mode').value);
+        sid=id;$('#conversation-title').textContent=data.title;for(const button of $('#sessions').querySelectorAll('button'))button.classList.toggle('active',button.dataset.session===sid);
+        localStorage.setItem('agent12.session',sid);
+        $('#chat').replaceChildren();
+        $('#steps').replaceChildren();
+        data.turns.forEach(render);
+        $('#context').textContent=JSON.stringify(data.messages,null,2);renderMetrics(data);scheduleEstimate();
+        const failed=data.attempts.filter(a=>a.status!=='complete');
+        $('#status').textContent=failed.length
+            ? 'Есть незавершённые попытки ('+failed.length+'). Успешная история восстановлена.'
+            : 'Разговор восстановлен из SQLite';
+    }catch(error){$('#status').textContent=error.message}
+    finally{busy=false;$('#send').disabled=false;$('#mode').disabled=false}
+}
+async function sessions(){
+    const list=await api('/api/sessions');
+    $('#sessions').replaceChildren();
+    for(const session of list){
+        const button=node('button',session.title);
+        button.dataset.session=session.id;button.classList.toggle('active',session.id===sid);button.onclick=()=>loadSession(session.id);
+        $('#sessions').append(button);
+    }
+    await checkpoints();return list;
+}
+$('#new').onclick=()=>{if(busy)return;sid='';localStorage.removeItem('agent12.session');$('#conversation-title').textContent='Новый разговор';$('#context').textContent='Новый разговор';$('#metrics').replaceChildren();$('#memory').replaceChildren();$('#sent').textContent='';scheduleEstimate();$('#chat').replaceChildren();$('#steps').replaceChildren();$('#status').textContent='';$('#input').focus()};
+$('form').onsubmit=async e=>{e.preventDefault();if(busy)return;let message=$('#input').value.trim();if(!message)return;busy=true;$('#send').disabled=true;$('#mode').disabled=true;$('#status').textContent='Агент выполняет запрос…';try{let d=await api('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message,session_id:sid,mode:$('#mode').value})});sid=d.session_id;localStorage.setItem('agent12.session',sid);render({user:message,...d});$('#input').value='';$('#status').textContent=d.compression_warning?'Ответ готов; сжатие не удалось: '+d.compression_warning:'Готово';await sessions();const state=await api('/api/sessions/'+sid+'?mode='+$('#mode').value);$('#context').textContent=JSON.stringify(state.messages,null,2);$('#conversation-title').textContent=state.title;renderMetrics(state);scheduleEstimate()}catch(e){$('#status').textContent=e.message;if(e.session_id){sid=e.session_id;localStorage.setItem('agent12.session',sid)}try{await sessions();if(sid){const saved=await api('/api/sessions/'+sid+'?mode='+$('#mode').value);renderMetrics(saved)}}catch(ignored){}}finally{busy=false;$('#send').disabled=false;$('#mode').disabled=false}};
+function fmt(value){
+    if(typeof value!=='number'||!Number.isFinite(value))return '—';
+    return value.toLocaleString('ru-RU',{maximumFractionDigits:6});
+}
+function renderMetrics(data){
+    $('#memory').replaceChildren(node('p','В сводке: '+data.memory.covered+' сообщений архива'),node('p',data.memory.summary||'Сводки пока нет. Сжатие начинается с 10 сообщений, минимум 6 остаются целиком.'),node('small','Расход на сжатие: '+fmt(data.summary_metrics.cost_rub)+' ₽ · запросов '+data.summary_metrics.calls));
+    const factsPanel=document.createElement('details');factsPanel.open=$('#mode').value==='facts';factsPanel.append(node('summary','Sticky Facts ('+Object.keys(data.facts_state.values).length+' ключей)'),node('pre',JSON.stringify(data.facts_state.values,null,2)));$('#memory').append(factsPanel,node('small','Обновления facts: '+data.facts_metrics.calls+' · известно '+fmt(data.facts_metrics.cost_rub)+' ₽'));
+    $('#sent').textContent=JSON.stringify(data.sent_context,null,2);
+    const metrics=data.metrics;
+    const panel=$('#metrics');
+    panel.replaceChildren();
+    for(const [label,value] of [
+        ['Вход API, известно',metrics.prompt_tokens],['Выход API, известно',metrics.completion_tokens],
+        ['Всего API, известно',metrics.total_tokens],['Reasoning (входит в выход)',metrics.reasoning_tokens],
+        ['Обращений к LLM',metrics.calls],['Известная стоимость, ₽',metrics.cost_rub],
+        ['Неизвестных списаний',metrics.unknown_costs],['Неизвестных счётчиков total',metrics.unknown_total_tokens]]){
+        panel.append(node('p',label+': '+fmt(value)));
+    }
+    if(metrics.unknown_costs)panel.append(node('small','Показана сумма известных расходов. Неизвестные списания сохранены отдельно.'));
+    const last=data.turns[data.turns.length-1];
+    if(last&&last.history_tokens_estimate!=null)panel.append(node('small','История после последнего успешного хода ≈ '+fmt(last.history_tokens_estimate)+' токенов'));
+}
+let estimateTimer,estimateSequence=0;
+function scheduleEstimate(){
+    clearTimeout(estimateTimer);
+    estimateTimer=setTimeout(updateEstimate,300);
+}
+async function updateEstimate(){
+    const sequence=++estimateSequence;
+    try{
+        const data=await api('/api/estimate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:$('#input').value,session_id:sid,mode:$('#mode').value})});
+        if(sequence!==estimateSequence)return;
+        const panel=$('#estimate');panel.replaceChildren();
+        panel.append(node('p','Новый текст'+(data.local_tokenizer?' (Qwen): ':' (оценка): ')+fmt(data.new_message_tokens_local)),
+            node('p','История, оценка ≈ '+fmt(data.history_tokens_estimate)),
+            node('p','Запрос со схемами, оценка ≈ '+fmt(data.request_tokens_estimate)),
+            node('p','Резерв ответа: '+fmt(data.output_reserve)+' / окно '+fmt(data.context_limit)),
+            node('small','Метод: '+data.counter_method+'. Фактические токены вернёт API.'));
+        if(!data.fits_estimate)panel.append(node('p','Оценка с резервом ответа превышает окно. Обычный запрос будет остановлен локально.'));
+    }catch(error){if(sequence===estimateSequence)$('#estimate').textContent=error.message}
+}
+async function checkpoints(){
+    const selected=$('#checkpoints').value;
+    const list=await api('/api/checkpoints');$('#checkpoints').replaceChildren();
+    for(const point of list){const option=node('option',point.title+' · '+point.session_id.slice(0,6));option.value=point.id;$('#checkpoints').append(option)}
+    if(list.some(point=>point.id===selected))$('#checkpoints').value=selected;
+}
+async function branchAction(action){
+    if(busy)return;
+    if(action==='checkpoint'&&!sid){$('#status').textContent='Сначала начните разговор.';return}
+    if(action==='fork'&&!$('#checkpoints').value){$('#status').textContent='Сначала сохраните checkpoint.';return}
+    busy=true;$('#send').disabled=true;$('#mode').disabled=true;
+    let newId='';
+    try{
+        if(action==='checkpoint'){
+            const result=await api('/api/checkpoints',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({session_id:sid,title:'Checkpoint '+new Date().toLocaleString('ru-RU')})});
+            await checkpoints();$('#checkpoints').value=result.checkpoint_id;$('#status').textContent='Checkpoint сохранён. Создайте от него две ветки.';
+        }else{
+            const result=await api('/api/forks',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({checkpoint_id:$('#checkpoints').value,title:$('#branch-title').value.trim()})});
+            newId=result.session_id;await sessions();
+        }
+    }catch(error){$('#status').textContent=error.message}
+    finally{busy=false;$('#send').disabled=false;$('#mode').disabled=false}
+    if(newId)await loadSession(newId);
+}
+$('#checkpoint').onclick=()=>branchAction('checkpoint');$('#fork').onclick=()=>branchAction('fork');
+$('#input').addEventListener('input',scheduleEstimate);
+$('#mode').onchange=()=>{localStorage.setItem('agent12.mode',$('#mode').value);if(sid)loadSession(sid);else scheduleEstimate()};
+sessions().then(list=>{if(sid&&list.some(s=>s.id===sid))return loadSession(sid);sid='';localStorage.removeItem('agent12.session')}).catch(e=>$('#status').textContent=e.message);
+</script></html>
