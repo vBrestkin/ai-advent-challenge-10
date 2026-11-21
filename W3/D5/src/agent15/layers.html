@@ -1,0 +1,210 @@
+<!doctype html><html lang="ru"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Актуальные факты · День 15</title>
+<style>
+body{background:#f4f6f3;color:#23332d;font:16px system-ui;margin:24px auto;padding:0 20px;max-width:1100px}h1{margin-bottom:6px}header p,label{color:#41554d}.bar,.cards,.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.cards{align-items:stretch;margin-top:16px}article,section{background:white;border:1px solid #d8e0da;border-radius:12px;padding:16px}article{flex:1 1 225px;min-width:0}article h2{font-size:19px;margin-top:0}pre{max-height:240px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere}button,select,input,textarea{font:inherit;padding:9px;border:1px solid #a3b4ab;border-radius:6px}button{cursor:pointer;background:#285e4b;color:white}button.clear{background:white;color:#854b3f}button:disabled{opacity:.5}section{margin-top:16px}label{display:block;margin-bottom:5px}textarea{width:95%;margin-bottom:10px}#status{min-height:24px;color:#674832}#answer,.turn{white-space:pre-wrap;overflow-wrap:anywhere}#history{max-height:330px;overflow:auto}.turn{padding:9px;background:#f4f6f3;border-radius:6px}details{margin-top:16px}summary{cursor:pointer}dl{display:grid;grid-template-columns:minmax(8em,max-content) 1fr;gap:8px 14px}dt{font-weight:600}dd{margin:0;white-space:pre-wrap;overflow-wrap:anywhere}#task-create input{margin-right:8px}
+</style>
+<header><h1>Актуальные факты проекта</h1></header>
+<div class="bar"><label for="workspace">Разговор</label><select id="workspace"></select><button id="copy">Создать копию</button><button id="new">Новый разговор</button></div>
+<p id="status" role="status"></p>
+<section><h2>Долговременная память</h2>
+<p>Запишите факт в чате, например «Срок: 2026-12-22» или «Отменить требование».</p>
+<dl id="current-facts"></dl>
+<details><summary>Принятые решения</summary><ul id="fact-decisions"></ul></details>
+<details><summary>История изменений</summary><ul id="fact-history"></ul></details>
+</section>
+<details><summary>Инварианты проекта</summary><section id="rule-card"><h2>Правило проекта</h2>
+<p id="rule-current">Выберите разговор.</p>
+<form id="rule-form"><div class="tools"><label for="rule-db">Новое значение</label><select id="rule-db"><option value="sqlite">SQLite</option><option value="postgresql">PostgreSQL</option></select><button>Изменить правило</button></div></form>
+<p id="rule-audit"></p>
+</section>
+<section><h2>Подбор базы данных</h2>
+<form id="stack-form"><label for="stack-question">Запрос на подбор базы</label><textarea id="stack-question" maxlength="500000" required rows="2"></textarea><button>Проверить предложение</button></form>
+<p id="stack-answer" role="status"></p>
+</section>
+</details><details><summary>Этапы задачи</summary><section id="task-card"><h2>Задача</h2>
+<form id="task-create"><label for="task-title">Название задачи</label><input id="task-title" maxlength="120" required placeholder="Подготовить демонстрацию"><button>Создать задачу</button></form>
+<div id="task-state" hidden><h3 id="task-name"></h3><dl id="task-fields"></dl>
+<form id="task-action"><label id="note-label" for="task-note">Описание</label><textarea id="task-note" maxlength="4000" rows="2"></textarea><div class="tools" id="task-buttons"></div></form>
+</div></section>
+</details><details><summary>Профиль пользователя</summary><section><h2>Предпочтения</h2>
+<form id="profile-form"><div class="tools">
+<label>Длина ответа <select id="length"><option value="neutral">Без предпочтения</option><option value="brief">Кратко</option><option value="detailed">Подробно</option></select></label>
+<label>Примеры кода <select id="code"><option value="neutral">Без предпочтения</option><option value="without">Без кода</option><option value="with">С кодом</option></select></label>
+<button>Сохранить профиль</button>
+</div></form>
+<p>Можно изменить из диалога: «Теперь отвечай кратко и без кода».</p>
+</section>
+</details><section><h2>Диалог</h2><div id="history"></div></section>
+<details><summary>Три слоя памяти</summary>
+<div class="cards">
+<article><h2>Краткосрочная</h2><p>Последние ходы разговора</p><pre id="short"></pre><button class="clear" data-layer="short">Очистить диалог</button></article>
+<article><h2>Рабочая</h2><p>Данные текущей задачи</p><pre id="working"></pre><button class="clear" data-layer="working">Очистить рабочую память</button></article>
+<article><h2>Долговременная</h2><p>Устойчивые знания проекта</p><pre id="long"></pre><button class="clear" data-layer="long">Очистить знания проекта</button></article>
+</div>
+<section><form id="fact"><div class="tools"><select id="target" aria-label="Слой для записи"><option value="working">Рабочая память</option><option value="long">Долговременная память</option></select><input id="key" aria-label="Ключ" placeholder="current_step" required pattern="[a-z][a-z0-9_]{0,63}"><input id="value" aria-label="Значение" placeholder="Значение" required maxlength="600"><button>Сохранить факт</button></div></form></section>
+</details>
+<section><form id="chat"><label for="question">Вопрос агенту</label><textarea id="question" required rows="2"></textarea><label><input type="checkbox" id="save" checked> Сохранить вопрос и ответ в диалоге</label><button id="send">Отправить</button></form><p id="answer" aria-live="polite"></p></section>
+<script>
+const byId=id=>document.getElementById(id);
+const names={short:'краткосрочная память',working:'рабочая память',long:'долговременная память'};
+let task=null;
+let sid='';
+async function api(path,data,method="POST"){
+  const options=data===undefined?{}:{method,headers:{'Content-Type':'application/json'},body:JSON.stringify(data)};
+  const res=await fetch('/api/layers'+path,options);
+  const value=await res.json();
+  if(!res.ok)throw Error(typeof value.detail==='string'?value.detail:'Проверьте введённые данные.');
+  return value;
+}
+const stages={planning:'Планирование',execution:'Выполнение',validation:'Проверка',done:'Завершение'};
+const actions={approve_plan:'Утвердить план',submit_result:'Передать результат на проверку',
+  accept_validation:'Подтвердить проверку',pause:'Пауза',resume:'Продолжить'};
+const noteLabels={approve_plan:'План',submit_result:'Что подготовлено',accept_validation:'Что проверено'};
+function drawTask(value){
+  task=value;
+  byId('task-create').hidden=!!task;
+  byId('task-state').hidden=!task;
+  if(!task)return;
+  byId('task-name').textContent=task.title;
+  const list=byId('task-fields');
+  list.replaceChildren();
+  for(const [label,text] of [['Этап',stages[task.stage]+(task.paused?' · пауза':'')],['Текущий шаг',task.step],
+      ['Ожидаемое действие',task.expected_action],['План',task.plan],['Результат',task.result],['Проверка',task.validation]]){
+    if(!text)continue;
+    const term=document.createElement('dt');term.textContent=label;
+    const field=document.createElement('dd');field.textContent=text;list.append(term,field);
+  }
+  const first=task.allowed[0],needsNote=!!noteLabels[first];
+  byId('note-label').hidden=!needsNote;
+  byId('task-note').hidden=!needsNote;
+  byId('task-note').required=needsNote;
+  byId('task-note').value='';
+  if(needsNote)byId('note-label').textContent=noteLabels[first];
+  byId('task-buttons').replaceChildren(...task.allowed.map(name=>{
+    const button=document.createElement('button');button.textContent=actions[name];
+    button.type=noteLabels[name]?'submit':'button';
+    if(!noteLabels[name])button.onclick=()=>moveTask(name);
+    return button;
+  }));
+}
+function moveTask(name){
+  act(async()=>{
+    try {
+      drawTask(await api('/'+sid+'/task/actions',{action:name,note:noteLabels[name]?byId('task-note').value:'',revision:task.revision}));
+      byId('status').textContent='Карточка задачи обновлена.';
+    }catch(err){await load();throw err;}
+  });
+}
+byId('task-action').onsubmit=e=>{e.preventDefault();if(task?.allowed[0])moveTask(task.allowed[0]);};
+byId('task-create').onsubmit=e=>{e.preventDefault();act(async()=>{
+  drawTask(await api('/'+sid+'/task',{title:byId('task-title').value}));
+  byId('status').textContent='Задача создана.';
+});};
+let invariant=null;
+const databaseNames={sqlite:'SQLite',postgresql:'PostgreSQL'};
+function drawInvariant(rule){
+  invariant=rule;
+  byId('rule-current').textContent='Разрешённая база: '+databaseNames[rule.database];
+  byId('rule-db').value=rule.database;
+  byId('rule-audit').textContent=rule.history.length?
+    'Журнал изменений: '+rule.history.map(change=>databaseNames[change.before]+' → '+databaseNames[change.after]).join('; '):
+    'Журнал изменений пока пуст.';
+}
+byId('rule-form').onsubmit=e=>{e.preventDefault();act(async()=>{
+  try {
+    drawInvariant(await api('/'+sid+'/invariant',{database:byId('rule-db').value,revision:invariant.revision},'PUT'));
+    byId('stack-answer').textContent='';
+    byId('status').textContent='Правило сохранено.';
+  }catch(err){await load();throw err;}
+});};
+byId('stack-form').onsubmit=e=>{e.preventDefault();act(async()=>{
+  byId('stack-answer').textContent='';
+  byId('status').textContent='Проверяем предложение…';
+  const data=await api('/'+sid+'/stack',{message:byId('stack-question').value});
+  byId('stack-answer').textContent=data.answer;
+  byId('status').textContent='';
+});};
+const factLabels={deadline:'Срок',status:'Статус',version:'Версия',
+  requirement:'Требование',approach:'Подход',decision:'Решение'};
+function drawFacts(state){
+  const value=v=>v===null?'отменено':v;
+  const time=v=>new Date(v).toLocaleString('ru-RU',{timeZone:'Europe/Moscow'});
+  const current=byId('current-facts');
+  current.replaceChildren();
+  for(const entry of Object.values(state.current)){
+    const name=document.createElement('dt');name.textContent=factLabels[entry.key];
+    const fact=document.createElement('dd');fact.textContent=value(entry.value)+' · '+time(entry.written_at);
+    current.append(name,fact);
+  }
+  if(!current.childNodes.length)current.textContent='Фактов пока нет.';
+  for(const [target,lines] of [
+    ['fact-decisions',state.decisions.map(entry=>entry.value+' · '+time(entry.written_at))],
+    ['fact-history',state.history.map(entry=>factLabels[entry.key]+': '+(entry.before??'—')+' → '+value(entry.after)+' · '+time(entry.written_at))]
+  ]){
+    byId(target).replaceChildren(...(lines.length?lines:['Записей пока нет.']).map(text=>{
+      const item=document.createElement('li');item.textContent=text;return item;
+    }));
+  }
+}
+function draw(row){
+  drawFacts(row.facts);
+
+  drawInvariant(row.invariant);
+  byId('stack-answer').textContent='';
+
+  drawTask(row.task);
+
+  for(const key of ['length','code'])byId(key).value=row.profile[key];
+  const texts=row.memory.short.filter(entry=>['user','assistant'].includes(entry.role)&&entry.content);
+  byId('history').replaceChildren(...texts.map(entry=>{
+    const line=document.createElement('p');line.className='turn';
+    line.textContent=(entry.role==='user'?'Вы: ':'Ассистент: ')+entry.content;return line;
+  }));
+  if(!texts.length)byId('history').textContent='Пока нет сообщений.';
+
+  for(const [name,value] of Object.entries(row.memory)){
+    const present=Object.keys(value).length;
+    byId(name).textContent=present?JSON.stringify(value,null,2):'Пусто';
+  }
+}
+async function load(){
+  const rows=await api('');
+  byId('workspace').replaceChildren(...rows.map(row=>new Option(row.title,row.id)));
+  if(!rows.some(row=>row.id===sid))sid=rows[0]?.id||'';
+  byId('workspace').value=sid;
+  if(sid){draw(await api('/'+sid));localStorage.setItem('agent15.workspace',sid);}
+}
+async function act(action){
+  const controls=[...document.querySelectorAll('button,input,select,textarea')];
+  controls.forEach(el=>el.disabled=true);
+  try{await action();}
+  catch(err){byId('status').textContent=err.message;}
+  finally{
+    controls.forEach(el=>el.disabled=false);
+    document.querySelectorAll('.clear,#copy,#send,#fact button,#profile-form button,#task-create button,#rule-form button,#stack-form button').forEach(el=>el.disabled=!sid);
+  }
+}
+byId('workspace').onchange=()=>act(async()=>{sid=byId('workspace').value;byId('answer').textContent='';byId('status').textContent='';await load();});
+byId('new').onclick=()=>act(async()=>{sid=(await api('',{title:'Новый разговор'})).id;await load();byId('answer').textContent='';byId('status').textContent='Создан новый разговор.';});
+byId('copy').onclick=()=>act(async()=>{sid=(await api('/'+sid+'/copy',{})).id;await load();byId('answer').textContent='';byId('status').textContent='Создана независимая копия.';});
+document.querySelectorAll('.clear').forEach(button=>button.onclick=()=>{
+  const layer=button.dataset.layer;
+  if(confirm('Очистить выбранный слой в этом разговоре?'))act(async()=>{
+    draw(await api('/'+sid+'/clear/'+layer,{}));
+    byId('answer').textContent='';byId('status').textContent='Очищена '+names[layer]+'.';
+  });
+});
+byId('fact').onsubmit=e=>{e.preventDefault();act(async()=>{
+  draw(await api('/'+sid+'/write/'+byId('target').value,{key:byId('key').value,value:byId('value').value}));
+  byId('status').textContent='Факт сохранён.';
+});};
+byId('profile-form').onsubmit=e=>{e.preventDefault();act(async()=>{
+  draw(await api('/'+sid+'/profile',{length:byId('length').value,code:byId('code').value},'PUT'));
+  byId('status').textContent='Предпочтения сохранены.';
+});};
+byId('chat').onsubmit=e=>{e.preventDefault();act(async()=>{
+  byId('status').textContent='Ждём ответ…';byId('answer').textContent='';
+  const result=await api('/'+sid+'/chat?save='+byId('save').checked,{message:byId('question').value});
+  byId('answer').textContent=result.answer;byId('status').textContent=result.fact_change?'Операция с памятью обработана.':result.profile_changed?'Предпочтения обновлены из диалога.':byId('save').checked?'Ответ сохранён в диалоге.':'Ответ получен. Слои памяти сохранены как были.';await load();
+});};
+sid=localStorage.getItem('agent15.workspace')||'';act(load);
+</script></html>
